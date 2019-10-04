@@ -1,0 +1,8 @@
+version: "2"
+services:
+  pcad:
+    image: docker-images.rcc.uchicago.edu/app-dev-group/prostatecancer:models
+    volumes:
+      - "/srv/docker/local/data:/data"
+    ports:
+      - 5000:5000

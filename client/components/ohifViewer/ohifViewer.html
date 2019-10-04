@@ -1,0 +1,41 @@
+<template name="ohifViewer">
+    {{#header headerClasses=instance.headerClasses}}
+        {{#section 'brand'}}
+            <!-- <img class="img-responsive" src={{absoluteUrl "/packages/ohif_viewerbase/assets/logo.png"}} width="12%"> -->
+            <!-- <svg class="logo-image">
+                <use xlink:href={{absoluteUrl "/packages/ohif_viewerbase/assets/shield.svg#icon-ohif-logo"}}></use>
+            </svg> -->
+            Prostate Cancer Finder
+        {{/section}}
+        {{#section 'headerAfterBrand'}}
+            {{#if studyListToggleText}}
+                <a href="#" class="btn studyListLinkSection pull-left js-toggle-studyList">
+                    {{studyListToggleText}}
+                </a>
+            {{/if}}
+        {{/section}}
+        {{#section 'headerMenu'}}
+            <!-- <span class="user-name pull-left m-r-1">{{userName}}</span> -->
+            <!-- <span class="header-options pull-left m-r-1"> | </span> -->
+            <span class="header-options pull-left m-r-1">Options</span>
+            <div class="menu-toggle pull-right">
+                <span class="caret-down"></span>
+            </div>
+        {{/section}}
+    {{/header}}
+    <!-- {{#if inStudyList}}
+        <br>
+        <div id="how-to">
+            <div id="how-to-content">
+                <br>
+                <p>
+                  Double-click to select a patient:
+                </p>
+                <br>
+            </div>
+        </div>
+        <br>
+    {{/if}} -->
+    {{>Template.dynamic template=(choose this.template 'studylist') data=this}}
+    
+</template>

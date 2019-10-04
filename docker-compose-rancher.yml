@@ -1,0 +1,71 @@
+version: '2'
+services:
+  orthanc:
+    image: jodogne/orthanc-plugins
+    volumes:
+    - /dali/rcc/appdev/pcafinder/orthanc-db/:/var/lib/orthanc/db/
+    labels:
+      io.rancher.container.pull_image: always
+  pcad:
+    image: docker-images.rcc.uchicago.edu/app-dev-group/prostatecancer:models
+    volumes:
+    - /dali/rcc/appdev/pcafinder/data:/data
+    labels:
+      io.rancher.container.pull_image: always
+  meteor:
+    image: docker-images.rcc.uchicago.edu/app-dev-group/prostatecancer:front
+    environment:
+      METEOR_SETTINGS: |-
+        {
+                  "servers": {
+                    "dicomWeb": [
+                      {
+                        "name": "Orthanc",
+                        "wadoUriRoot": "http://pca-finder.staging.rcc.uchicago.edu:8042/wado",
+                        "qidoRoot": "http://pca-finder.staging.rcc.uchicago.edu:8042/dicom-web",
+                        "wadoRoot": "http://pca-finder.staging.rcc.uchicago.edu:8042/dicom-web",
+                        "qidoSupportsIncludeField": false,
+                        "imageRendering": "wadouri",
+                        "thumbnailRendering": "wadors",
+                        "requestOptions": {
+                          "auth": "orthanc:orthanc",
+                          "logRequests": true,
+                          "logResponses": false,
+                          "logTiming": true
+                        }
+                      }
+                    ]
+                  },
+                  "defaultServiceType": "dicomWeb",
+                  "dropCollections": true,
+                  "public": {
+                    "verifyEmail": false,
+                    "ui": {
+                        "studyListFunctionsEnabled": true,
+                        "leftSidebarOpen": false,
+                        "displaySetNavigationLoopOverSeries": false,
+                        "displaySetNavigationMultipleViewports": true,
+                        "autoPositionMeasurementsTextCallOuts": "TRLB"
+                    }
+                  },
+                  "proxy": {
+                    "enabled": true
+                  }
+                }
+      MONGO_OPLOG_URL: mongodb://oplogger:mongoadmin@mongodb/local?authSource=admin
+      MONGO_URL: mongodb://meteor:mongoadmin@mongodb/meteor
+      ROOT_URL: http://pca-finder.staging.rcc.uchicago.edu
+    links:
+    - mongodb:mongodb
+    labels:
+      io.rancher.container.pull_image: always
+  mongodb:
+    image: tozd/meteor-mongodb:3.4
+    environment:
+      MONGODB_ADMIN_PWD: mongoadmin
+      MONGODB_CREATE_PWD: mongoadmin
+      MONGODB_OPLOGGER_PWD: mongoadmin
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
