@@ -3,17 +3,17 @@ services:
   orthanc:
     image: jodogne/orthanc-plugins
     volumes:
-    - /dali/rcc/appdev/pcafinder/orthanc-db/:/var/lib/orthanc/db/
+    - /srv/docker/local/orthanc-db/:/var/lib/orthanc/db/
     labels:
       io.rancher.container.pull_image: always
   pcad:
-    image: docker-images.rcc.uchicago.edu/app-dev-group/prostatecancer:models
+    image: docker-images.rcc.uchicago.edu/app-dev-group/pca-finder:models
     volumes:
-    - /dali/rcc/appdev/pcafinder/data:/data
+    - /dali/rcc/appdev/pca-finder/data:/data
     labels:
       io.rancher.container.pull_image: always
   meteor:
-    image: docker-images.rcc.uchicago.edu/app-dev-group/prostatecancer:front
+    image: docker-images.rcc.uchicago.edu/app-dev-group/pca-finder:front
     environment:
       METEOR_SETTINGS: |-
         {
