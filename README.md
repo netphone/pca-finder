@@ -100,7 +100,7 @@ docker run --rm -p 4242:4242 -p 8042:8042 jodogne/orthanc-plugins
     **Note: On Windows, you need to use an absolute path for the data volume, like so:**
 
     ````
-    docker create --name sampledata -v '//C/Users/erik/sampledata' jodogne/orthanc-plugins
+    docker create --name sampledata -v '//C/Users/milson/sampledata' jodogne/orthanc-plugins
     ````
 
 2. Run Orthanc from Docker with the data volume attached
