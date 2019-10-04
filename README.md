@@ -1,107 +1,121 @@
-# prostatecancer.ai [![MIT License][license-image]][license-url]
-__prostatecancer.ai__ is an [OHIF-based](http://ohif.org/), zero-footprint [DICOMweb](https://www.dicomstandard.org/dicomweb/) medical image viewer that utilizes artificial intelligence technologies to identify clinically significant prostate cancer.
+# Prostate Cancer Findings
+
+Prostate Cancer Findings is a web application for identification of clinically significant prostate cancer in MRI, developed on Tesseract-MI platform. 
+
+Installation
+---------
+**What you need:**
+
+1. Nodejs
+2. Meteor to run the app
+3. If you want to use DICOM server (dcm4che or Orthnac) [*Optional*]
 
 
-[Read The Docs](https://github.com/Tesseract-MI/prostatecancer.ai/wiki) |
-[Demo](http://prostatecancer.ai/) |
-[Roadmap](https://github.com/Tesseract-MI/prostatecancer.ai/projects)
+**How to start the app:**
 
-## Introduction
+1. Install Nodejs : https://nodejs.org/en/download/
 
-Advances in machine learning and deep learning have made it possible to embed the knowledge
-of experienced physician/radiologist into computational models and have shown state-of-the art
-performance in various image analysis tasks including computer-assisted detection, diagnosis,
-and prognosis of several forms of cancers including prostate cancer. However, models are not
-fully integrated with the current standard of care in clinic. We have developed
-[prostatecancer.ai](http://prostatecancer.ai/) which enables deployment of AI models in a web-browser while
-simultaneously providing standard image viewing and reporting schemes.
+2. Install Meteor : https://www.meteor.com/install
+	- First install **Chocolatey**, by runingn this command using an **Administrator command prompt**: 
+	````
+	@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+	````	
+3. In the app directory:
+    * to install npm packages run: `meteor npm install`
+	
+4. Finally, run this command using an **General command prompt**: `meteor`
 
-If you're interested in using prostatecancer.ai, but you're not sure it supports
-your use case [check out our docs](https://github.com/Tesseract-MI/prostatecancer.ai/wiki). Still not sure, or
-you would like to propose new features? Don't hesitate to
-[create an issue](https://github.com/Tesseract-MI/prostatecancer.ai/issues) or open a pull
-request.
+----------------------------
+**If you want to use your own DICOM server setup then In the app directory:**
 
-## ⏩ Getting Started
+	* for orthanc run: `METEOR_PACKAGE_DIRS="packages" meteor`
+	* for dcm4chee run: `METEOR_PACKAGE_DIRS="packages" meteor --settings config/dcm4cheeDICOMWeb.json`
+    
+For Developers
+---------
+Technologies:
 
-This readme is specific to testing and developing locally. If you're more
-interested in production deployment strategies,
-[you can check out our documentation on publishing](https://github.com/Tesseract-MI/prostatecancer.ai/wiki).
+* Docker
+* Meteor
+* MongoDB
+* BlazeJs/Spacebars
+* Node.js
+* JavaScript
+* HTML
+* CSS/Stylus
+* VPS
 
-Want to play around before you dig in?
-[Check out our LIVE Demo](http://prostatecancer.ai/)
+Main app components:
 
-### 📏 Setup
+**tesseract-ai**:
+Components and functionality for AI.
 
-_Requirements:_
+**tesseract-fiducial**:
+Similar to cornerstone tools probe with customizable information.
 
-- DICOM server ([orthanc](https://www.orthanc-server.com/) or [dcm4che](https://www.dcm4che.org/))
-- [Meteor](https://www.meteor.com/)
+**tesseract-report**:
+Reporting area for any predictions and calculations, also contains the settings for AI models.
 
-_Steps:_
+**tesseract-server-probe**:
+A cornerstone tool probe like tool that displays findings on the DICOM images. The probe cannot be deleted or manipulated by user.
 
-1. Fork this repository
-2. Clone your forked repository (your `origin`)
+**tesseract-sync-scroll**:
+A toll similar to crosshair tool from cornerstone tools to sync the scrolling on view ports.
 
-- `git clone git@github.com:YOUR_GITHUB_USERNAME/prostatecancer.ai.git`
+**tesseract-cancer-study**:
+A replaceable package to add different cancer studies to the app.
 
-3. Add `Tesseract-MI/prostatecancer.ai` as a `remote` repository (the `upstream`)
+**tesseract-sync-tools**:
+A tool to sync tools like probe or any other drawing tool.
 
-- `git remote add upstream git@github.com:Tesseract-MI/prostatecancer.ai.git`
+Deploying to Production VPS
+---------
+You need app specific files on App's root directory for deploying to server:
 
-### 💻 Developing Locally
+1. Orthanc configuration file **orthanc.json**, generate this file by following <a href="http://book.orthanc-server.com/users/docker.html#id5" target="_blank">this</a> instruction
+2. App configuration **production.env** which is similar to development.env file
+3. In **models** directory run ```docker-compose up -d```
+4. In **main** directory run ```docker-compose up -d```
 
-_In your cloned repository's root folder, run:_
+These files contain all the confirmation and important information like password and server IP for orthanc and MongoDB to connect.
 
-1. Restore dependencies:
-    * `meteor npm install`
+Orthanc username and password can be changed in orthanc.json file.
 
-2. Set up local server to host prostatecancer.ai:
-    * for orthanc run: `METEOR_PACKAGE_DIRS="packages" meteor --settings config/orthancDICOMWeb.json`
-    * for dcm4chee run: `METEOR_PACKAGE_DIRS="packages" meteor --settings config/dcm4cheeDICOMWeb.json`
+Orthanc Installation
+---------
+### Docker usage
+Following the instructions below, the docker image will listen for DICOM connections on port 4242, and for web traffic on port 8042. The default username for the web interface is `orthanc`, and the password is `orthanc`.
+#### Temporary data storage
+````
+docker run --rm -p 4242:4242 -p 8042:8042 jodogne/orthanc-plugins
+````
+
+#### Persistent data storage
+1. Create a persistant data volume for Orthanc to use
+
+    ````
+    docker create --name sampledata -v /sampledata jodogne/orthanc-plugins
+    ````
+
+    **Note: On Windows, you need to use an absolute path for the data volume, like so:**
+
+    ````
+    docker create --name sampledata -v '//C/Users/erik/sampledata' jodogne/orthanc-plugins
+    ````
+
+2. Run Orthanc from Docker with the data volume attached
+
+    ````
+    docker run --volumes-from sampledata -p 4242:4242 -p 8042:8042 jodogne/orthanc-plugins
+    ````
+
+3. Upload your data and it will be persisted
 
 
-### 🐛 Bugs
+dcm4che Installation
+---------
+How to install dcm4che:
 
-Please file an issue for bugs, missing documentation, or unexpected behavior.
-
-[**See Bugs**](https://github.com/Tesseract-MI/prostatecancer.ai/issues)
-
-### 💡 Feature Requests
-
-Please file an issue to suggest new features. Vote on feature requests by adding
-a 👍. This helps maintainers prioritize what to work on.
-
-[**See Feature Requests**](https://github.com/Tesseract-MI/prostatecancer.ai/issues)
-
-### ❓ Questions
-
-For questions related to using the app, please visit our support community,
-or file an issue on GitHub.
-
-[**See Questions**](https://github.com/Tesseract-MI/prostatecancer.ai/issues)
-
-## 🔜 Roadmap
-
-If you want to know what's planned for the very near future,
-[check out our roadmap](https://github.com/Tesseract-MI/prostatecancer.ai/projects). The best way to influence when
-and what is worked on is to contribute to the conversation by creating GitHub
-issues, and contributing code through pull requests. Our high level
-priorities for the near future are:
-
-- [Segmentation tools](https://github.com/Tesseract-MI/prostatecancer.ai/projects/1) 🚧🕞
-- [Zero-footprint upload feature](https://github.com/Tesseract-MI/prostatecancer.ai/projects/2) 🚧🕞
-- [Migrate to React](https://github.com/Tesseract-MI/prostatecancer.ai/projects/3) 🚧🕞
-
-More granular information will make its way to the backlog as these items
-become scoped for development by core maintainers.
-
-> Don't hesitate to ask questions, propose features, or create pull requests.
-> We're here, we're listening, and we're always ready to make prostatecancer.ai the best AI-based medical image viewer in the world 🌎
-
-## 🔒 License
-
-MIT © [prostatecancer.ai](https://github.com/Tesseract-MI/prostatecancer.ai)
-
-[license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
-[license-url]: LICENSE
+1. Install docker-compose https://docs.docker.com/compose/install/
+2. Clone dcm4che from https://github.com/dcm4che-dockerfiles/dcm4chee-arc-psql
+3. Run `docker-compose up` in dcm4che directory
