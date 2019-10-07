@@ -27,18 +27,19 @@ body>.header
     theme('color', '$textPrimaryColor')
 
     .user-name
-      font-size: 13px
+      font-size: 16px
       color: yellow
 
     .header-options
-      font-size: 13px
+      font-size: 16px
 
     .menu-toggle
       display: inline-block
       height: 18px
 
   .btn
-    theme('color', '$textSecondaryColor')
+    _theme('color', '$textSecondaryColor')
+    color: white
     cursor: pointer
     font-size: 13px
     font-weight: 500
@@ -52,15 +53,20 @@ body>.header
 
   .studyListLinkSection
     theme('border-left', '%s solid $uiBorderColor' % $uiBorderThickness)
-    margin: 3px 0 0 10px
-    padding: 0 0 0 10px
+    margin: 10px 0 0 0
+    border-left: 1px solid #44626f;
+    padding: 15px 0px 15px 15px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 0px;
+    
 
   &.header-big
     padding-left: $studyListPadding
     padding-right: $studyListPadding
 
     .brand
-      height: 100%
+      _height: 100%
       width: 80%
       line-height: $topBarExpandedHeight - 10px
 
@@ -71,16 +77,10 @@ body>.header
       .logo-text
         font-size: 30px
 
-    .studyListLinkSection
-      border: none
-      left: 0
-      margin: 0
-      padding: 0
-      position: absolute
-      top: 0
-
 #how-to
-  color: white
-  background: #151a1f
+  _color: white
+  font-size: 16px
+  font-weight: 500
+  background: #dddddd
   #how-to-content
     padding: 0 8%

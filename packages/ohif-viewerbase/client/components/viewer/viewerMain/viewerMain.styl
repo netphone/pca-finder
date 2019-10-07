@@ -1,5 +1,11 @@
 @import "{ohif:design}/app"
 
+body > div.header.noselect > div > a.brand.pull-left > img
+  display: none
+
+body > div.header.noselect.header-big > div > a.brand.pull-left > img
+  display: inline
+
 #viewer
   height: "calc(100% - %s)" % $topBarHeight
 
@@ -40,3 +46,4 @@
           width: 100%
           height: 100%
           position: relative // Necessary so that the viewportOverlay is on top of the viewports
+
