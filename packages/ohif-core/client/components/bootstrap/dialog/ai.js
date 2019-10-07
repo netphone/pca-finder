@@ -13,7 +13,7 @@ function precise(x) {
 function askAi(data) {
     $("#ai-prediction").text("Calculating...");
     $.ajax({
-        url: 'http://pca-finder.staging.rcc.uchicago.edu:5010/predict',
+        url: 'http://10.50.223.110:5000/predict',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(data),
