@@ -119,3 +119,19 @@ How to install dcm4che:
 1. Install docker-compose https://docs.docker.com/compose/install/
 2. Clone dcm4che from https://github.com/dcm4che-dockerfiles/dcm4chee-arc-psql
 3. Run `docker-compose up` in dcm4che directory
+
+Flask Prediction Server
+---------
+How to run the Flask server on Midway2:
+
+1. Connect to Midway GPU
+`vglconnect -s midway2-0622`
+3. Go to the directory: `cd /project2/rcc/tszasz/MRIRC/SC19/flask_server/models`
+4. Type: `source env/bin/activate`
+5. Type: `export FLASK_APP=pcad.py` 
+6. Type: `export LC_ALL=en_US.utf-8`
+7. Type: `export LANG=en_US.utf-8`
+8. Type: `flask run --host=0.0.0.0`
+
+
+
