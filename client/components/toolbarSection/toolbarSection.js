@@ -156,13 +156,6 @@ Template.toolbarSection.helpers({
             iconClasses: 'fa fa-adjust'
         });
 
-        buttonData.push({
-            id: 'pixelize',
-            title: 'Pixelize',
-            classes: 'imageViewerTool',
-            iconClasses: 'fa fa-low-vision'
-        });
-
         return buttonData;
     },
 

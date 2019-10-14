@@ -95,7 +95,6 @@ function displayFiducials(fiducials) {
   }
 
   $('#'+selctedToolAfterResult).trigger("click");
-  Session.set('getFeedback', true);
 }
 
 function displayResult(fiducials, studyInstanceUid) {
