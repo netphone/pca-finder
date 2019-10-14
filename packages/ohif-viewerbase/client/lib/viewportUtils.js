@@ -118,6 +118,17 @@ const invert = () => {
     cornerstone.setViewport(element, viewport);
 };
 
+const pixelize = () => {
+    const element = getActiveViewportElement();
+    if (!element) {
+        return;
+    }
+
+    const viewport = cornerstone.getViewport(element);
+    viewport.pixelReplication = (viewport.pixelReplication === false);
+    cornerstone.setViewport(element, viewport);
+};
+
 const flipV = () => {
     const element = getActiveViewportElement();
     const viewport = cornerstone.getViewport(element);
@@ -369,6 +380,7 @@ window.addEventListener('cornerstonetoolsclipstopped', () => {
  */
 
 const viewportUtils = {
+    feedback,
     getEnabledElementForActiveElement,
     getEnabledElement,
     getActiveViewportElement,
@@ -378,6 +390,7 @@ const viewportUtils = {
     rotateL,
     rotateR,
     invert,
+    pixelize,
     flipV,
     flipH,
     resetViewport,
