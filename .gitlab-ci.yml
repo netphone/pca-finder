@@ -1,0 +1,12 @@
+services:
+  - docker:dind
+
+variables:
+  IMAGE_METEOR_TAG: $CI_REGISTRY_IMAGE:live-front
+
+build-meteor:
+  stage: build
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -f Dockerfile-front -t $IMAGE_METEOR_TAG .
+    - docker push $IMAGE_METEOR_TAG
