@@ -59,7 +59,7 @@ services:
                 }
       MONGO_OPLOG_URL: mongodb://oplogger:mongoadmin@mongodb/local?authSource=admin
       MONGO_URL: mongodb://meteor:mongoadmin@mongodb/meteor
-      ROOT_URL: http://pca-finder.staging.rcc.uchicago.edu
+      ROOT_URL: http://localhost
     ports:
       - 80:3000
     links:
