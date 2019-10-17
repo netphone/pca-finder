@@ -1,26 +1,44 @@
 <template name="header">
-    <nav class="header navbar navbar-inverse {{reactive headerClasses}}">
+    <nav class="header navbar navbar-inverse {{reactive headerClasses}}" style="background-color: #800000;height: 10rem;">
+        <img class="logo"  src="logo.png" alt="">
         <div class="container">
-            <div class="navbar-header">
+
+            <div class="navbar-header" style="margin-top:-6.5rem;margin-left:30rem">
+
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
+                        aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a target='_blank' class="navbar-brand" href="{{choose this.brandHref '/'}}">
-                    {{>section 'brand'}}
-                </a>
-                {{>section 'headerAfterBrand'}}                
+
+                {{>section 'headerAfterBrand'}}
+
             </div>
-            <div id="navbar" class="navbar-collapse collapse navbar-right">
-                <a href='#' class="header-menu pull-right">{{>section 'headerMenu'}}</a>
+            <div id="navbar" class="navbar-collapse collapse navbar-right" >
+                <a href='#' class="header-menu pull-right" style="margin-top:-5.5rem">{{>section 'headerMenu'}}</a>
                 <div class="navbar-form navbar-right" id="btnDemo">
+                <!--    <button id="btnTestDrive" class="btn btn-success" style="width: 150px;" title="Login with Demo User">Demo</button>
+             -->   </div>
+                <div id="sidemenu">
+                    <input type="checkbox" id="menuToggle">
+                    <label for="menuToggle"><span>&times;</span><span>&#9776;</span></label>
+                    <ul>
+                        <li><a href="/entrySignIn">HOME</a></li>
+                        <li><a id="dicomm" href="/dicomm">DICOMM</a></li>
+                        <li><a href="#" target="_blank">MODEL</a></li>
+                        <li><a href="#" target="_blank">ABOUT</a></li>
+                        <li><a href="#" target="_blank">OUR TEAM</a></li>
+                    </ul>
                 </div>
+
             </div>
+
             <!--/.navbar-collapse -->
         </div>
         {{>UI.contentBlock}}
+
+
     </nav>
 </template>

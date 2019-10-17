@@ -14,6 +14,10 @@ Router.route('/sign-in', {
   name: 'signInRoute'
 });
 
+Router.route('/dicomm', {
+  template: 'dicomm',
+  name: 'dicomm'
+});
 //==================================================================================================
 // COMPONENT OUTPUTS
 

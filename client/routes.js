@@ -29,9 +29,13 @@ Router.route('/', function() {
     Router.go('studylist', {}, { replaceState: true });
 }, { name: 'home' });
 
+
+
 Router.route('/studylist', function() {
     this.render('ohifViewer', { data: { template: 'studylist' } });
 }, { name: 'studylist' });
+
+
 
 Router.route('/viewer/:studyInstanceUids', function() {
     const studyInstanceUids = this.params.studyInstanceUids.split(';');

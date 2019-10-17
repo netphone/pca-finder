@@ -24,3 +24,100 @@ body>.header
   &.header-big
     _height: $topBarExpandedHeight
     background-color: rgba(21, 25, 30, 0.7)
+
+.btn:hover {
+  color: #9555af;
+  border-color: currentColor;
+  background-color: white;
+}
+.btn-success:hover {
+  background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+  background-color:#408c99;
+}
+
+
+
+.logo
+  color: #ffffff
+  height: 8rem
+  font-size: 1rem
+  font-weight: 600
+  line-height: inherit
+  padding: 0 1.25rem
+  text-decoration: none
+
+
+
+
+#sidemenu{
+  margin-left: 1510px;
+  /* float: left; */
+  position: fixed;
+  top: 43px;
+  left: 20px;
+z-index :1;
+  -webkit-border-radius: 21px;
+  -moz-border-radius: 21px;
+  -ms-border-radius: 21px;
+  -o-border-radius: 21px;
+  /* border-radius: 21px; */
+  min-width: 40px;
+  min-height: 40px;
+  overflow: hidden;
+}
+#sidemenu input{
+  display:none;
+}
+#sidemenu input:checked ~ label span:last-child{
+  display:none;
+}
+#sidemenu input:not(:checked) ~ label span:first-child{
+  display:none;
+}
+#sidemenu label{
+  display:block;
+  position:absolute;
+  right:0px;
+  top:0px;
+  user-select:none;
+  width:41px;
+  height:41px;
+  text-align:center;
+  line-height:40px;
+  background:#408c99;
+  color:white;
+  border-bottom-left-radius:20px;
+  cursor:pointer;
+}
+#sidemenu ul{
+  background-color: #ffffff
+  overflow:hidden;
+  width:0;
+  height:0;
+  padding:0;
+  margin:0;
+  transition:width 0.5s, height 0.5s;
+  list-style:none;
+}
+#sidemenu input:checked ~ ul{
+  width:200px;
+  height:150px;
+}
+#sidemenu ul li a{
+
+  border-bottom: 1px solid #408c99;
+  border-radius: 5px;
+  text-transform:uppercase;
+  text-decoration:none;
+  font-family:'Roboto', sans-serif;
+  display:block;
+  width:200px;
+  height:30px;
+  line-height:30px;
+  letter-spacing:2px;
+  text-align:center;
+  transition:color 0.5s, background 0.5s;
+}
+
+
+
