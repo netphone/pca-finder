@@ -9,7 +9,7 @@
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <video autoplay loop muted playsinline controls style="background-color: #fff;width: 200rem;height: 50rem;">
+                        <video autoplay loop muted playsinline controls style="background-color: #fff;width: -webkit-fill-available;height: -webkit-fill-available;">
 
                             <source src="prostrate_3d.webm"
                                     type="video/webm">
@@ -24,17 +24,12 @@
                     </div>
                 </div>
             </div><!-- /.carousel -->
-<main role="main">
 
-            <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading" style="font-size:35px;color:#800000">WELCOME TO PCA APP</h1>
-      <p class="lead text-muted">Prostate cancer (PCa) is one of the major causes of cancer death for men. Multi-parametric MRI (mpMRl) Is increasingly being used for PCa diagnosis. While mpMRl is very good at detecting prostate cancers, still 15-30% of clinically significant cancers can be missed even by expert radiologists. The current state of prostate mpMRl is based on the subjective assessment by radiologists that need extensive training. Artificial intelligence and computer aided diagnosis tools have been investigated for PCa diagnosis using mpMRl data to mitigate the problems with variability in PCa diagnosis among radiologists. Numerous studies have shown promising results, however low specificity and high false positive rates remain to be a major concern limiting wide spread use of mpMRl for screening and diagnosis of PCa.</p>
+            <div class="container" style="width:-webkit-fill-available;opacity: 0.85">
 
-    </div>
-  </section>
-               
-                    <!--
+                <!-- Main component for a primary marketing message or call to action -->
+                <div class="jumbotron" style=" opacity: 0.85; background-color: #14191e38;">
+                    <!-- Highlights -->
                     <section class="wrapper">
                         <div class="inner" style="margin-top:-200px;">
                             <header class="special" style="margin-top:25rem">
@@ -43,39 +38,32 @@
                             </header>
                         </div>
                     </section>
-					
 
-<div class="jumbotron">
-    <div class="container">
-      <h1 class="jumbotron-heading">WELCOME TO PCA APP</h1>
-      <p>Prostate cancer (PCa) is one of the major causes of cancer death for men. Multi-parametric MRI (mpMRl) Is increasingly being used for PCa diagnosis. While mpMRl is very good at detecting prostate cancers, still 15-30% of clinically significant cancers can be missed even by expert radiologists. The current state of prostate mpMRl is based on the subjective assessment by radiologists that need extensive training. Artificial intelligence and computer aided diagnosis tools have been investigated for PCa diagnosis using mpMRl data to mitigate the problems with variability in PCa diagnosis among radiologists. Numerous studies have shown promising results, however low specificity and high false positive rates remain to be a major concern limiting wide spread use of mpMRl for screening and diagnosis of PCa.</p>
+                    <div id="carbonads">
+                        <header class="special">
+                            <h2 ><strong style="color:#800000;margin-left:18rem">DICOMM</Strong></h2>
+                                </header>
+                        <strong><p style="color:#fff">While mpMRl is very. The current state of prostate mpMRl is based on the subjective assessment by radiologists that need extensive training. </p></strong>
+                        <button id="learnmore1" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="DICOMM">Learn More</button>
+                    </div>
+                    <div id="carbonads" style="margin-top:-50rem;margin-left:60rem;">
 
-    </div>
-  </div>-->
-                   <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2 style="font-size:20px;color:#800000">DICOMM</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-           <button id="learnmore1" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="DICOMM">Learn More</button>
-                   </div>
-      <div class="col-md-4">
-        <h2 style="font-size:20px;color:#800000">MODAL</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-         <button id="learnmore2" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="DICOMM">Learn More</button>
-              </div>
-      <div class="col-md-4">
-        <h2 style="font-size:20px;color:#800000">ORTHANC</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <button id="learnmore3" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="DICOMM">Learn More</button>
-              </div>
-    </div>
+                        <header class="special">
+                            <h2 ><strong style="color:#800000;margin-left:20rem">MODAL</Strong></h2>
+                        </header>
+                        <strong><p style="color:#fff">While mpMRl is very. The current state of prostate mpMRl is based on the subjective assessment by radiologists that need extensive training. </p></strong>
+                             <button id="learnmore2" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="DICOMM">Learn More</button>
+                    </div>
+                    <div id="carbonads" style="margin-top:-50rem;margin-left:120rem;">
 
-    <hr>
-
-  </div> <!-- /container -->
-        </main>
+                        <header class="special">
+                            <h2 ><strong style="color:#800000;margin-left:20rem">ORTHANC</Strong></h2>
+                        </header>
+                        <strong><p style="color:#fff">While mpMRl is very. The current state of prostate mpMRl is based on the subjective assessment by radiologists that need extensive training. </p></strong>
+                          <button id="learnmore3" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="DICOMM">Learn More</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
