@@ -141,6 +141,7 @@ Meteor.startup(function() {
         zoomOut: 'Zoom Out',
         zoomToFit: 'Zoom to Fit',
         invert: 'Invert',
+        pixelize: 'Pixelize',
         flipH: 'Flip Horizontally',
         flipV: 'Flip Vertically',
         rotateR: 'Rotate Right',
