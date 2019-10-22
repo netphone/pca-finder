@@ -112,11 +112,11 @@ Package.onUse(function(api) {
     api.addFiles('client/components/basic/aboutModal/aboutModal.js', 'client');
     api.addFiles('client/components/basic/aboutModal/aboutModal.styl', 'client');
 
-    api.addFiles('client/components/basic/feedbackModal/feedbackModal.html', 'client');
-    api.addFiles('client/components/basic/feedbackModal/feedbackModal.styl', 'client');
+    // api.addFiles('client/components/basic/feedbackModal/feedbackModal.html', 'client');
+    // api.addFiles('client/components/basic/feedbackModal/feedbackModal.styl', 'client');
 
-    api.addFiles('client/components/basic/howToModal/howToModal.html', 'client');
-    api.addFiles('client/components/basic/howToModal/howToModal.styl', 'client');
+    // api.addFiles('client/components/basic/howToModal/howToModal.html', 'client');
+    // api.addFiles('client/components/basic/howToModal/howToModal.styl', 'client');
 
     // Study Browser components
     api.addFiles('client/components/studyBrowser/studyBrowser/studyBrowser.html', 'client');
