@@ -48,6 +48,10 @@ const getEnabledElementForActiveElement = () => {
     return enabledElement;
 };
 
+const feedback = () => {
+    OHIF.ui.showDialog('feedbackModal');
+};
+
 const zoomIn = () => {
     const element = getActiveViewportElement();
     if (!element) {
