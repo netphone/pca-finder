@@ -61,8 +61,7 @@ Meteor.startup(() => {
         toggleCinePlay: viewportUtils.toggleCinePlay,
         clearTools: viewportUtils.clearTools,
         resetViewport: viewportUtils.resetViewport,
-        invert: viewportUtils.invert,
-        pixelize: viewportUtils.pixelize
+        invert: viewportUtils.invert
     };
 
     OHIF.viewer.stackImagePositionOffsetSynchronizer = new OHIF.viewerbase.StackImagePositionOffsetSynchronizer();
