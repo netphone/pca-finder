@@ -42,6 +42,7 @@ Meteor.startup(function() {
         rotateR: 'R',
         rotateL: 'L',
         invert: 'I',
+        pixelize: 'P',
         zoomIn: '',
         zoomOut: '',
         zoomToFit: '',
@@ -138,9 +139,11 @@ Meteor.startup(function() {
     // Register the viewport commands
     registerViewportCommands({
         zoomIn: 'Zoom In',
+        feedback: 'Feedback',
         zoomOut: 'Zoom Out',
         zoomToFit: 'Zoom to Fit',
         invert: 'Invert',
+        pixelize: 'Pixelize',
         flipH: 'Flip Horizontally',
         flipV: 'Flip Vertically',
         rotateR: 'Rotate Right',

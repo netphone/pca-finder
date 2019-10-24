@@ -8,17 +8,28 @@ Template.ohifViewer.onCreated(() => {
     const instance = Template.instance();
     instance.headerClasses = new ReactiveVar('');
 
-    OHIF.header.dropdown.setItems([
-    //     {
-    //     action: () => OHIF.ui.showDialog('userPreferencesDialog'),
-    //     text: 'Preferences',
-    //     icon: 'fa fa-user',
-    //     separatorAfter: true
-    // }, 
-    {
+    const localStorage = window.localStorage;
+    const openModal = localStorage.openModal;
+
+    if (!openModal) {
+      OHIF.ui.showDialog('howToModal');
+      localStorage.setItem('openModal', 'NO');
+    }
+
+    OHIF.header.dropdown.setItems([{
+        action: () => OHIF.ui.showDialog('userPreferencesDialog'),
+        text: 'Preferences',
+        icon: 'fa fa-user',
+        separatorAfter: true
+    }, {
         action: () => OHIF.ui.showDialog('aboutModal'),
         text: 'About',
         icon: 'fa fa-info',
+        separatorAfter: true
+    }, {
+        action: () => OHIF.ui.showDialog('howToModal'),
+        text: 'How To',
+        icon: 'fa fa-question',
         separatorAfter: true
     }, {
         action: OHIF.user.logout,

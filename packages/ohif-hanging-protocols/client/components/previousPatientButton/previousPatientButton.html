@@ -3,13 +3,13 @@
          class="toolbarSectionButton rp-x-1 {{this.classes}} {{activeClass}}"
          title="{{this.title}}">
         <div class="svgContainer">
-        {{ #if this.svgLink }}
-        <svg>
-            <use xlink:href={{absoluteUrl this.svgLink}}></use>
-        </svg>
-        {{ else }}
+            {{ #if this.svgLink }}
+            <svg>
+                <use xlink:href={{absoluteUrl this.svgLink}}></use>
+            </svg>
+            {{ else }}
             <i class={{iconClasses}}></i>
-        {{ /if }}
+            {{ /if }}
         </div>
         <div class="buttonLabel">
             {{this.title}}

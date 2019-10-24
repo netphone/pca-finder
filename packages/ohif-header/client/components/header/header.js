@@ -2,11 +2,6 @@ import { Template } from 'meteor/templating';
 import { $ } from 'meteor/jquery';
 import { OHIF } from 'meteor/ohif:core';
 
-
-
-
-
-
 Template.header.onCreated(() => {
     const instance = Template.instance();
 
@@ -15,8 +10,6 @@ Template.header.onCreated(() => {
         OHIF.header.dropdown.observer.depend();
         instance.dropdownItems = OHIF.header.dropdown.getItems();
     });
-
-
 });
 
 Template.header.events({

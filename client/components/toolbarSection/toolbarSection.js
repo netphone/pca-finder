@@ -156,11 +156,25 @@ Template.toolbarSection.helpers({
             iconClasses: 'fa fa-adjust'
         });
 
+        buttonData.push({
+            id: 'pixelize',
+            title: 'Pixelize',
+            classes: 'imageViewerTool',
+            iconClasses: 'fa fa-low-vision'
+        });
+
         return buttonData;
     },
 
     hangingProtocolButtons() {
         let buttonData = [];
+
+        buttonData.push({
+            id: 'feedback',
+            title: 'Feedback',
+            iconClasses: 'fa fa-commenting',
+            buttonTemplateName: 'feedbackButton'
+        });
 
         buttonData.push({
             id: 'previousPatient',
