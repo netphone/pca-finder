@@ -66,14 +66,14 @@ Template.toolbarSection.helpers({
 
         buttonData.push({
             id: 'resetViewport',
-            title: 'Reset',
+            title: 'Original',
             classes: 'imageViewerCommand',
             iconClasses: 'fa fa-undo'
         });
 
         buttonData.push({
             id: 'zoom',
-            title: 'Zoom',
+            title: 'Maximize',
             classes: 'imageViewerTool',
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-zoom'
         });
@@ -87,7 +87,7 @@ Template.toolbarSection.helpers({
 
         buttonData.push({
             id: 'pan',
-            title: 'Pan',
+            title: 'Drag',
             classes: 'imageViewerTool',
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-pan'
         });
@@ -101,7 +101,7 @@ Template.toolbarSection.helpers({
 
         buttonData.push({
             id: 'aiFiducial',
-            title: 'AI Finding',
+            title: 'Calculate',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-magic'
         });
@@ -145,7 +145,7 @@ Template.toolbarSection.helpers({
 
         buttonData.push({
             id: 'toggleDownloadDialog',
-            title: 'Snapshot',
+            title: 'Capture',
             classes: 'imageViewerCommand',
             iconClasses: 'fa fa-camera',
             active: () => $('#downloadDialog').is(':visible')
@@ -166,14 +166,14 @@ Template.toolbarSection.helpers({
 
         buttonData.push({
             id: 'previousPatient',
-            title: 'Prev. Patient',
+            title: 'Previous',
             iconClasses: 'fa fa-step-backward',
             buttonTemplateName: 'previousPatientButton'
         });
 
         buttonData.push({
             id: 'nextPatient',
-            title: 'Next Patient',
+            title: 'Next',
             iconClasses: 'fa fa-step-forward',
             buttonTemplateName: 'nextPatientButton'
         });
