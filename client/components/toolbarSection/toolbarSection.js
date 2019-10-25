@@ -101,7 +101,7 @@ Template.toolbarSection.helpers({
 
         buttonData.push({
             id: 'aiFiducial',
-            title: 'Calculate',
+            title: 'Predict PCa',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-magic'
         });

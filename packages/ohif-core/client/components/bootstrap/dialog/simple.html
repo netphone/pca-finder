@@ -1,12 +1,12 @@
 <template name="dialogSimple">
     <div id="{{this.id}}" class="modal fade {{this.class}}" tabindex="-1" role="dialog">
-        <div class="modal-dialog {{this.dialogClass}}" role="document">
+        <div class="modal-dialog {{this.dialogClass}}" role="document" style="width:70rem">
             <div class="modal-content">
                 {{>dialogHeader this}}
-                <div class="modal-body">
+                <div class="modal-body" style="background-color: #800000">
                     {{>UI.contentBlock}}
                 </div>
-                <div class="modal-footer">{{>section 'dialogFooter'}}</div>
+                <div class="modal-footer"  >{{>section 'dialogFooter'}}</div>
             </div>
         </div>
     </div>
