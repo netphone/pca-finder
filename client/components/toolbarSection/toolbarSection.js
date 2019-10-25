@@ -78,12 +78,12 @@ Template.toolbarSection.helpers({
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-zoom'
         });
 
-        buttonData.push({
+      /*  buttonData.push({
             id: 'wwwc',
             title: 'Levels',
             classes: 'imageViewerTool',
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-levels'
-        });
+        });*/
 
         buttonData.push({
             id: 'pan',
@@ -92,12 +92,12 @@ Template.toolbarSection.helpers({
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-pan'
         });
 
-        buttonData.push({
+        /*buttonData.push({
             id: 'scrollSync',
             title: 'Scroll Sync',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-unsorted'
-        });
+        });*/
 
         buttonData.push({
             id: 'aiFiducial',
@@ -106,33 +106,34 @@ Template.toolbarSection.helpers({
             iconClasses: 'fa fa-magic'
         });
 
-        buttonData.push({
+       /* buttonData.push({
             id: 'fiducial',
             title: 'Fiducial',
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-dot-circle-o'
-        });
+        });*/
 
-        buttonData.push({
+       /* buttonData.push({
             id: 'length',
             title: 'Length',
             classes: 'imageViewerTool toolbarSectionButton',
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-temp'
-        });
+        });*/
 
-        buttonData.push({
+      /*  buttonData.push({
             id: 'annotate',
             title: 'Annotate',
             classes: 'imageViewerTool',
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-non-target'
-        });
+        });*/
 
-        buttonData.push({
+       /* buttonData.push({
             id: 'magnify',
             title: 'Magnify',
             classes: 'imageViewerTool toolbarSectionButton',
             iconClasses: 'fa fa-circle'
-        });
+        });*/
+/*
 
         buttonData.push({
             id: 'wwwcRegion',
@@ -140,6 +141,7 @@ Template.toolbarSection.helpers({
             classes: 'imageViewerTool',
             iconClasses: 'fa fa-square'
         });
+*/
 
         buttonData.push({
             id: 'toggleDownloadDialog',
@@ -149,12 +151,12 @@ Template.toolbarSection.helpers({
             active: () => $('#downloadDialog').is(':visible')
         });
 
-        buttonData.push({
+       /* buttonData.push({
             id: 'invert',
             title: 'Invert',
             classes: 'imageViewerCommand',
             iconClasses: 'fa fa-adjust'
-        });
+        });*/
 
         return buttonData;
     },
