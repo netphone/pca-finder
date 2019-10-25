@@ -24,7 +24,19 @@
                 </div>
             </div><!-- /.carousel -->
 <main role="main">
-
+    <section class="jumbotron text-center" style="background-color: #ffffff">
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-4" style="margin-left:400px;border: solid;border-radius: 3px;margin-left: 400px;border-color: #555555;">
+                <h2 style="font-size:20px;color:#800000">Learn from the best.</h2>
+                <p>Learn Radiology Prostate is a self-paced interactive learning tool curated by experts in prostate radiology and digital imaging.</p>
+                <button id="btnTestDrive" class="btn btn-success" style="width: 250px;background-color:#800000;border-color:#555555;" title="Login with Demo User">Begin Course</button>
+                <br/><br/>
+            </div>
+        </div>
+    </div>
+    </section>
             <section class="jumbotron text-center">
     <div class="container">
       <h1 class="jumbotron-heading" style="font-size:35px;color:#800000">WELCOME TO PCa APP</h1>
@@ -35,41 +47,23 @@ The Research Computing Center at the University of Chicago is working on the pro
     </div>
   </section>
                
-                    <!--
-                    <section class="wrapper">
-                        <div class="inner" style="margin-top:-200px;">
-                            <header class="special" style="margin-top:25rem">
-                                <h2><strong style="color:#800000;margin-left: 65rem;">WELCOME TO PCA APP</Strong></h2>
-                                <strong><p>Prostate cancer (PCa) is one of the major causes of cancer death for men. Multi-parametric MRI (mpMRl) Is increasingly being used for PCa diagnosis. While mpMRl is very good at detecting prostate cancers, still 15-30% of clinically significant cancers can be missed even by expert radiologists. The current state of prostate mpMRl is based on the subjective assessment by radiologists that need extensive training. Artificial intelligence and computer aided diagnosis tools have been investigated for PCa diagnosis using mpMRl data to mitigate the problems with variability in PCa diagnosis among radiologists. Numerous studies have shown promising results, however low specificity and high false positive rates remain to be a major concern limiting wide spread use of mpMRl for screening and diagnosis of PCa.</p></strong>
-                            </header>
-                        </div>
-                    </section>
-					
-
-<div class="jumbotron">
     <div class="container">
-      <h1 class="jumbotron-heading">WELCOME TO PCA APP</h1>
-      <p>Prostate cancer (PCa) is one of the major causes of cancer death for men. Multi-parametric MRI (mpMRl) Is increasingly being used for PCa diagnosis. While mpMRl is very good at detecting prostate cancers, still 15-30% of clinically significant cancers can be missed even by expert radiologists. The current state of prostate mpMRl is based on the subjective assessment by radiologists that need extensive training. Artificial intelligence and computer aided diagnosis tools have been investigated for PCa diagnosis using mpMRl data to mitigate the problems with variability in PCa diagnosis among radiologists. Numerous studies have shown promising results, however low specificity and high false positive rates remain to be a major concern limiting wide spread use of mpMRl for screening and diagnosis of PCa.</p>
-
-    </div>
-  </div>-->
-                   <div class="container">
     <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-4">
-        <h2 style="font-size:20px;color:#800000">DICOM</h2>
-        <p>DICOM (Digital Imaging and Communications in Medicine) is a standard for handling, storing, printing, and transmitting information in medical imaging. It includes a file format definition and a network communications protocol</p>
-           <button id="learnmore1" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="DICOMM">Learn More</button>
+        <h2 style="font-size:20px;color:#800000">Incidence</h2>
+        <p>Prostate cancer accounts for 20% of all new cancer cases amongst US men at approximately 174,650 new men diagnosed each year.</p><br/><br/>
+           <button id="learnmore1" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="Incidence">Learn More</button>
                    </div>
       <div class="col-md-4">
         <h2 style="font-size:20px;color:#800000">mpMRI</h2>
         <p>mpMRI imaging is highly sensitive in the detection of prostate cancer compared to any individual sequence. It combines T2WI, DWI, & DCE MRI.</p><br/><br/>
-         <button id="learnmore2" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="mpMRI">Learn More</button>
+         <button id="learnmore2" onclick="location.href='/mpmri'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="mpMRI">Learn More</button>
               </div>
       <div class="col-md-4">
         <h2 style="font-size:20px;color:#800000">PI-RADS v2</h2>
         <p>The introduction of the PI-RADS v2 classification for prostate MRI in 2012 lead to a more standardized acquisition, interpretation and reporting of prostate MRI.</p><br/><br/>
-        <button id="learnmore3" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="PI-RADS V2">Learn More</button>
+        <button id="learnmore3" onclick="location.href='/pirads'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="PI-RADS V2">Learn More</button>
               </div>
     </div>
 
@@ -89,11 +83,11 @@ The Research Computing Center at the University of Chicago is working on the pro
                     </div>
 
                     <div class="col-lg-3">
-                        <a href="http://www.rsna.org/"><img src="lenovo.png" style="margin-left: -15rem;height:10rem;" alt="lenovo" class="img-fluid footer-logo rsna-logo"></a>
+                        <a href="http://www.lenovo.com/"><img src="lenovo.png" style="margin-left: -15rem;height:10rem;" alt="lenovo" class="img-fluid footer-logo rsna-logo"></a>
                     </div>
 
                     <div class="col-lg-4">
-                        <a href="https://rcc.uchicago.edu/"><img src="logo_RCC.png" alt="Research Computing Center (RCC) at The University of Chicago" class="footer-logo"></a>
+                        <a href="https://rcc.uchicago.edu/"><img src="logo_RCC.png" style="margin-top: 1rem;width: 600px;" alt="Research Computing Center (RCC) at The University of Chicago" class="footer-logo"></a>
                     </div>
 
 

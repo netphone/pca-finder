@@ -176,6 +176,10 @@ Template.entrySignIn.events({
     ActiveEntry.signIn(emailValue, passwordValue);
     event.preventDefault();
   },
+  'click #btnTestDrive': function (event, template) {
+    // Login with demo user
+    ActiveEntry.signIn('demo@ohif.org', '12345678aA*');
+  },
   'keyup #entrySignIn': function(event, template) {
     if(event.keyCode == 13) {
       $("#signInToAppButton").click();
