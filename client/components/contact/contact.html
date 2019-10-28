@@ -1,0 +1,137 @@
+<template name="contact">
+    {{#header headerClasses='navbar-fixed-top'}}
+        <!--  {{#section 'brand'}}
+            &lt;!&ndash; <img class="img-responsive" src={{absoluteUrl "/packages/ohif_viewerbase/assets/logo.png"}} width="12%"> &ndash;&gt;
+            &lt;!&ndash; <svg class="logo-image">
+                <use xlink:href={{absoluteUrl "/packages/ohif_viewerbase/assets/shield.svg#icon-ohif-logo"}}></use>
+            </svg> &ndash;&gt;
+            &lt;!&ndash; <svg class="logo-image">
+                <use xlink:href={{absoluteUrl "/packages/ohif_viewerbase/assets/shield.svg#icon-ohif-logo"}}></use>
+            </svg> &ndash;&gt;
+
+        {{/section}}-->
+        <!--{{#section 'headerAfterBrand'}}
+            {{#if studyListToggleText}}
+                <a href="#" class="btn studyListLinkSection pull-left js-toggle-studyList">
+                    {{studyListToggleText}}
+                </a>
+            {{/if}}
+        {{/section}}
+            {{#section 'headerMenu'}}
+            <span class="user-name pull-left m-r-1">{{userName}}</span>
+            <span class="header-options pull-left m-r-1"> | </span>
+            <span class="header-options pull-left m-r-1">Options</span>
+            <div class="menu-toggle pull-right">
+                <span class="caret-down"></span>
+            </div>
+        {{/section}} -->
+    {{/header}}
+
+    <div id="entrySignIn" class="page" style="{{getOpacityWithCorner}} ">
+        <div class="content-scrollable">
+            <!-- Carousel ================================================== -->
+
+            <div class="container">
+                <h2 class="text-center">Contact Form</h2>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6 pb-5">
+
+
+                        <!--Form with header-->
+
+                        <form action="mail.php" method="post">
+                            <div class="card border-primary rounded-0">
+                                <div class="card-header p-0">
+                                    <div class="bg-info text-white text-center py-2">
+                                        <h3><i class="fa fa-envelope"></i> Contactanos</h3>
+                                        <p class="m-0">Con gusto te ayudaremos</p>
+                                    </div>
+                                </div>
+                                <div class="card-body p-3">
+
+                                    <!--Body-->
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                                            </div>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-envelope text-info"></i></div>
+                                            </div>
+                                            <input type="email" class="form-control" id="nombre" name="email" placeholder="ejemplo@gmail.com" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+                                            </div>
+                                            <textarea class="form-control" placeholder="Envianos tu Mensaje" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <input type="submit" value="Enviar" class="btn btn-info btn-block rounded-0 py-2">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                        <!--Form with header-->
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="main_footer" style="background-image: url('cta01.png');background-repeat:revert;">
+        <div class="main_footer_wrapper">
+            <div class="container">
+                <div class="copyright">
+                    <div>
+                        <img src="logo_RCC.png"
+                             alt="Research Computing Center (RCC) at The University of Chicago"
+                             title="Research Computing Center (RCC) at The University of Chicago" width="85%">
+                    </div>
+                    Copyright © 2019 <a style="color:#ffffff" href="https://rcc.uchicago.edu/" target="_blank">Research Computing Center(RCC)
+                    at the University of Chicago</a>. All Rights Reserved.
+                </div>
+
+                <div class="sidebar_footer">
+                    <div class="footer_socials social_icons">
+                        <ul>
+                            <li><a class="facebook" target="_blank"
+                                   href="https: //www.facebook.com/The-University-of-Chicago-Research-Computing-Center-498755713533665/"
+                                   title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="twitter" target="_blank" href="https://twitter.com/uchicago_rcc"
+                                   title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- .social_icons -->
+                </div>
+
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <!-- .main_footer_wrapper -->
+    </footer>
+
+    <div class="container-fluid" id="footer-bottom">
+        <div class="clearfix">
+            <div id="footer-info">This website is designed &amp; developed by the Research Computing Center
+                (RCC) at
+                The University of Chicago. Please send any comments &amp; feedback to <a
+                        href="mailto:appdev@rcc.uchicago.edu?Subject=1919map">appdev@rcc.uchicago.edu</a>.</div>
+        </div> <!-- .container-fluid -->
+    </div>
+</template>

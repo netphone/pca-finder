@@ -18,6 +18,11 @@ Router.route('/dicomm', {
   template: 'dicomm',
   name: 'dicomm'
 });
+
+Router.route('/contact', {
+  template: 'contact',
+  name: 'contact'
+});
 //==================================================================================================
 // COMPONENT OUTPUTS
 
