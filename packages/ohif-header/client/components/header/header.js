@@ -1,16 +1,22 @@
 import { Template } from 'meteor/templating';
 import { $ } from 'meteor/jquery';
 import { OHIF } from 'meteor/ohif:core';
+import {Meteor} from "meteor/meteor";
+
 
 Template.header.onCreated(() => {
-    const instance = Template.instance();
 
+    const instance = Template.instance();
     instance.dropdownItems = [];
     instance.autorun(() => {
         OHIF.header.dropdown.observer.depend();
         instance.dropdownItems = OHIF.header.dropdown.getItems();
     });
+
 });
+
+
+
 
 Template.header.events({
     'click .header-menu'(event, instance) {
@@ -27,6 +33,7 @@ Template.header.events({
         });
     },
     'click #logoutButton': function () {
+        Session.set('createMode', false);
         Meteor.logout();
     }
 });

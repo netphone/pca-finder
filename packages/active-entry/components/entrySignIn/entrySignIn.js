@@ -5,6 +5,8 @@
 //==================================================================================================
 // ROUTER
 
+
+
 Router.route('/entrySignIn', {
   template: 'entrySignIn',
   name: 'entrySignIn'
@@ -48,6 +50,7 @@ Template.entrySignIn.onCreated(() => {
 
 
 Template.entrySignIn.helpers({
+
   getSignInMessageColor: function (){
     if (ActiveEntry.errorMessages.get('signInError')) {
       return "color: #a94442; background-color: #f2dede; border-color: #ebccd1;"
@@ -131,6 +134,7 @@ Template.entrySignIn.helpers({
 
 Template.entrySignIn.events({
   'click #logoutButton': function () {
+    Session.set('createMode', false);
     Meteor.logout();
   },
   'click #forgotPasswordButton': function (event) {
@@ -200,6 +204,7 @@ Template.entrySignIn.events({
   },
   'click #btnTestDrive': function (event, template) {
     // Login with demo user
+    Session.set('createMode', true);
     ActiveEntry.signIn('demo@ohif.org', '12345678aA*');
   },
   'keyup #entrySignIn': function(event, template) {

@@ -17,8 +17,9 @@
             </li>
             <li><a class="hoverable"  href="/team"><strong>ABOUT</strong></a></li>
             <li><a class="hoverable"  href="/contact"><strong>CONTACT</strong></a></li>
-            <li><a class="hoverable" id="logoutButton" href="#"><strong>LOGOUT</strong></a></li>
-
+             {{#if (session 'createMode')}}
+            <li id="logoutButton"><a class="hoverable" href="#"><strong>LOGOUT</strong></a></li>
+             {{/if}}
         </ul>
         <img class="logo"  src="logo.png" alt="">
         {{>UI.contentBlock}}

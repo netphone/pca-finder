@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ActiveEntry } from 'meteor/clinical:active-entry';
+import {Meteor} from "meteor/meteor";
 
 
 Template.entrySignIn.hooks({
@@ -24,6 +25,20 @@ Template.entrySignIn.hooks({
 
         const entrySignIn = this.find('#btnDemo');
         $(entrySignIn).append(btnTestDrive);
+
+        /*let logoutButton = $('<a/>', {
+            id: 'logoutButton-a',
+            text: 'LOGOUT',
+            class: 'hoverable',
+            click: function () {
+                // Login with demo user
+                Meteor.logout();
+            }
+        });
+        const LOGbTN = this.find('#logoutButton');
+        $(logoutButton).append(LOGbTN);*/
     }
+
+
 
 });
