@@ -23,6 +23,11 @@ Router.route('/contact', {
   template: 'contact',
   name: 'contact'
 });
+
+Router.route('/team', {
+  template: 'team',
+  name: 'team'
+});
 //==================================================================================================
 // COMPONENT OUTPUTS
 

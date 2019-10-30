@@ -1,0 +1,86 @@
+@import "{ohif:design}/app"
+
+body>.header
+
+  .brand
+    height: 30px
+    display: inline-block
+    text-decoration: none
+
+    .logo-image
+      display: inline-block
+      fill: transparent
+      float: left
+      height: 100%
+      margin: 0 8px 0 0
+      width: 30px
+
+    .logo-text
+      display: inline-block
+      font-family: $logoFontFamily
+      font-size: 14px
+      font-weight: $logoFontWeight
+      theme('color', '$textPrimaryColor')
+      line-height: 30px
+
+  a.header-menu
+    theme('color', '$textPrimaryColor')
+
+    .user-name
+      font-size: 16px
+      color: yellow
+
+    .header-options
+      font-size: 16px
+
+    .menu-toggle
+      display: inline-block
+      height: 18px
+
+  .btn
+    _theme('color', '$textSecondaryColor')
+    color: white
+    cursor: pointer
+    font-size: 13px
+    font-weight: 500
+    line-height: 26px
+
+    &:hover
+      theme('color', '$hoverColor')
+
+    &:active
+      theme('color', '$activeColor')
+
+  .studyListLinkSection
+    theme('border-left', '%s solid $uiBorderColor' % $uiBorderThickness)
+    margin: 10px 0 0 0
+    border-left: 1px solid #44626f;
+    padding: 15px 0px 15px 15px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 0px;
+    
+
+  &.header-big
+    padding-left: $studyListPadding
+    padding-right: $studyListPadding
+
+    .brand
+      _height: 100%
+      width: 80%
+      line-height: $topBarExpandedHeight - 10px
+
+      .logo-image
+        margin: 0 20px 0 0
+        width: 50px
+
+      .logo-text
+        font-size: 30px
+
+#how-to
+  _color: white
+  font-size: 16px
+  font-weight: 500
+  background: #dddddd
+  #how-to-content
+    padding: 0 8%

@@ -1,69 +1,25 @@
 <template name="header">
-    <nav class="header navbar navbar-inverse {{reactive headerClasses}}" style="background-color: #800000;height: 10rem;">
-       <!-- <ul id="topnav" style=" margin-left: 100rem; margin-top: 2rem; position: absolute;">
-            <li><a  href="/entrySignin">Home</a></li>
 
-            <li><a href="http://pca-finder.staging.rcc.uchicago.edu:8042/app/explorer.html#upload">Upload Data</a></li>
-            <li><a href="/dicomm">DICOM</a></li>
-            <li><a href="/mpmri">mpMRI</a></li>
-            <li><a href="/pirads">PI-RADS v2</a></li>
-            <li><a href="/incidence">Incidence</a></li>
-            <li><a href="#">About</a></li>
-        </ul>-->
-        <ul class="nav nav-justified" style="width:50%;float:right">
+    <nav class="header navbar navbar-inverse {{reactive headerClasses}}" style="background-color: #800000;height: 10rem;">
+        <ul class="nav nav-justified" style="width:35%;float:right;margin-top:2rem">
             <li class="active"><a class="hoverable"  href="/entrySignin"><strong>HOME</strong></a></li>
-            <li><a class="hoverable"  href="#"><strong>STUDY</strong></a></li>
             <li><a class="hoverable"  href="http://pca-finder.staging.rcc.uchicago.edu:8042/app/explorer.html#upload"><strong>UPLOAD</strong></a></li>
-            <li><a class="hoverable"  href="#"><strong>INCIDENCE</strong></a></li>
-            <li><a class="hoverable"  href="#"><strong>mpMRI</strong></a></li>
-            <li><a class="hoverable"  href="#"><strong>PI-RADS</strong></a></li>
-            <li><a class="hoverable"  href="#"><strong>ABOUT</strong></a></li>
+            <li><a class="hoverable"  href="/studylist"><strong>STUDY</strong></a></li>
+            <li><a class="hoverable"  href="#"><strong>SEGMENTATION</strong></a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle hoverable" data-toggle="dropdown" href="#"><strong>RESOURCES</strong>
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">mpMRI</a></li>
+                    <li><a href="#">PI-RADS v2</a></li>
+                    <li><a href="#">Incidence</a></li>
+                </ul>
+            </li>
+            <li><a class="hoverable"  href="/team"><strong>ABOUT</strong></a></li>
             <li><a class="hoverable"  href="/contact"><strong>CONTACT</strong></a></li>
 
         </ul>
         <img class="logo"  src="logo.png" alt="">
-        <div class="container">
-
-        <!--    <div class="navbar-header" style="margin-top:-6.5rem;margin-left:30rem">
-
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                {{>section 'headerAfterBrand'}}
-
-            </div>-->
-            <div>
-               </div>
-            <div id="navbar" class="navbar-collapse collapse navbar-right" style="position: relative">
-
-                <div class="navbar-form navbar-right" >
-
-                  </div>
-
-
-              <!--  <div id="sidemenu">
-                    <input type="checkbox" id="menuToggle">
-                    <label for="menuToggle"><span>&times;</span><span>&#9776;</span></label>
-                    <ul>
-                        <li><a href="/entrySignIn">HOME</a></li>
-                        <li><a id="dicomm" href="/dicomm">DICOMM</a></li>
-                        <li><a href="#" target="_blank">MODEL</a></li>
-                        <li><a href="#" target="_blank">ABOUT</a></li>
-                        <li><a href="#" target="_blank">OUR TEAM</a></li>
-                    </ul>
-                </div>-->
-
-            </div>
-
-            <!--/.navbar-collapse -->
-        </div>
         {{>UI.contentBlock}}
-
-
     </nav>
 </template>
