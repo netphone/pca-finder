@@ -25,5 +25,8 @@ Template.header.events({
             menuClasses: 'dropdown-menu-right',
             marginTop: '25px'
         });
+    },
+    'click #logoutButton': function () {
+        Meteor.logout();
     }
 });
