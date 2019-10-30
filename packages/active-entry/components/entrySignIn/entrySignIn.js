@@ -28,6 +28,18 @@ Router.route('/team', {
   template: 'team',
   name: 'team'
 });
+
+Router.route('/pirads', {
+  template: 'pirads',
+  name: 'pirads'
+});
+
+
+Router.route('/mpmri', {
+  template: 'mpmri',
+  name: 'mpmri'
+});
+
 //==================================================================================================
 // COMPONENT OUTPUTS
 
