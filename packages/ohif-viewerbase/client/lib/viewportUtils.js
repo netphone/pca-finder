@@ -237,6 +237,11 @@ const toggleDownloadDialog = () => {
     }
 };
 
+const toggleViewSegmentationDialog = () => {
+    debugger;
+    OHIF.ui.showDialog('viewSegmentationDialog');
+};
+
 const isDownloadEnabled = () => {
     const activeViewport = getActiveViewportElement();
 
@@ -387,6 +392,7 @@ const viewportUtils = {
     toggleCinePlay,
     toggleCineDialog,
     toggleDownloadDialog,
+    toggleViewSegmentationDialog,
     isPlaying,
     isDownloadEnabled,
     hasMultipleFrames,

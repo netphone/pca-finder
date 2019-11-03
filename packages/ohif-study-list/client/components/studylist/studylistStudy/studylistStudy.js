@@ -157,20 +157,21 @@ Template.studylistStudy.events({
         if (dblClickOnStudy && typeof dblClickOnStudy === 'function') {
             dblClickOnStudy(instance.data);
         }
-    },
-
-    'contextmenu tr.studylistStudy, press tr.studylistStudy'(event, instance) {
-        const $studyRow = $(event.currentTarget);
-
-        if (!instance.data.selected) {
-            doSelectSingleRow($studyRow, instance.data);
-        }
-
-        event.preventDefault();
-        OHIF.ui.showDropdown(OHIF.studylist.dropdown.getItems(), {
-            event,
-            menuClasses: 'dropdown-menu-left'
-        });
-        return false;
     }
+    // ,
+
+    // 'contextmenu tr.studylistStudy, press tr.studylistStudy'(event, instance) {
+    //     const $studyRow = $(event.currentTarget);
+
+    //     if (!instance.data.selected) {
+    //         doSelectSingleRow($studyRow, instance.data);
+    //     }
+
+    //     event.preventDefault();
+    //     OHIF.ui.showDropdown(OHIF.studylist.dropdown.getItems(), {
+    //         event,
+    //         menuClasses: 'dropdown-menu-left'
+    //     });
+    //     return false;
+    // }
 });

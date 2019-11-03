@@ -1,0 +1,35 @@
+<template name="upload">
+    {{#header headerClasses='navbar-fixed-top'}}
+    {{#section 'brand'}}
+    <img src={{absoluteUrl "/packages/ohif_viewerbase/assets/logo.png"}} alt="PCa Finder: Prostate Cancer Finder"
+        class="img-responsive">
+
+    <!-- <svg class="logo-image">
+                <use xlink:href={{absoluteUrl "/packages/ohif_viewerbase/assets/shield.svg#icon-ohif-logo"}}></use>
+            </svg> -->
+    {{/section}}
+    {{/header}}
+
+
+    <!-- Sub Page Section BEGINS -->
+    {{#subpagesection}}
+    {{#section 'title'}}
+    How can we help?
+    {{/section}}
+    {{#section 'slogan'}}
+    Ask Questions. Contact Us. Find Answers.
+    {{/section}}
+    {{/subpagesection}}
+    <!-- Sub Page Section ENDS -->
+
+    <!-- <div class="container-fluid"> -->
+    <iframe name="iframe1" id="iframe1" width="100%" height="340px"
+        src="http://pca-milson-test.staging.rcc.uchicago.edu:8042/app/explorer.html#upload" frameborder="0"
+        scrolling="yes"></iframe>
+    <!-- </div>     -->
+
+    <!-- FOOTER BEGINS -->
+    {{#footer}}
+    {{/footer}}
+    <!-- FOOTER ENDS -->
+</template>

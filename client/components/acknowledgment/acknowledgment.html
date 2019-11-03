@@ -1,0 +1,62 @@
+<template name="acknowledgment">
+    {{#header headerClasses='navbar-fixed-top'}}
+    {{#section 'brand'}}
+    <img src={{absoluteUrl "/packages/ohif_viewerbase/assets/logo.png"}} alt="PCa Finder: Prostate Cancer Finder"
+        class="img-responsive">
+
+    <!-- <svg class="logo-image">
+                            <use xlink:href={{absoluteUrl "/packages/ohif_viewerbase/assets/shield.svg#icon-ohif-logo"}}></use>
+                        </svg> -->
+    {{/section}}
+    {{/header}}
+
+    <!-- Sub Page Section BEGINS -->
+    {{#subpagesection}}
+    {{#section 'title'}}
+    Acknowledgement
+    {{/section}}
+    {{#section 'slogan'}}
+    Ask Questions. Contact Us. Find Answers.
+    {{/section}}
+    {{/subpagesection}}
+    <!-- Sub Page Section ENDS -->
+
+    <!-- Main Content -->
+    <main class="main" role="main">
+        <div class="p-y-3 bg-white">
+            <div class="container">
+
+                <article class="m-b-6">
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <a href="https://www.lenovo.com/us/en/" target="_blank">
+                                <img src="/images/lenovo_logo.jpg"
+                                    alt="Lenovo Official US Site | Computers, Smartphones, Data Center"
+                                    class="shadow-md img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-md-7 align-items-center">
+                            <div class="p-3">
+                                <h3 style="margin-top: 0px;">Thank you!</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis <strong>dis parturient
+                                        montes</strong>, nascetur ridiculus mus.</p>
+
+                                <p>Nascetur ridiculus mus. Donec quam felis, ultricies nec, <i>pellentesque eu</i>,
+                                    pretium quis, sem. Nulla consequat massa quis enim.</p>
+                            </div>
+                        </div>
+
+                    </div><!-- /.row -->
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER BEGINS -->
+    {{#footer}}
+    {{/footer}}
+    <!-- FOOTER ENDS -->
+</template>

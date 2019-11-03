@@ -1,39 +1,10 @@
 <template name="studylist">
     <div class="study-list-wrapper">
         {{>studylistResult (clone this)}}
-
-        <br>
-        <footer class="main_footer" style="background-image: url('cta01.png');background-repeat:revert;">
-            <div class="main_footer_wrapper">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="col-lg-4" >
-                            <a href="https://www.uchicago.edu/"><img src="uchicago-logo.PNG" style="margin-left:-40rem"  alt="University of Chicago" class="footer-logo"></a>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <a href="http://www.rsna.org/"><img src="lenovo.png" style="margin-left: -15rem;height:10rem;" alt="lenovo" class="img-fluid footer-logo rsna-logo"></a>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <a href="https://rcc.uchicago.edu/"><img src="logo_RCC.png" alt="Research Computing Center (RCC) at The University of Chicago" class="footer-logo"></a>
-                        </div>
-
-
-                    </div>
-                </div>
-
-            </div>
-            <!-- .main_footer_wrapper -->
-        </footer>
-
-        <div class="container-fluid" id="footer-bottom">
-            <div class="clearfix">
-                <div id="footer-info">This website is designed &amp; developed by the Research Computing Center
-                    (RCC) at
-                    The University of Chicago. Please send any comments &amp; feedback to <a
-                            href="mailto:appdev@rcc.uchicago.edu?Subject=1919map">appdev@rcc.uchicago.edu</a>.</div>
-            </div> <!-- .container-fluid -->
-        </div>
     </div>
+
+    <!-- FOOTER BEGINS -->
+    {{#footer}}
+    {{/footer}}
+    <!-- FOOTER ENDS -->
 </template>

@@ -5,7 +5,7 @@ Meteor.startup(function() {
     if (Meteor.isClient){
         ActiveEntry.configure({
             logo: {
-                url: OHIF.utils.absoluteUrl('logo.png'),
+                url: OHIF.utils.absoluteUrl('/images/logo.png'),
                 displayed: true
             },
             signIn: {

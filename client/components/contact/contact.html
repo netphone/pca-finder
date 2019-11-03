@@ -1,169 +1,72 @@
 <template name="contact">
     {{#header headerClasses='navbar-fixed-top'}}
+    {{#section 'brand'}}
+    <img src={{absoluteUrl "/packages/ohif_viewerbase/assets/logo.png"}} alt="PCa Finder: Prostate Cancer Finder"
+        class="img-responsive">
 
+    <!-- <svg class="logo-image">
+                            <use xlink:href={{absoluteUrl "/packages/ohif_viewerbase/assets/shield.svg#icon-ohif-logo"}}></use>
+                        </svg> -->
+    {{/section}}
     {{/header}}
 
-    <div id="entrySignIn" class="page" style="background-color: #ffffff;{{getOpacityWithCorner}} ">
-        <div class="content-scrollable">
-            <!-- Carousel ================================================== -->
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <div align="center">
-                            <img src="contact1.jpg" alt="" style="background-color: #031527;width: -webkit-fill-available;width:-moz-available;height:50rem;">
-                        </div>
-                        <div class="slide_description">
-                            <div class="carousel-caption" inner>
-                                <h1>Contact Us</h1>
+    <!-- Sub Page Section BEGINS -->
+    {{#subpagesection}}
+    {{#section 'title'}}
+    Need Help?
+    {{/section}}
+    {{#section 'slogan'}}
+    If you need assistance we are here to support you.
+    {{/section}}
+    {{/subpagesection}}
+    <!-- Sub Page Section ENDS -->
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.carousel -->
-            <main role="main">
+    <!-- Main Content -->
+    <main role="main">
 
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7 mb-5"  data-aos="fade">
-
-
-
-                            <form action="#" class="p-5 bg-white" style="margin-top: -150px;">
-
-
-                                <div class="row form-group">
-                                    <div class="col-md-6 mb-3 mb-md-0">
-                                        <label class="text-black" for="fname">First Name</label>
-                                        <input type="text" id="fname" class="form-control">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="text-black" for="lname">Last Name</label>
-                                        <input type="text" id="lname" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-
-                                    <div class="col-md-12">
-                                        <label class="text-black" for="email">Email</label>
-                                        <input type="email" id="email" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-
-                                    <div class="col-md-12">
-                                        <label class="text-black" for="subject">Subject</label>
-                                        <input type="subject" id="subject" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <div class="col-md-12">
-                                        <label class="text-black" for="message">Message</label>
-                                        <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <div class="col-md-12">
-                                        <button id="learnmore1" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="Incidence">Send Message</button>
-                                    </div>
-                                </div>
-
-
-                            </form>
-                        </div>
-                        <div class="col-md-5"  data-aos="fade" data-aos-delay="100">
-
-                            <div class="p-4 mb-3 bg-white">
-                                <p class="mb-0 font-weight-bold">Address</p>
-                                <p class="mb-4">5607 S Drexel Ave, Chicago, IL 60637, USA</p>
-
-                                <p class="mb-0 font-weight-bold">Phone</p>
-                                <p class="mb-4"><a href="#">(773) 795-2667</a></p>
-
-                                <p class="mb-0 font-weight-bold">Email Address</p>
-                                <p class="mb-0"><a href="#"> help@rcc.uchicago.edu</a></p>
-
-                            </div>
-
-                            <div class="p-4 mb-3 bg-white">
-                                <h3 class="h5 text-black mb-3">More Info</h3>
-                                <p>The Research Computing Center (RCC) is dedicated to providing the University of Chicago community a full-service high-performance computing (HPC) center, including visualization resources, access to software, workshops, one-on-one consulting with domain experts, and complete data-management strategies to researchers across all departments and divisions</p><button id="learnmore1" onclick="location.href='/dicomm'" class="btn btn-success" style="width: 150px;background-color:#800000;border-color:#ffffff;margin-left: 20rem;" title="Incidence">Learn More</button>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div> <!-- /container -->
-            </main>
-        </div>
-    </div>
-
-    <footer class="main_footer" style="background-image: url('cta01.png');background-repeat:revert;">
-        <div class="main_footer_wrapper">
+        <div class="p-y-3 bg-white">
             <div class="container">
-                <div class="row p-5">
-                    <div class="col-lg-4" >
-                        <a href="https://www.uchicago.edu/"><img src="uchicago-logo.PNG" style="margin-left:-40rem"  alt="University of Chicago" class="footer-logo"></a>
+                <div class="row">
+                    <div class="col-md-7 m-b-3">
+                        <iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAChgLMydtgwG9_Se3-Lt05BBzvekEn4u8
+                        &q=Research+Computing+Center,+5607+S+Drexel+Ave,Chicago+IL+60637" allowfullscreen>
+                        </iframe>
                     </div>
+                    <div class="col-md-5">
+                        <div class="bg-white">
+                            <h3>Address</h3>
+                            <p class="m-b-2">5607 S Drexel Ave, Chicago, IL 60637, USA</p>
 
-                    <div class="col-lg-3">
-                        <a href="http://www.lenovo.com/"><img src="lenovo.png" style="margin-left: -15rem;height:10rem;" alt="lenovo" class="img-fluid footer-logo rsna-logo"></a>
+                            <h3>Phone</h3>
+                            <p class="m-b-2"><a href="tel:+17737952667" target="_top">(773) 795-2667</a></p>
+
+                            <h3>Email Address</h3>
+                            <p class="mb-0"><a
+                                    href="mailto:help@rcc.uchicago.edu?Subject=Question%20regarding%20PCa%20Finder%20Application"
+                                    target="_top">help@rcc.uchicago.edu</a>
+                            </p>
+                        </div>
+
+                        <div class="bg-white">
+                            <h3>More Info</h3>
+                            <p><a href="https://rcc.uchicago.edu/" target="_blank">The Research Computing Center (RCC)</a> 
+                                is dedicated to providing the University of Chicago community a full-service high-performance computing (HPC) 
+                                center, including visualization resources, access to software, workshops, one-on-one consulting with domain 
+                                experts, and complete data-management strategies to researchers across all departments and divisions.
+                            </p>
+                        </div>
+
                     </div>
-
-                    <div class="col-lg-4">
-                        <a href="https://rcc.uchicago.edu/"><img src="logo_RCC.png" style="margin-top: 1rem;width: 600px;" alt="Research Computing Center (RCC) at The University of Chicago" class="footer-logo"></a>
-                    </div>
-
-
                 </div>
-            </div>
-            <!--        <div class="container">
-                        <div class="copyright">
-                            <div>
-                                <img src="uchicago-logo.PNG"
-                                     alt="Research Computing Center (RCC) at The University of Chicago"
-                                     title="Research Computing Center (RCC) at The University of Chicago" width="85%">
-                            </div>
-                            <div>
-                                <img src="logo_RCC.png"
-                                     alt="Research Computing Center (RCC) at The University of Chicago"
-                                     title="Research Computing Center (RCC) at The University of Chicago" width="85%">
-                            </div>
-                            Copyright  2019 <a style="color:#ffffff" href="https://rcc.uchicago.edu/" target="_blank">Research Computing Center(RCC)
-                            at the University of Chicago</a>. All Rights Reserved.
-                        </div>
 
-                        <div class="sidebar_footer">
-                            <div class="footer_socials social_icons">
-                                <ul>
-                                    <li><a class="facebook" target="_blank"
-                                           href="https: //www.facebook.com/The-University-of-Chicago-Research-Computing-Center-498755713533665/"
-                                           title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="twitter" target="_blank" href="https://twitter.com/uchicago_rcc"
-                                           title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                </ul>
-                            </div>
-                            &lt;!&ndash; .social_icons &ndash;&gt;
-                        </div>
-
-                        <div class="clear">
-                        </div>
-                    </div>-->
+            </div> <!-- /container -->
         </div>
-        <!-- .main_footer_wrapper -->
-    </footer>
+    </main>
 
-    <div class="container-fluid" id="footer-bottom">
-        <div class="clearfix">
-            <div id="footer-info">This website is designed &amp; developed by the Research Computing Center
-                (RCC) at
-                The University of Chicago. Please send any comments &amp; feedback to <a
-                        href="mailto:appdev@rcc.uchicago.edu?Subject=1919map">appdev@rcc.uchicago.edu</a>.</div>
-        </div> <!-- .container-fluid -->
-    </div>
+
+
+    <!-- FOOTER BEGINS -->
+    {{#footer}}
+    {{/footer}}
+    <!-- FOOTER ENDS -->
 </template>

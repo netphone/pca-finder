@@ -63,6 +63,7 @@ Meteor.startup(function() {
         toggleCinePlay: 'SPACE',
         toggleCineDialog: '',
         toggleDownloadDialog: '',
+        toggleViewSegmentationDialog: '',
 
         // Preset hotkeys
         WLPreset0: '1',
@@ -229,6 +230,12 @@ Meteor.startup(function() {
             name: 'Show/Hide Download Dialog',
             action: viewportUtils.toggleDownloadDialog,
             disabled: () => !viewportUtils.isDownloadEnabled()
+        },
+        toggleViewSegmentationDialog:{
+            name: 'Show/Hide Segmentation Dialog',
+            action: viewportUtils.toggleViewSegmentationDialog
+            // ,
+            // disabled: () => !viewportUtils.isDownloadEnabled()
         }
     }, true);
 

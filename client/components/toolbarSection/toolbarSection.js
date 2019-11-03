@@ -66,24 +66,24 @@ Template.toolbarSection.helpers({
 
         buttonData.push({
             id: 'resetViewport',
-            title: 'Original',
+            title: 'Reset',
             classes: 'imageViewerCommand',
             iconClasses: 'fa fa-undo'
         });
 
         buttonData.push({
             id: 'zoom',
-            title: 'Maximize',
+            title: 'Zoom',
             classes: 'imageViewerTool',
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-zoom'
         });
 
-      /*  buttonData.push({
-            id: 'wwwc',
-            title: 'Levels',
-            classes: 'imageViewerTool',
-            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-levels'
-        });*/
+        // buttonData.push({
+        //     id: 'wwwc',
+        //     title: 'Levels',
+        //     classes: 'imageViewerTool',
+        //     svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-levels'
+        // });
 
         buttonData.push({
             id: 'pan',
@@ -92,12 +92,12 @@ Template.toolbarSection.helpers({
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-pan'
         });
 
-        /*buttonData.push({
-            id: 'scrollSync',
-            title: 'Scroll Sync',
-            classes: 'imageViewerTool',
-            iconClasses: 'fa fa-unsorted'
-        });*/
+        // buttonData.push({
+        //     id: 'scrollSync',
+        //     title: 'Scroll Sync',
+        //     classes: 'imageViewerTool',
+        //     iconClasses: 'fa fa-unsorted'
+        // });
 
         buttonData.push({
             id: 'aiFiducial',
@@ -106,57 +106,63 @@ Template.toolbarSection.helpers({
             iconClasses: 'fa fa-magic'
         });
 
-       /* buttonData.push({
-            id: 'fiducial',
-            title: 'Fiducial',
-            classes: 'imageViewerTool',
-            iconClasses: 'fa fa-dot-circle-o'
-        });*/
+        // buttonData.push({
+        //     id: 'fiducial',
+        //     title: 'Fiducial',
+        //     classes: 'imageViewerTool',
+        //     iconClasses: 'fa fa-dot-circle-o'
+        // });
 
-       /* buttonData.push({
+        buttonData.push({
             id: 'length',
             title: 'Length',
             classes: 'imageViewerTool toolbarSectionButton',
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-temp'
-        });*/
-
-      /*  buttonData.push({
-            id: 'annotate',
-            title: 'Annotate',
-            classes: 'imageViewerTool',
-            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-non-target'
-        });*/
-
-       /* buttonData.push({
-            id: 'magnify',
-            title: 'Magnify',
-            classes: 'imageViewerTool toolbarSectionButton',
-            iconClasses: 'fa fa-circle'
-        });*/
-/*
-
-        buttonData.push({
-            id: 'wwwcRegion',
-            title: 'ROI Level',
-            classes: 'imageViewerTool',
-            iconClasses: 'fa fa-square'
         });
-*/
+
+        // buttonData.push({
+        //     id: 'annotate',
+        //     title: 'Annotate',
+        //     classes: 'imageViewerTool',
+        //     svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-measure-non-target'
+        // });
+
+        // buttonData.push({
+        //     id: 'magnify',
+        //     title: 'Magnify',
+        //     classes: 'imageViewerTool toolbarSectionButton',
+        //     iconClasses: 'fa fa-circle'
+        // });
+
+        // buttonData.push({
+        //     id: 'wwwcRegion',
+        //     title: 'ROI Level',
+        //     classes: 'imageViewerTool',
+        //     iconClasses: 'fa fa-square'
+        // });
+
+        // buttonData.push({
+        //     id: 'toggleDownloadDialog',
+        //     title: 'Capture',
+        //     classes: 'imageViewerCommand',
+        //     iconClasses: 'fa fa-camera',
+        //     active: () => $('#downloadDialog').is(':visible')
+        // });
+
+        // buttonData.push({
+        //     id: 'invert',
+        //     title: 'Invert',
+        //     classes: 'imageViewerCommand',
+        //     iconClasses: 'fa fa-adjust'
+        // });
 
         buttonData.push({
-            id: 'toggleDownloadDialog',
-            title: 'Capture',
+            id: 'toggleViewSegmentationDialog',
+            title: 'Segmentation',
             classes: 'imageViewerCommand',
             iconClasses: 'fa fa-camera',
-            active: () => $('#downloadDialog').is(':visible')
+            active: () => $('#nrrdDialog').is(':visible')
         });
-
-       /* buttonData.push({
-            id: 'invert',
-            title: 'Invert',
-            classes: 'imageViewerCommand',
-            iconClasses: 'fa fa-adjust'
-        });*/
 
         return buttonData;
     },

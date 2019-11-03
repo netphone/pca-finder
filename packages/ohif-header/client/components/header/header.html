@@ -1,27 +1,63 @@
 <template name="header">
+    <nav class="header navbar navbar-inverse {{reactive headerClasses}}">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a target='_self' class="navbar-brand clearfix" href="{{absoluteUrl '/entrySignIn'}}">
+                    {{>section 'brand'}}
+                </a>
+                <!-- {{>section 'headerAfterBrand'}} -->
+            </div>
 
-    <nav class="header navbar navbar-inverse {{reactive headerClasses}}" style="background-color: #800000;height: 10rem;">
-        <ul class="nav nav-justified" style="width:35%;float:right;margin-top:2rem">
-            <li class="active"><a class="hoverable"  href="/entrySignin"><strong>HOME</strong></a></li>
-            <li><a class="hoverable"  href="http://pca-finder.staging.rcc.uchicago.edu:8042/app/explorer.html#upload"><strong>UPLOAD</strong></a></li>
-            <li><a class="hoverable"  href="/studylist"><strong>STUDY</strong></a></li>
-            <li><a class="hoverable"  href="#"><strong>SEGMENTATION</strong></a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle hoverable" data-toggle="dropdown" href="#"><strong>RESOURCES</strong>
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/mpmri">mpMRI</a></li>
-                    <li><a href="/pirads">PI-RADS v2</a></li>
-                    <li><a href="#">Incidence</a></li>
+            <div id="navbar" class="navbar-collapse collapse">
+
+                <div class="navbar-form navbar-right" id="btnDemo">
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a target='_self' href="{{absoluteUrl '/entrySignIn'}}"
+                            class="header-menu-default pull-left m-r-3">Home</a></li> <!-- class="active" -->
+                    <li><a target='_self' href="{{absoluteUrl '/upload'}}"
+                            class="header-menu-default pull-left m-r-3">Upload</a></li>
+                    <!-- <li><a href="#">Segmentation</a></li> -->
+                    <li class="dropdown">
+                        <a href="#" class="header-menu-default dropdown-toggle header-options pull-left m-r-3"
+                            data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{absoluteUrl '/segmentation'}}">Segmentation</a></li>
+                            <li role="separator" class="divider"></li>
+                            <!-- <li class="dropdown-header">Nav header</li> -->
+                            <li><a href="{{absoluteUrl '/incidence'}}">Incidence</a></li>
+                            <li><a href="{{absoluteUrl '/mpmri'}}">mpMRI</a></li>
+                            <li><a href="{{absoluteUrl '/pirads'}}">PI-RADS v2</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="header-menu-default dropdown-toggle header-options pull-left m-r-3"
+                            data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{absoluteUrl '/team'}}">Team</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{absoluteUrl '/acknowledgment'}}">Acknowledgment</a></li>
+                        </ul>
+
+                    </li>
+                    <li><a href="{{absoluteUrl '/contact'}}" class="header-menu-default pull-left m-r-3">Contact</a>
+                    </li>
+                    <!-- <li>                        
+                        <a href='#' class="header-menu pull-left">{{>section 'headerMenu'}}</a>
+                    </li> -->
                 </ul>
-            </li>
-            <li><a class="hoverable"  href="/team"><strong>ABOUT</strong></a></li>
-            <li><a class="hoverable"  href="/contact"><strong>CONTACT</strong></a></li>
-             {{#if (session 'createMode')}}
-            <li id="logoutButton"><a class="hoverable" href="#"><strong>LOGOUT</strong></a></li>
-             {{/if}}
-        </ul>
-        <img class="logo"  src="logo.png" alt="">
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
         {{>UI.contentBlock}}
     </nav>
 </template>

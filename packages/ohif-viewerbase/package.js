@@ -28,12 +28,16 @@ Package.onUse(function(api) {
     ]);
 
     const assets = [
-        'assets/favicon.ico',
         'assets/icons.svg',
         'assets/shield.svg',
         'assets/logo.png',
-        'assets/rcc_powered_maroon.png',
+        'assets/footer-bg.png',
+        'assets/footer_logo.png',
+        'assets/lenovo_logo_white.png',
+        'assets/logo_RCC.png',
         'assets/banner.png',
+        'assets/bg_video.jpg',
+        'assets/prostrate_intro.webm',
         'assets/fonts/Roboto-Black-latin-ext.woff',
         'assets/fonts/Roboto-Black-latin-ext.woff2',
         'assets/fonts/Roboto-Black-latin.woff',
@@ -109,14 +113,7 @@ Package.onUse(function(api) {
     api.addFiles('client/components/basic/removableBackdrop/removableBackdrop.styl', 'client');
 
     api.addFiles('client/components/basic/aboutModal/aboutModal.html', 'client');
-    api.addFiles('client/components/basic/aboutModal/aboutModal.js', 'client');
     api.addFiles('client/components/basic/aboutModal/aboutModal.styl', 'client');
-
-    api.addFiles('client/components/basic/feedbackModal/feedbackModal.html', 'client');
-    api.addFiles('client/components/basic/feedbackModal/feedbackModal.styl', 'client');
-
-    api.addFiles('client/components/basic/howToModal/howToModal.html', 'client');
-    api.addFiles('client/components/basic/howToModal/howToModal.styl', 'client');
 
     // Study Browser components
     api.addFiles('client/components/studyBrowser/studyBrowser/studyBrowser.html', 'client');
@@ -179,6 +176,10 @@ Package.onUse(function(api) {
     api.addFiles('client/components/viewer/downloadDialog/downloadDialog.html', 'client');
     api.addFiles('client/components/viewer/downloadDialog/downloadDialog.js', 'client');
     api.addFiles('client/components/viewer/downloadDialog/downloadDialog.styl', 'client');
+    
+    api.addFiles('client/components/viewer/segmentationDialog/segmentationDialog.html', 'client');
+    api.addFiles('client/components/viewer/segmentationDialog/segmentationDialog.js', 'client');
+    api.addFiles('client/components/viewer/segmentationDialog/segmentationDialog.styl', 'client');
 
     api.addFiles('client/components/viewer/toolbarSectionButton/toolbarSectionButton.html', 'client');
     api.addFiles('client/components/viewer/toolbarSectionButton/toolbarSectionButton.js', 'client');

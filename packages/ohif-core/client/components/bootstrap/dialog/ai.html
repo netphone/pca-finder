@@ -1,10 +1,10 @@
 <template name="dialogAi">
     <div id="{{this.id}}" class="modal fade {{this.class}} aiModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog {{this.dialogClass}}" role="document" style="width:70rem">
+        <div class="modal-dialog {{this.dialogClass}}" role="document">
             {{#form class=(concat 'modal-content ' this.formClass) hideValidationBox=true
                 api=(extend instance.api instance.data.api) schema=this.schema
             }}
-                <div class="modal-body {{#if not showZone}}hidden{{/if}}" style="background-color: #800000">
+                <div class="modal-body {{#if not showZone}}hidden{{/if}}">
                   <div class="row">
                     <div class="col-xs-5">
                       <p style="margin-top:8px;" class="text-bold">Select Zone:</p>
@@ -19,12 +19,12 @@
                   </div>
                 </div>
                 <hr style="margin-top:0; margin-bottom:0;">
-                <div class="modal-body text-center" style="background-color: #ffffff">
-                  <p class="text-bold" style="color:#555555">AI Prediction</p>
-                  <p id="ai-prediction" style="margin-bottom:0;color:#555555">Waiting for zone to be selected...</p>
+                <div class="modal-body text-center">
+                  <p class="text-bold">AI Prediction</p>
+                  <p id="ai-prediction" style="margin-bottom:0">Waiting for zone to be selected...</p>
                 </div>
                 <hr style="margin:0;">
-                <div class="modal-body" style="background-color: #ffffff">
+                <div class="modal-body">
                     <div class="messages">
                         {{#each message in this.messages}}
                             <div class="message text-bold">{{{message}}}</div>
@@ -33,32 +33,33 @@
                                 {{>pageError (extend this error=this.details)}}
                             {{else}}
                                 {{#let message=(choose this.bodyText this.reason this.message (valueIf UI.contentBlock '' 'An error has ocurred.' ))}}
-                                   <!-- <div class="message text-bold" style="color:#555555">{{message}}</div>-->
+                                    <div class="message text-bold">{{message}}</div>
                                 {{/let}}
                             {{/if}}
                         {{/each}}
                     </div>
                     {{>UI.contentBlock}}
                 </div>
-                <div class="modal-footer" style="background-color: #ffffff">
+                <div class="modal-footer">
                     {{>section 'dialogFooter'}}
                     <div class="row">
-                      <div class="col-xs-6" style="margin-left:30rem;width:20%">
+                      <div class="col-xs-6">
                         {{#unless this.hideCancel}}
                             {{#button action='cancel'
-                                disabled=this.cancelDisabled style='background-color:#555555;border-color:#555555'
+                                disabled=this.cancelDisabled
                                 class=(concat 'btn btn-cancel btn-block ' (choose this.cancelClass 'btn-secondary'))
-                            }}Close{{/button}}
+                                tagAttributes=(extend this.tagAttributes data-dismiss='modal')
+                            }}{{choose this.cancelLabel 'Cancel'}}{{/button}}
                         {{/unless}}
                       </div>
-                  <!--    <div class="col-xs-6">
+                      <div class="col-xs-6">
                         {{#unless this.hideConfirm}}
                             {{#button action='confirm'
                                 disabled=this.confirmDisabled
                                 class=(concat 'btn btn-confirm btn-block ' (choose this.confirmClass 'btn-primary'))
                             }}{{choose this.confirmLabel 'Confirm'}}{{/button}}
                         {{/unless}}
-                      </div>-->
+                      </div>
                     </div>
                 </div>
             {{/form}}

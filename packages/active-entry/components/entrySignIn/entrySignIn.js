@@ -5,8 +5,6 @@
 //==================================================================================================
 // ROUTER
 
-
-
 Router.route('/entrySignIn', {
   template: 'entrySignIn',
   name: 'entrySignIn'
@@ -14,32 +12,6 @@ Router.route('/entrySignIn', {
 Router.route('/sign-in', {
   template: 'entrySignIn',
   name: 'signInRoute'
-});
-
-Router.route('/dicomm', {
-  template: 'dicomm',
-  name: 'dicomm'
-});
-
-Router.route('/contact', {
-  template: 'contact',
-  name: 'contact'
-});
-
-Router.route('/team', {
-  template: 'team',
-  name: 'team'
-});
-
-Router.route('/pirads', {
-  template: 'pirads',
-  name: 'pirads'
-});
-
-
-Router.route('/mpmri', {
-  template: 'mpmri',
-  name: 'mpmri'
 });
 
 //==================================================================================================
@@ -50,7 +22,6 @@ Template.entrySignIn.onCreated(() => {
 
 
 Template.entrySignIn.helpers({
-
   getSignInMessageColor: function (){
     if (ActiveEntry.errorMessages.get('signInError')) {
       return "color: #a94442; background-color: #f2dede; border-color: #ebccd1;"
@@ -133,8 +104,15 @@ Template.entrySignIn.helpers({
 // COMPONENT OUTPUTS
 
 Template.entrySignIn.events({
+  'click #btnExploreMore': function () {
+    if (!Meteor.userId() && !Meteor.loggingIn()) {
+      ActiveEntry.signIn('demo@ohif.org', '12345678aA*');
+    } else {
+      Router.go('/studylist', {}, { replaceState: true });
+    }
+    event.preventDefault();
+  },
   'click #logoutButton': function () {
-    Session.set('createMode', false);
     Meteor.logout();
   },
   'click #forgotPasswordButton': function (event) {
@@ -201,11 +179,6 @@ Template.entrySignIn.events({
 
     ActiveEntry.signIn(emailValue, passwordValue);
     event.preventDefault();
-  },
-  'click #btnTestDrive': function (event, template) {
-    // Login with demo user
-    Session.set('createMode', true);
-    ActiveEntry.signIn('demo@ohif.org', '12345678aA*');
   },
   'keyup #entrySignIn': function(event, template) {
     if(event.keyCode == 13) {

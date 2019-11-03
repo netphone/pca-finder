@@ -1,8 +1,10 @@
 @require '{ohif:design}/app'
 
 html body
-  theme('background-color', '#ffffff')
+  theme('background-color', '$primaryBackgroundColor')
   font-family: 'Roboto', 'OpenSans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif
+  font-size: 16px
+  font-weight: 400
 
 html body.stretch
   height: 100%
@@ -75,6 +77,9 @@ label.form-group
 body .select2-container--default .select2-results>.select2-results__options
   max-height: 320px
 
+body .select2-container--default .select2-selection--single
+  background-color: #dedcdc
+
 .center-table
   display: table
   margin-left: auto
@@ -103,20 +108,17 @@ body .select2-container--default .select2-results>.select2-results__options
 .btn
   transition(background-color 0.3s ease)
 
-
-
 .modal-dialog
-
   .modal-content
     theme('background', '$primaryBackgroundColor')
     theme('border-color', '$uiBorderColor')
-    theme('color', '#ffffff')
+    theme('color', '$textSecondaryColor')
 
     .modal-header, .modal-footer
       theme('border-color', '$uiBorderColor')
 
     &:hover
-      theme('color', '#ffffff')
+      theme('color', '$textPrimaryColor')
 
   .card-round
     theme('background-color', '$uiGrayDark')

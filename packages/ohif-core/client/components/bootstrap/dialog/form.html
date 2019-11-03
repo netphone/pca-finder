@@ -1,13 +1,13 @@
 <template name="dialogForm">
     <div id="{{this.id}}" class="modal fade {{this.class}}" tabindex="-1" role="dialog">
-        <div class="modal-dialog {{this.dialogClass}}" role="document" style="width:70rem">
+        <div class="modal-dialog {{this.dialogClass}}" role="document">
             {{#form class=(concat 'modal-content ' this.formClass) hideValidationBox=true
                 api=(extend instance.api instance.data.api) schema=this.schema
             }}
                 {{#if or this.title (hasSection 'dialogHeader')}}
                     {{>dialogHeader this}}
                 {{/if}}
-                <div class="modal-body" style="background-color: #800000">
+                <div class="modal-body">
                     <div class="messages">
                         {{#each message in this.messages}}
                             <div class="message">{{{message}}}</div>
@@ -28,7 +28,7 @@
                     {{#unless this.hideCancel}}
                         {{#button action='cancel'
                             disabled=this.cancelDisabled
-                            class=(concat ' ' (choose this.cancelClass 'btn-secondary'))
+                            class=(concat 'btn btn-cancel ' (choose this.cancelClass 'btn-secondary'))
                             tagAttributes=(extend this.tagAttributes data-dismiss='modal')
                         }}{{choose this.cancelLabel 'Cancel'}}{{/button}}
                     {{/unless}}

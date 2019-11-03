@@ -15,12 +15,13 @@ Template.ohifViewer.onCreated(() => {
     //     icon: 'fa fa-user',
     //     separatorAfter: true
     // }, 
+    // {
+    //     action: () => OHIF.ui.showDialog('aboutModal'),
+    //     text: 'About',
+    //     icon: 'fa fa-info',
+    //     separatorAfter: true
+    // }, 
     {
-        action: () => OHIF.ui.showDialog('aboutModal'),
-        text: 'About',
-        icon: 'fa fa-info',
-        separatorAfter: true
-    }, {
         action: OHIF.user.logout,
         text: 'Logout',
         iconClasses: 'logout',
@@ -37,7 +38,8 @@ Template.ohifViewer.onCreated(() => {
         $(document.body)[isViewer ? 'addClass' : 'removeClass']('stretch');
 
         // Set the header on its bigger version if the viewer is not opened
-        instance.headerClasses.set(isViewer ? '' : 'header-big');
+        // instance.headerClasses.set(isViewer ? '' : 'header-big');
+        instance.headerClasses.set(isViewer ? 'navbar-fixed-top header-big' : 'navbar-fixed-top');
 
         // Set the viewer open state on session
         Session.set('ViewerOpened', isViewer);

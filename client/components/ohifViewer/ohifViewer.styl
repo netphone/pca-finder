@@ -2,27 +2,6 @@
 
 body>.header
 
-  .brand
-    height: 30px
-    display: inline-block
-    text-decoration: none
-
-    .logo-image
-      display: inline-block
-      fill: transparent
-      float: left
-      height: 100%
-      margin: 0 8px 0 0
-      width: 30px
-
-    .logo-text
-      display: inline-block
-      font-family: $logoFontFamily
-      font-size: 14px
-      font-weight: $logoFontWeight
-      theme('color', '$textPrimaryColor')
-      line-height: 30px
-
   a.header-menu
     theme('color', '$textPrimaryColor')
 
@@ -39,17 +18,40 @@ body>.header
 
   .btn
     _theme('color', '$textSecondaryColor')
-    color: white
+    _color: white    
+    _font-size: 13px
+    _font-weight: 500
+    _line-height: 26px
+
+    padding: 10px 10px;
+    font-size: 18px;
+    border: 2px solid #ffffff !important;
     cursor: pointer
-    font-size: 13px
-    font-weight: 500
-    line-height: 26px
+    color: #ffffff
+    background: #39b49a
+    border: #39b49a
+    background: -moz-linear-gradient(left, #39b49a 0%, #1d86df 100%)
+    background: -webkit-linear-gradient(left, #39b49a 0%, #1d86df 100%)
+    background: linear-gradient(to right, #39b49a 0%, #1d86df 100%)
 
     &:hover
       theme('color', '$hoverColor')
+      background-position: 100px
+      color: #ffffff
+      background: #1d86df
+      background: -moz-linear-gradient(left, #1d86df 0%, #39b49a 100%)
+      background: -webkit-linear-gradient(left, #1d86df 0%, #39b49a 100%)
+      background: linear-gradient(to right, #1d86df 0%, #39b49a 100%)
 
     &:active
       theme('color', '$activeColor')
+      background-position: 100px
+      color: #ffffff
+      background: #1d86df
+      background: -moz-linear-gradient(left, #1d86df 0%, #39b49a 100%)
+      background: -webkit-linear-gradient(left, #1d86df 0%, #39b49a 100%)
+      background: linear-gradient(to right, #1d86df 0%, #39b49a 100%)
+      
 
   .studyListLinkSection
     theme('border-left', '%s solid $uiBorderColor' % $uiBorderThickness)
@@ -60,23 +62,6 @@ body>.header
     font-weight: 400;
     line-height: 0px;
     
-
-  &.header-big
-    padding-left: $studyListPadding
-    padding-right: $studyListPadding
-
-    .brand
-      _height: 100%
-      width: 80%
-      line-height: $topBarExpandedHeight - 10px
-
-      .logo-image
-        margin: 0 20px 0 0
-        width: 50px
-
-      .logo-text
-        font-size: 30px
-
 #how-to
   _color: white
   font-size: 16px

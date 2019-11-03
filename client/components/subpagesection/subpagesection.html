@@ -1,0 +1,15 @@
+<template name="subpagesection">
+    <section class="bg-dark bg-size-cover bg-position-center-y position-relative p-y-3"
+        style="background-image: url(/images/herobg.jpg);margin-top: 95px;">
+        <span class="bg-overlay bg-darker" style="opacity: .65;"></span>
+        <div class="bg-overlay-content container p-y-2 m-y-6">
+            <div class="row justify-content-center">
+                <div class="col-xs-12 col-md-12 col-lg-12">
+                    <h1 class="text-light text-center">{{>section 'title'}}</h1>
+                    <p class="pb-3 text-light text-center">{{>section 'slogan'}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{>UI.contentBlock}}
+</template>

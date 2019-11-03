@@ -1,169 +1,77 @@
 @import "{ohif:design}/app"
 
 body>.header
-  height: $topBarHeight
+  min-height: $topBarHeight
   padding: 10px 10px 0
   theme('color', '$textPrimaryColor')
-  theme('background-color', '$primaryBackgroundColor')
+  theme('background-color', '#800000')
   transition(all 0.5s ease)
+
+  &.navbar
+    margin-bottom: 0px
+
+    .navbar-nav
+      _padding: 0 10px
+
+  .navbar-brand
+    padding: 0px 15px
+    height: 68px
+
+    &>.logo-image
+      _max-height: 8rem
+
+    @media screen and (min-width: 768px) and (max-width: 842px)
+      &>.logo-image
+        _max-height 6.5rem
+
+  .navbar-form
+    margin-top: 12px
+  
+  .navbar-toggle
+    margin-top: 20px
+
+  .navbar-collapse
+    background-color: rgb(128, 0, 0)
+    max-height: 380px
+
+    &.navbar-collapse
+      border-top: none
+      -webkit-box-shadow: inset 0 1px 0 rgba(180, 0, 0, .1)
+      box-shadow: inset 0 1px 0 rgba(180, 0, 0, .1)
 
   &>.clearfix
     position: relative
 
   .header-menu
-    padding: 15px 0
-    font-size: 13px
+    padding: 25px 0
+    font-size: 16px
     font-weight: 400
-    line-height: 18px
+    line-height: 21px
     text-decoration: none
-    theme('color', '$defaultColor')
+    theme('color', '$defaultColor')    
 
     &:empty
       display: none
 
+  .header-menu-default
+    padding: 25px 0
+    font-size: 16px
+    font-weight: 400
+    line-height: 21px
+    text-decoration: none
+    color: #fff !important
+
+    &:empty
+      display: none
+    
+    &:hover
+      color: #9d9d9d !important
+
+    &:focus
+      color: #9d9d9d !important    
+
   &.header-big
     _height: $topBarExpandedHeight
-    background-color: rgba(21, 25, 30, 0.7)
-
-.btn:hover {
-  color: #9555af;
-  border-color: currentColor;
-  background-color: white;
-}
-.btn-success:hover {
-  background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
-  background-color:#408c99;
-}
-ul#topnav {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  float: left;
-  font-size: 1.1em;
-}
-ul#topnav li{
-  margin: 0;
-  padding: 0;
-  overflow: hidden;  /*--Important - Masking out the hover state by default--*/
-  float: left;
-  height:40px;
-}
-
-
-ul#topnav a, ul#topnav span { /*--The <a> and <span> share the same properties since the <span>  will be a duplicate of the <a> tag--*/
-  padding: 10px 20px;
-  float: left;
-  text-decoration: none;
-  color: #fff;
-  //background: url(a_bg.gif) repeat-x;
-  text-transform: uppercase;
-  clear: both;
-  width: 100%;
-
-  line-height: 20px; /*--Vertical alignment of text--*/
-}
-ul#topnav a{ /*--This is basically the hover state of navigation--*/
-  color: #bbbbbb;
-  background-position: left bottom;
-}
-ul#topnav a:hover {color: #800000;}
-ul#topnav span{ /*--Default state of navigation--*/
-  background-position: left top;
-}
-
-.logo
-  color: #ffffff
-  height: 8rem
-  font-size: 1rem
-  font-weight: 600
-  line-height: inherit
-  padding: 0 1.25rem
-  text-decoration: none
-  position: absolute
-
-
-
-
-#sidemenu{
-  margin-left: 1510px;
-  /* float: left; */
-  position: fixed;
-  top: 43px;
-  left: 20px;
-z-index :1;
-  -webkit-border-radius: 21px;
-  -moz-border-radius: 21px;
-  -ms-border-radius: 21px;
-  -o-border-radius: 21px;
-  /* border-radius: 21px; */
-  min-width: 40px;
-  min-height: 40px;
-  overflow: hidden;
-}
-#sidemenu input{
-  display:none;
-}
-#sidemenu input:checked ~ label span:last-child{
-  display:none;
-}
-#sidemenu input:not(:checked) ~ label span:first-child{
-  display:none;
-}
-#sidemenu label{
-  display:block;
-  position:absolute;
-  right:0px;
-  top:0px;
-  user-select:none;
-  width:41px;
-  height:41px;
-  text-align:center;
-  line-height:40px;
-  background:#408c99;
-  color:white;
-  border-bottom-left-radius:20px;
-  cursor:pointer;
-}
-#sidemenu ul{
-  background-color: #ffffff
-  overflow:hidden;
-  width:0;
-  height:0;
-  padding:0;
-  margin:0;
-  transition:width 0.5s, height 0.5s;
-  list-style:none;
-}
-#sidemenu input:checked ~ ul{
-  width:200px;
-  height:150px;
-}
-#sidemenu ul li a{
-
-  border-bottom: 1px solid #408c99;
-  border-radius: 5px;
-  text-transform:uppercase;
-  text-decoration:none;
-  font-family:'Roboto', sans-serif;
-  display:block;
-  width:200px;
-  height:30px;
-  line-height:30px;
-  letter-spacing:2px;
-  text-align:center;
-  transition:color 0.5s, background 0.5s;
-}
-
-.hoverable{
-  color:#ffffffb5;
-}
-hoverable:hover{
-  color:#800000;
-}
-.nav-justified > li {
-  width :auto;
-}
-.navbar-right {
-  float: right !important;
-  margin-right: -350px;
-}
+    _background-color: rgba(21, 25, 30, 0.7)
+    margin-bottom: 0px
+    position: relative
