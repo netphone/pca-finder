@@ -63,9 +63,9 @@ const createDialog = (eventData, measurementData) => {
     const dialogSettings = {
         removeCloseButton: true,
         message: 'Save the significant finding?',
-        cancelLabel: 'No',
-        confirmLabel: 'Yes',
-        confirmClass: 'btn-success',
+        cancelLabel: 'Close',
+        // confirmLabel: 'Yes',
+        // confirmClass: 'btn-success',
         cancelClass: 'btn-danger',
         dialogClass: 'modal-sm',
         position: position
