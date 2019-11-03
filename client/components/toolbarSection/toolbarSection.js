@@ -161,7 +161,7 @@ Template.toolbarSection.helpers({
             title: 'Segmentation',
             classes: 'imageViewerCommand',
             iconClasses: 'fa fa-camera',
-            active: () => $('#nrrdDialog').is(':visible')
+            active: () => $('#segmentationDialog').is(':visible')
         });
 
         return buttonData;
