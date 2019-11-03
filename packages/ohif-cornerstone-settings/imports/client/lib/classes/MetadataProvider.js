@@ -274,6 +274,7 @@ export class MetadataProvider {
             return;
         }
 
+        console.log(instance.imageOrientationPatient);
         const imageOrientation = instance.imageOrientationPatient.split('\\');
         const imagePosition = instance.imagePositionPatient.split('\\');
 
