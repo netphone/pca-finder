@@ -153,7 +153,7 @@ Template.dialogAi.onRendered(() => {
 
 Template.dialogAi.events({
     'click .js-predict'(event, instance) {
-        const zone = event.currentTarget.outerText;
+        const zone = event.currentTarget.textContent;
 
         askAi(buildDataForPrediction(zone));
     },
