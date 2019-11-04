@@ -21,81 +21,72 @@
     {{/subpagesection}}
     <!-- Sub Page Section ENDS -->
 
-    <!-- Main Content -->    
+    <!-- Main Content -->
     <main class="main" role="main">
         <div class="p-y-3 bg-white">
             <div class="container">
                 <div class="row m-b-3">
                     <div class="col-md-12 mx-auto">
-                        <h2 class="text-center">Segmentation process</h2>
-                        <p class="text-justify mb-0">Nowadays, semantic segmentation is one of the key problems in
-                            the field of computer vision. Looking at the big picture, semantic segmentation is one of
-                            the high-level task that paves the way towards complete scene understanding. The importance
-                            of scene understanding as a core computer vision problem is highlighted by the fact that an
-                            increasing number of applications nourish from inferring knowledge from imagery. Some of
-                            those applications include self-driving vehicles, human-computer interaction, virtual
-                            reality etc. With the popularity of deep learning in recent years, many semantic
-                            segmentation problems are being tackled using deep architectures, most often Convolutional
-                            Neural Nets, which surpass other approaches by a large margin in terms of accuracy and
-                            efficiency.</p>
+                        <h2 class="text-center">Medical Image Segmentation</h2>
+                        <p class="text-justify mb-0">Medical image segmentation, mainly to identify the image pixels of
+                            organs or lesions from background medical images, aims at providing the critical information
+                            about the volumetric shapes of the targeted organs or lesions and is one of the most
+                            challenging tasks in medical image analysis. In the past few years with the popularity of
+                            deep learning approaches coming into demonstration of their substantial capabilities in
+                            image processing tasks, many image semantic segmentation problems, including medical image
+                            segmentation, have been tackled using deep learning architectures, mostly Convolutional
+                            Neural Networks, which surpass other conventional machine learning approaches in terms of
+                            accuracy and efficiency<a href="#1"><sup>[1]</sup></a>.</p>
                     </div>
                 </div><!-- /.row -->
 
                 <article class="m-b-6">
                     <div class="row">
-                        <div class="col-md-5">
-                            <img src="/images/10.jpg" alt="Segmentation" class="shadow-md img-fluid">
-                        </div>
                         <div class="col-md-7 align-items-center">
                             <div class="p-3">
-                                <h3>Segmentation</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis <strong>dis parturient
-                                        montes</strong>, nascetur ridiculus mus.</p>
-
-                                <p>Nascetur ridiculus mus. Donec quam felis, ultricies nec, <i>pellentesque eu</i>,
-                                    pretium quis, sem. Nulla consequat massa quis enim.</p>
+                                <h3>Process of Prostate MRI image segmentation</h3>
+                                <p>The dataset used in this task consists of T2 weighted images randomly selected from
+                                    the publicly available <strong>PROSTATEx challenge dataset</strong><a
+                                        href="#2"><sup>[2]</sup></a>. Ground truth segmented masks
+                                    of the prostate zones, generated along the axial images using 3D Slicer, were used
+                                    as the labels in the dataset. Other preprocessing steps including image resampling,
+                                    normalization of image intensity, training/ validation splitting, image data
+                                    augmentation are detailed in the literature<a href="#3"><sup>[3]</sup></a>. A 3D
+                                    U-Net-derived architecture using an encoder-decoder structure, coupled with
+                                    employing skip connections to
+                                    transfer high resolution information from the encoder path to the same level of the
+                                    decoder path, was implemented to generate a gap-free segmentation of prostatic zones
+                                    for therapy planning and computer aided diagnosis<a href="#3"><sup>[3]</sup></a>.
+                                    The outcome provides topological correct segmentation of the transition zone (TZ),
+                                    peripheral zone (PZ),
+                                    distal prostatic urethra (DPU) and anterior fibromuscular stroma (AFS) of prostate
+                                    gland from the axial T2 weighted MRI.</p>
                             </div>
                         </div>
-                    </div><!-- /.row -->
-                </article>
-
-                <article class="m-b-6">
-                    <div class="row">
-                        <div class="col-md-7 align-items-center">
-                            <div class="p-3">
-                                <h3>Chatbot</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor. Aenean massa. Cum sociis natoque penatibus.</p>
-
-                                <p>Nascetur ridiculus mus. Donec quam felis, ultricies nec, <i>pellentesque eu</i>,
-                                    pretium quis, sem. Nulla consequat massa quis enim dis parturient montes,
-                                    <strong>nascetur ridiculus</strong> mus et magnis.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <img src="/images/12.png" alt="Segmentation" class="shadow-md img-fluid">
-                        </div>
-                    </div><!-- /.row -->
-                </article>
-
-                <article class="m-b-3">
-                    <div class="row">
                         <div class="col-md-5">
                             <img src="/images/13.png" alt="Segmentation" class="shadow-md img-fluid">
                         </div>
-                        <div class="col-md-7 align-items-center">
-                            <div class="p-3">
-                                <h3>Festival app</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis <strong>dis parturient
-                                        montes</strong>, nascetur ridiculus mus.</p>
-
-                                <p>Nascetur ridiculus mus. Donec quam felis, ultricies nec, <i>pellentesque eu</i>,
-                                    pretium quis, sem. Nulla consequat massa quis enim.</p>
-                            </div>
-                        </div>
                     </div><!-- /.row -->
+
+                    <div class="row">
+                        <!-- R2 -->
+                        <div class="col-lg-12 mx-auto">
+                            <small>
+                                <ol>
+                                    <a name="1">&nbsp;</a>
+                                    <li>MH Hesamian, W Jia, X He, P Kennedy - Journal of digital imaging, 2019 –
+                                        Springer https://doi.org/10.1007/s10278-019-00227-x</li>
+                                    <a name="2">&nbsp;</a>
+                                    <li>G. Litjens, O. Debats, J. Barentsz, N. Karssemeijer, and H. Huisman,
+                                        “Computer-aided detection of prostate cancer in MRI,” IEEE Trans Med Imaging,
+                                        vol. 33, no. 5, pp. 1083– 1092, May 2014.</li>
+                                    <a name="3">&nbsp;</a>
+                                    <li>2019 IEEE 16th International Symposium on Biomedical Imaging (ISBI 2019)
+                                        https://doi.org/10.1109/ISBI.2019.8759572</li>
+                                </ol>
+                            </small>
+                        </div>
+                    </div>
                 </article>
             </div>
         </div>
