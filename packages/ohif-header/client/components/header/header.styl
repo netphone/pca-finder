@@ -14,8 +14,13 @@ body>.header
       _padding: 0 10px
 
   .navbar-brand
-    padding: 0px 15px
-    height: 68px
+    padding: 0px 0px
+    _height: 68px
+
+    @media screen and (min-width: 768px) and (max-width: 992px)
+      &>img
+        max-height: 6.4rem
+        width: auto
 
     &>.logo-image
       _max-height: 8rem
@@ -26,6 +31,13 @@ body>.header
 
   .navbar-form
     margin-top: 12px
+  
+    @media screen and (min-width: 768px) and (max-width: 992px)
+      &>.btn
+        font-size: 15px
+  @media screen and (min-width: 768px) and (max-width: 992px)
+    .navbar-form
+      margin-left: -15px
   
   .navbar-toggle
     margin-top: 20px
@@ -60,6 +72,7 @@ body>.header
     line-height: 21px
     text-decoration: none
     color: #fff !important
+    margin-right: 3rem !important;
 
     &:empty
       display: none
@@ -68,7 +81,12 @@ body>.header
       color: #9d9d9d !important
 
     &:focus
-      color: #9d9d9d !important    
+      color: #9d9d9d !important
+
+  @media screen and (min-width: 768px) and (max-width: 992px)
+    .header-menu-default 
+      font-size: 15px
+      margin-right: 1.6rem !important 
 
   &.header-big
     _height: $topBarExpandedHeight

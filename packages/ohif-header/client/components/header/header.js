@@ -65,7 +65,7 @@ Template.header.onRendered(() => {
         id: 'btnTestDrive',
         text: 'Explore Now',
         class: 'btn btn-success',
-        style: 'width: 150px;', //  style: 'position: absolute; width: 150px; top: 60px; right: 20px; padding-left: 0;',
+        // style: 'width: 150px;', //  style: 'position: absolute; width: 150px; top: 60px; right: 20px; padding-left: 0;',
         title: 'Explore Study lists',
         click: function () {
             // Login with demo user

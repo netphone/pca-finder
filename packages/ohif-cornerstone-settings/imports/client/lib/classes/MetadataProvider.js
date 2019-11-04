@@ -275,7 +275,7 @@ export class MetadataProvider {
         }
 
         if (instance.imageOrientationPatient.split == undefined) {
-			console.log(instance.imageOrientationPatient);
+			//console.log(instance.imageOrientationPatient);
             return;
         }
         
