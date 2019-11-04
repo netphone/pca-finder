@@ -274,7 +274,11 @@ export class MetadataProvider {
             return;
         }
 
-        console.log(instance.imageOrientationPatient);
+        if (instance.imageOrientationPatient.split == undefined) {
+			console.log(instance.imageOrientationPatient);
+            return;
+        }
+        
         const imageOrientation = instance.imageOrientationPatient.split('\\');
         const imagePosition = instance.imagePositionPatient.split('\\');
 
