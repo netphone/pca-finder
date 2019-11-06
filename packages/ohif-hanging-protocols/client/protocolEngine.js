@@ -489,7 +489,7 @@ HP.ProtocolEngine = class ProtocolEngine {
         // If no such layout properties exist, stop here.
 
         // const layoutProps = stageModel.viewportStructure.properties;
-        const layoutProps = {rows: 3, columns: 3};
+        const layoutProps = {rows: 2, columns: 3};
         
         if (!layoutProps) {
             return;
