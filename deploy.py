@@ -38,7 +38,7 @@ class Deploy:
         print("successss" * 10)
         scores = np.concatenate(predicted_prob).ravel()
         print("predictions: {} ".format(scores))
-        description = "{:03.1f}% probability of Significant Prostate Cancer".format(scores[0] * 100)
+        description = "{:03.1f}% probability of Significant Prostate Cancer".format(scores[0]*100)
         response_dict = {"case": self.info["case"],
                          "description": description,
                          "score": str(scores[0])}
@@ -101,8 +101,8 @@ class Deploy:
         abk_mean = np.load(mean_std_dir + "/training_abk_mean.npy")
         abk_std = np.load(mean_std_dir + "/training_abk_std.npy")
         #
-        t2_arr -= t2_mean
-        t2_arr /= t2_std
+        t2_arr -= 0.9*t2_mean
+        t2_arr /= 0.9*t2_std
         #
         abk_arr -= abk_mean
         abk_arr /= abk_std
