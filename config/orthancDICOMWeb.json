@@ -10,7 +10,7 @@
         "imageRendering": "wadouri",
         "thumbnailRendering": "wadors",
         "requestOptions": {
-          "auth": "pcafinder:pcafinder",
+          "auth": "orthanc:orthanc",
           "logRequests": true,
           "logResponses": false,
           "logTiming": true

@@ -19,6 +19,7 @@ OHIF.studies.searchStudies = filter => {
                 if (error) {
                     reject(error);
                 } else {
+                    console.log("studies data:"+studiesData);
                     resolve(studiesData);
                 }
             });

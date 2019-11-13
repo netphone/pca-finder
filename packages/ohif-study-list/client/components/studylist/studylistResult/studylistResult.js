@@ -188,15 +188,9 @@ function search() {
 
         // Loop through all identified studies
         studies.forEach(study => {
-            // Search the rest of the parameters that aren't done via the server call
-            if (isIndexOf(study.modalities, modality) &&
-                (new Date(studyDateFrom).setHours(0, 0, 0, 0) <= convertStringToStudyDate(study.studyDate) || !studyDateFrom || studyDateFrom === '') &&
-                (convertStringToStudyDate(study.studyDate) <= new Date(studyDateTo).setHours(0, 0, 0, 0) || !studyDateTo || studyDateTo === '')) {
 
-                // Convert numberOfStudyRelatedInstance string into integer
+            if (isIndexOf(study.modalities, modality) ) {
                 study.numberOfStudyRelatedInstances = !isNaN(study.numberOfStudyRelatedInstances) ? parseInt(study.numberOfStudyRelatedInstances) : undefined;
-
-                // Insert any matching studies into the Studies Collection
                 OHIF.studylist.collections.Studies.insert(study);
             }
         });
@@ -206,7 +200,6 @@ function search() {
         }
     });
 }
-
 const getRowsPerPage = () => sessionStorage.getItem('rowsPerPage');
 
 // Wraps ReactiveVar equalsFunc function. Whenever ReactiveVar is
@@ -263,6 +256,7 @@ Template.studylistResult.onRendered(() => {
     const today = moment();
     const lastWeek = moment().subtract(6, 'days');
     const lastMonth = moment().subtract(29, 'days');
+    const all = moment().subtract(11150, 'days');
     const $studyDate = instance.$('#studyDate');
     const dateFilterNumDays = OHIF.uiSettings.studyListDateFilterNumDays;
     let startDate, endDate;
@@ -280,16 +274,17 @@ Template.studylistResult.onRendered(() => {
         ranges: {
             Today: [today, today],
             'Last 7 Days': [lastWeek, today],
-            'Last 30 Days': [lastMonth, today]
+            'Last 30 Days': [lastMonth, today],
+            'All': [all, today]
         }
     }).data('daterangepicker');
 
     if (startDate && endDate) {
         instance.datePicker.updateInputText();
-    } else {
+    }/* else {
         // Retrieve all studies
         search();
-    }
+    }*/
 });
 
 Template.studylistResult.onDestroyed(() => {

@@ -47,7 +47,12 @@ function filterToQIDOURL(server, filter) {
     if (filter.studyDateFrom || filter.studyDateTo) {
         const dateFrom = dateToString(new Date(filter.studyDateFrom));
         const dateTo = dateToString(new Date(filter.studyDateTo));
-        parameters.StudyDate = `${dateFrom}-${dateTo}`;
+
+
+        if(dateFrom!=dateTo){
+
+            parameters.StudyDate = `${dateFrom}-${dateTo}`;
+        }
     }
 
     // Build the StudyInstanceUID parameter
@@ -91,6 +96,7 @@ function resultDataToStudies(resultData) {
         // modality: DICOMWeb.getString(study['00080060']),
         // modalitiesInStudy: DICOMWeb.getString(study['00080061']),
         modalities: DICOMWeb.getString(DICOMWeb.getModalities(study['00080060'], study['00080061']))
+
     }));
 
     return studies;
@@ -98,14 +104,11 @@ function resultDataToStudies(resultData) {
 
 OHIF.studies.services.QIDO.Studies = (server, filter) => {
     const url = filterToQIDOURL(server, filter);
-
     try {
         const result = DICOMWeb.getJSON(url, server.requestOptions);
-
         return resultDataToStudies(result.data);
     } catch (error) {
         OHIF.log.trace();
-
         throw error;
     }
 };
