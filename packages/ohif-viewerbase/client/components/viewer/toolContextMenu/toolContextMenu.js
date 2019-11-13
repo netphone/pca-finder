@@ -8,7 +8,7 @@ const TypeToLabelMap = {
     length: 'Length',
     simpleAngle: 'Angle',
     fiducial: 'Fiducial',
-    aiFiducial: 'AI Probe',
+    aiFiducial: 'Predict PCa',
     serverProbe: 'Server Probe',
     ellipticalRoi: 'Elliptical ROI',
     rectangleRoi: 'Rectangle ROI',

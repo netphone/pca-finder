@@ -1,7 +1,9 @@
 import { Template } from 'meteor/templating';
-import { $ } from 'meteor/jquery';
-
+import { ReactiveVar } from 'meteor/reactive-var';
 import { OHIF } from 'meteor/ohif:core';
+import { $ } from 'meteor/jquery';
+import { Mongo } from 'meteor/mongo';
+import { Session } from 'meteor/session';
 import 'meteor/ohif:viewerbase';
 
 function isThereSeries(studies) {
@@ -20,12 +22,26 @@ function isThereSeries(studies) {
     return false;
 }
 
+function hasZoneOnModel() {
+    const instance = Template.instance();
+    const selectedModel = instance.selectedModel.get();
+
+    if (selectedModel === 'Densenet_T2_ABK_auc_08') {
+        Session.set('modelWithZone', true);
+    } else {
+        Session.set('modelWithZone', false);
+    }
+}
+
 Template.toolbarSection.onCreated(() => {
     const instance = Template.instance();
 
     if (OHIF.uiSettings.leftSidebarOpen && isThereSeries(instance.data.studies)) {
         instance.data.state.set('leftSidebar', 'studies');
     }
+
+    instance.selectedModel = new ReactiveVar('');
+    instance.showsnackbar = new ReactiveVar(true);
 });
 
 Template.toolbarSection.helpers({
@@ -78,12 +94,12 @@ Template.toolbarSection.helpers({
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-zoom'
         });
 
-        // buttonData.push({
-        //     id: 'wwwc',
-        //     title: 'Levels',
-        //     classes: 'imageViewerTool',
-        //     svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-levels'
-        // });
+        buttonData.push({
+            id: 'wwwc',
+            title: 'Levels',
+            classes: 'imageViewerTool',
+            svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-levels'
+        });
 
         buttonData.push({
             id: 'pan',
@@ -92,12 +108,12 @@ Template.toolbarSection.helpers({
             svgLink: '/packages/ohif_viewerbase/assets/icons.svg#icon-tools-pan'
         });
 
-        // buttonData.push({
-        //     id: 'scrollSync',
-        //     title: 'Scroll Sync',
-        //     classes: 'imageViewerTool',
-        //     iconClasses: 'fa fa-unsorted'
-        // });
+        buttonData.push({
+            id: 'scrollSync',
+            title: 'Scroll Sync',
+            classes: 'imageViewerTool',
+            iconClasses: 'fa fa-unsorted'
+        });
 
         buttonData.push({
             id: 'aiFiducial',
@@ -188,8 +204,10 @@ Template.toolbarSection.helpers({
     }
 });
 
-Template.toolbarSection.onRendered(function() {
+Template.toolbarSection.onRendered(function () {
     const instance = Template.instance();
+    instance.selectedModel.set("CNN3D");
+    Session.set('selectedModel', "CNN3D");
 
     instance.$('#layout').dropdown();
 
@@ -212,4 +230,26 @@ Template.toolbarSection.onRendered(function() {
             }
         }
     }
+});
+
+Template.toolbarSection.events({
+    'click .js-aiModels'(event, instance) {
+        let selectedModel = event.currentTarget.value;
+        instance.selectedModel.set(selectedModel);
+
+        if (instance.showsnackbar.get()) {
+            $('#aiModels').change();
+        }
+
+        hasZoneOnModel();
+    },
+
+    'change .js-aiOption'(event, instance) {
+        instance.showsnackbar.set(false);
+        Session.set('selectedModel', event.currentTarget.value);
+        let modal_snackbar = $('#modal_snackbar').addClass('show');
+        setTimeout(() => {
+            modal_snackbar.removeClass('show');
+        }, 3000);
+    },
 });

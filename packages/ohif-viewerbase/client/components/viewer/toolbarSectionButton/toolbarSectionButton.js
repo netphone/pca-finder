@@ -2,6 +2,7 @@ import { OHIF } from 'meteor/ohif:core';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { _ } from 'meteor/underscore';
+import { $ } from 'meteor/jquery';
 
 Template.toolbarSectionButton.onCreated(() => {
     const instance = Template.instance();
@@ -79,6 +80,13 @@ Template.toolbarSectionButton.helpers({
         Session.get('ToolManagerActiveToolUpdated');
         const instance = Template.instance();
         const activeToolId = OHIF.viewerbase.toolManager.getActiveTool();
+        if (activeToolId === 'aiFiducial') {
+            $('#ddl_models').show();
+        } else {
+            $("#aiModels option:first").prop('selected', true);
+            $("#aiModels option:first").click();            
+            $('#ddl_models').hide();
+        }
         const isActive = instance.isActive(activeToolId);
         return isActive ? 'active' : '';
     },

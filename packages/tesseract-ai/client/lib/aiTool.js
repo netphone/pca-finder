@@ -7,7 +7,7 @@ import { waitUntilExists } from 'jquery.waituntilexists';
 const toolType = 'aiFiducial';
 const openedAiSettings = false;
 
-// Open AI setting when users chooses the AI Probe for the first time
+// Open AI setting when users chooses the Predict PCa for the first time
 // TODO: try not to use waitUntilExists
 $('body').on('syncViewports', (event) => {
   $('#aiFiducial').click((eve) => {

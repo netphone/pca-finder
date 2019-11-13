@@ -2,12 +2,28 @@
     <div class="toolbarSection noselect p-x-2">
         <div class="clearfix">
             {{>toolbarSectionTools toolbarButtons=toolbarButtons}}
-            <div class="pull-right m-t-1 rm-x-1" style="display:none">
-                {{>roundedButtonGroup rightSidebarToggleButtonData}}
+            <div id="ddl_models" class="toolbarSectionTools pull-left m-t-0 rp-x-1" style="display: none;">
+                <form class="toolbarSectionButton rp-x-1 m-b-1">
+                    <div class="form-group m-b-0">
+                        <label class="form-label" for="ai-models">Available AI Models</label>
+                        <select class="form-control ai-models js-aiModels js-aiOption" id="aiModels">
+                            <option>CNN3D</option>                 
+                            <option>Densenet_T2_ABK_auc_079_nozone</option>                        
+                            <option>Densenet_T2_ABK_auc_08</option>                        
+                        </select>
+                    </div>
+                </form>
             </div>
+
+            <!-- <div class="pull-right m-t-1 rm-x-1">
+                {{>roundedButtonGroup rightSidebarToggleButtonData}}
+            </div> -->
+
             <div class="pull-right">
                 {{>toolbarSectionTools toolbarButtons=hangingProtocolButtons}}
             </div>
         </div>
     </div>
+
+    <div id="modal_snackbar">Model Selected</div>
 </template>
