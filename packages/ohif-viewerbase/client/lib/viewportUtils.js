@@ -238,7 +238,6 @@ const toggleDownloadDialog = () => {
 };
 
 const toggleViewSegmentationDialog = () => {
-    debugger;
     OHIF.ui.showDialog('viewSegmentationDialog');
 };
 

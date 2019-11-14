@@ -9,7 +9,7 @@ Package.onUse(function(api) {
 
     api.use('ecmascript');
     api.use('templating');
-    api.use('stylus');
+    api.use('stylus@=2.513.14');
 
     // Client imports
     api.addFiles('client/index.js', 'client');

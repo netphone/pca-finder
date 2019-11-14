@@ -4,6 +4,7 @@ services:
     image: jodogne/orthanc-plugins
     volumes:
     - /srv/docker/local/orthanc-db/:/var/lib/orthanc/db/
+    - /dali/rcc/appdev/pca-finder/orthanc-settings/orthanc.json:/etc/orthanc/orthanc.json
     labels:
       io.rancher.container.pull_image: always
   pcad:
@@ -15,7 +16,7 @@ services:
   meteor:
     image: docker-images.rcc.uchicago.edu/app-dev-group/pca-finder:front
     environment:
-      ROOT_URL: http://pca-finder.staging.rcc.uchicago.edu
+      ROOT_URL: https://pca-finder.staging.rcc.uchicago.edu
       MONGO_URL: mongodb://meteor:mongoadmin@mongodb/meteor
       MONGO_OPLOG_URL: mongodb://oplogger:mongoadmin@mongodb/local?authSource=admin
       METEOR_SETTINGS: |-
@@ -24,14 +25,14 @@ services:
                     "dicomWeb": [
                       {
                         "name": "Orthanc",
-                        "wadoUriRoot": "http://pca-finder.staging.rcc.uchicago.edu:8042/wado",
-                        "qidoRoot": "http://pca-finder.staging.rcc.uchicago.edu:8042/dicom-web",
-                        "wadoRoot": "http://pca-finder.staging.rcc.uchicago.edu:8042/dicom-web",
+                        "wadoUriRoot": "https://pca-finder.staging.rcc.uchicago.edu:8042/wado",
+                        "qidoRoot": "https://pca-finder.staging.rcc.uchicago.edu:8042/dicom-web",
+                        "wadoRoot": "https://pca-finder.staging.rcc.uchicago.edu:8042/dicom-web",
                         "qidoSupportsIncludeField": false,
                         "imageRendering": "wadouri",
                         "thumbnailRendering": "wadors",
                         "requestOptions": {
-                          "auth": "orthanc:orthanc",
+                          "auth": "pcafinder:pcafinder",
                           "logRequests": true,
                           "logResponses": false,
                           "logTiming": true
@@ -57,6 +58,10 @@ services:
                 }
     links:
     - mongodb:mongodb
+    labels:
+      io.rancher.container.pull_image: always
+  nginx-redirect-to-https:
+    image: nginx:stable
     labels:
       io.rancher.container.pull_image: always
   mongodb:
