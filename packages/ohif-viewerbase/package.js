@@ -105,9 +105,6 @@ Package.onUse(function(api) {
     api.addFiles('client/components/basic/layout/layout.html', 'client');
     api.addFiles('client/components/basic/layout/layout.styl', 'client');
     api.addFiles('client/components/basic/loadingText/loadingText.html', 'client');
-    api.addFiles('client/components/viewer/3dmodel/3dmodel.html', 'client');
-    api.addFiles('client/components/viewer/3dmodel/3dmodel.css', 'client');
-    api.addFiles('client/components/viewer/3dmodel/3dmodel.js', 'client');
     api.addFiles('client/components/basic/loadingText/loadingText.styl', 'client');
     api.addFiles('client/components/basic/errorText/errorText.html', 'client');
     api.addFiles('client/components/basic/errorText/errorText.styl', 'client');
@@ -180,9 +177,9 @@ Package.onUse(function(api) {
     api.addFiles('client/components/viewer/downloadDialog/downloadDialog.js', 'client');
     api.addFiles('client/components/viewer/downloadDialog/downloadDialog.styl', 'client');
     
-    api.addFiles('client/components/viewer/segmentationDialog/segmentationDialog.html', 'client');
-    api.addFiles('client/components/viewer/segmentationDialog/segmentationDialog.js', 'client');
-    api.addFiles('client/components/viewer/segmentationDialog/segmentationDialog.styl', 'client');
+    api.addFiles('client/components/viewer/3DModelDialog/3DModelDialog.html', 'client');
+    api.addFiles('client/components/viewer/3DModelDialog/3DModelDialog.js', 'client');
+    api.addFiles('client/components/viewer/3DModelDialog/3DModelDialog.styl', 'client');
 
     api.addFiles('client/components/viewer/toolbarSectionButton/toolbarSectionButton.html', 'client');
     api.addFiles('client/components/viewer/toolbarSectionButton/toolbarSectionButton.js', 'client');

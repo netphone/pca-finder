@@ -29,10 +29,6 @@ Router.route('/', function () {
     Router.go('studylist', {}, { replaceState: true });
 }, { name: 'home' });
 
-Router.route('/threedmodel', function() {
-    this.render('threedmodel', { data: { template: 'threedmodel' } });
-}, { name: 'threedmodel' });
-
 Router.route('/studylist', function () {
     this.render('ohifViewer', { data: { template: 'studylist' } });
 }, { name: 'studylist' });

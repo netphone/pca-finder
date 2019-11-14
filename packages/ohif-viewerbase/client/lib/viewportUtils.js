@@ -237,8 +237,12 @@ const toggleDownloadDialog = () => {
     }
 };
 
-const toggleViewSegmentationDialog = () => {
-    OHIF.ui.showDialog('viewSegmentationDialog');
+const toggleView3DModelDialog = () => {
+    const $dialog = $('#view3DModelDialog');
+    if ($dialog.length) {
+        $dialog.remove();
+    } 
+    OHIF.ui.showDialog('view3DModelDialog');
 };
 
 const isDownloadEnabled = () => {
@@ -391,7 +395,7 @@ const viewportUtils = {
     toggleCinePlay,
     toggleCineDialog,
     toggleDownloadDialog,
-    toggleViewSegmentationDialog,
+    toggleView3DModelDialog,
     isPlaying,
     isDownloadEnabled,
     hasMultipleFrames,

@@ -173,11 +173,11 @@ Template.toolbarSection.helpers({
         // });
 
         buttonData.push({
-            id: 'toggleViewSegmentationDialog',
-            title: 'Segmentation',
+            id: 'toggleView3DModelDialog',
+            title: '3D Model',
             classes: 'imageViewerCommand',
-            iconClasses: 'fa fa-camera',
-            active: () => $('#segmentationDialog').is(':visible')
+            iconClasses: 'fa fa-cube',
+            active: () => $('#view3DModelDialog').is(':visible')
         });
 
         return buttonData;

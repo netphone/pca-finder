@@ -63,7 +63,7 @@ Meteor.startup(function() {
         toggleCinePlay: 'SPACE',
         toggleCineDialog: '',
         toggleDownloadDialog: '',
-        toggleViewSegmentationDialog: '',
+        toggleView3DModelDialog: '',
 
         // Preset hotkeys
         WLPreset0: '1',
@@ -231,9 +231,9 @@ Meteor.startup(function() {
             action: viewportUtils.toggleDownloadDialog,
             disabled: () => !viewportUtils.isDownloadEnabled()
         },
-        toggleViewSegmentationDialog:{
-            name: 'Show/Hide Segmentation Dialog',
-            action: viewportUtils.toggleViewSegmentationDialog
+        toggleView3DModelDialog:{
+            name: 'Show/Hide 3D Model',
+            action: viewportUtils.toggleView3DModelDialog
             // ,
             // disabled: () => !viewportUtils.isDownloadEnabled()
         }

@@ -1,0 +1,19 @@
+<template name="view3DModelDialog">
+    {{#dialogSimple (extend this
+        id='view3DModelDialog'
+        class='themed'
+        dialogClass='modal-lg form-themed'
+        title='Prostate 3D Model'
+    )}}
+
+    <div class="p-x-0 p-y-0 bg-dark">
+        <article>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="3d-viewer" class="shadow-md img-fluid"></div>
+                </div>
+            </div><!-- /.row -->
+        </article>
+    </div>
+    {{/dialogSimple}}
+</template>
