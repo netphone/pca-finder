@@ -82,7 +82,7 @@ Template.threedmodel.onRendered(() => {
         window.addEventListener('resize', onWindowResize, false);
         setupInset();
 
-        vtkloader.load("/data/3dmodel/segmentation.vtk", function (geometry) {
+        vtkloader.load("segmentation.vtk", function (geometry) {
             geometry.computeVertexNormals();
             let mesh = new THREE.Mesh(geometry, vtkmaterial);
             scene.add(mesh);
@@ -97,7 +97,7 @@ Template.threedmodel.onRendered(() => {
         });
 
 
-        loader.load("/data/3dmodel/Prostate.nrrd", function (volume) {
+        loader.load("Prostate.nrrd", function (volume) {
 
             var geometry,
                 material,
