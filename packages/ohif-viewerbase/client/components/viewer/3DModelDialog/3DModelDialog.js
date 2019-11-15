@@ -44,7 +44,7 @@ function init() {
     camera.position.z = 300;
 
     // This way you can use as many .then as you want
-    var myObjPromise = loadObj("/data/3dmodel/obj/", "WholeProstate");
+    var myObjPromise = loadObj("/obj/", "WholeProstate");
 
     myObjPromise.then(myObj => {
         myObj.scale.set(70, 70, 70);
