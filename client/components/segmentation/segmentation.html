@@ -27,14 +27,11 @@
             <div class="container">
                 <div class="row m-b-3">
                     <div class="col-md-12 mx-auto">
-                        <h2 class="text-center">Medical Image Segmentation</h2>
-                        <p class="text-justify mb-0">Medical image segmentation, mainly to identify the image pixels of
-                            organs or lesions from background medical images, aims at providing the critical information
-                            about the volumetric shapes of the targeted organs or lesions and is one of the most
-                            challenging tasks in medical image analysis. In the past few years with the popularity of
-                            deep learning approaches coming into demonstration of their substantial capabilities in
-                            image processing tasks, many image semantic segmentation problems, including medical image
-                            segmentation, have been tackled using deep learning architectures, mostly Convolutional
+                        <h2 class="text-center">PCa Finder Segmentation</h2>
+                        <p class="text-justify mb-0">PCa Finder Segmentation aims at providing critical information
+                            about the volumetric shapes of the prostate and is one of the most
+                            challenging tasks in medical image analysis. In the PCa Finder Segmentation we address
+                            medical image segmentation using a deep learning algorithm known as Convolutional
                             Neural Networks, which surpass other conventional machine learning approaches in terms of
                             accuracy and efficiency<a href="#1"><sup>[1]</sup></a>.</p>
                     </div>
@@ -45,22 +42,35 @@
                         <div class="col-md-7 align-items-center">
                             <div class="p-3">
                                 <h3>Process of Prostate MRI image segmentation</h3>
-                                <p>The dataset used in this task consists of T2 weighted images randomly selected from
-                                    the publicly available <strong>PROSTATEx challenge dataset</strong><a
-                                        href="#2"><sup>[2]</sup></a>. Ground truth segmented masks
-                                    of the prostate zones, generated along the axial images using 3D Slicer, were used
-                                    as the labels in the dataset. Other preprocessing steps including image resampling,
-                                    normalization of image intensity, training/ validation splitting, image data
-                                    augmentation are detailed in the literature<a href="#3"><sup>[3]</sup></a>. A 3D
-                                    U-Net-derived architecture using an encoder-decoder structure, coupled with
-                                    employing skip connections to
-                                    transfer high resolution information from the encoder path to the same level of the
-                                    decoder path, was implemented to generate a gap-free segmentation of prostatic zones
-                                    for therapy planning and computer aided diagnosis<a href="#3"><sup>[3]</sup></a>.
-                                    The outcome provides topological correct segmentation of the transition zone (TZ),
-                                    peripheral zone (PZ),
-                                    distal prostatic urethra (DPU) and anterior fibromuscular stroma (AFS) of prostate
-                                    gland from the axial T2 weighted MRI.</p>
+                                <p>
+                                    <ul>
+                                        <li>The dataset consists of T2 weighted images randomly
+                                            selected from
+                                            the publicly available <strong>PROSTATEx challenge dataset</strong><a
+                                                href="#2"><sup>[2]</sup></a>. Ground truth segmented masks
+                                            of the prostate zones, generated along the axial images using 3D Slicer
+                                            provide the data labels.</li>
+                                        <li>Other preprocessing steps including image resampling,
+                                            normalization of image intensity, training/ validation splitting, image data
+                                            augmentation are detailed in the literature<a href="#3"><sup>[3]</sup></a>.
+                                        </li>
+                                        <li>A 3D U-Net-derived architecture using an encoder-decoder structure, coupled
+                                            with
+                                            employing skip connections to
+                                            transfer high resolution information from the encoder path to the same level
+                                            of the
+                                            decoder path, was implemented to generate a gap-free segmentation of
+                                            prostatic zones
+                                            for therapy planning and computer aided diagnosis<a
+                                                href="#3"><sup>[3]</sup></a>.
+                                            The outcome provides topological correct segmentation of the transition zone
+                                            (TZ),
+                                            peripheral zone (PZ),
+                                            distal prostatic urethra (DPU) and anterior fibromuscular stroma (AFS) of
+                                            prostate
+                                            gland from the axial T2 weighted MRI.</li>
+                                    </ul>
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-5">

@@ -31,17 +31,17 @@ function init() {
 
     camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
 
-    // var ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
-    // scene.add(ambientLight);
+    var ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
+    scene.add(ambientLight);
 
-    // var pointLight = new THREE.PointLight(0xffffff, 0.15);
-    // camera.add(pointLight);
+    var pointLight = new THREE.PointLight(0xffffff, 0.15);
+    camera.add(pointLight);
 
     scene.add(camera);
 
     // Camera Position
     // camera.position.set(600, 600, 400);
-    camera.position.z = 600;
+    camera.position.z = 300;
 
     // This way you can use as many .then as you want
     var myObjPromise = loadObj("/obj/", "WholeProstate");
