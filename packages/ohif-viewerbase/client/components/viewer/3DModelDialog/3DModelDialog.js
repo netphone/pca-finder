@@ -24,7 +24,7 @@ function init() {
     var SCREEN_WIDTH = window.innerWidth * 0.451,
         SCREEN_HEIGHT = window.innerHeight / 1.25;
 
-    var VIEW_ANGLE = 45,
+    var VIEW_ANGLE = 90,
         ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT,
         NEAR = 1,
         FAR = 10000;
@@ -48,8 +48,8 @@ function init() {
 
     myObjPromise.then(myObj => {
         myObj.scale.set(50, 50, 50);
-        myObj.rotation.set(0, 0, 0);
-        myObj.position.set(0, 0, 0);
+        myObj.rotation.set(0, 0, 45);
+        myObj.position.set(20, 0, 0);
         scene.add(myObj);
         //myObj.position.y = 20;
     });
