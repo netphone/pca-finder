@@ -47,9 +47,9 @@ function init() {
     var myObjPromise = loadObj("/obj/", "WholeProstate");
 
     myObjPromise.then(myObj => {
-        myObj.scale.set(20, 20, 20);
-        myObj.rotation.set(0, 0, 0);
-        myObj.position.set(0, 0, 0);
+        myObj.scale.set(70, 70, 70);
+        myObj.rotation.set(0, -1.5, 0);
+        myObj.position.set(60, -85, -70);
         scene.add(myObj);
         //myObj.position.y = 20;
     });
