@@ -34,3 +34,4 @@ package-lock.json
 production.env
 orthanc.json
 /data
+__init__.py
