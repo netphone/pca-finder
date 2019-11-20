@@ -113,6 +113,7 @@ Package.onUse(function(api) {
     api.addFiles('client/components/basic/removableBackdrop/removableBackdrop.styl', 'client');
 
     api.addFiles('client/components/basic/aboutModal/aboutModal.html', 'client');
+    api.addFiles('client/components/basic/aboutModal/aboutModal.js', 'client');
     api.addFiles('client/components/basic/aboutModal/aboutModal.styl', 'client');
 
     // Study Browser components
