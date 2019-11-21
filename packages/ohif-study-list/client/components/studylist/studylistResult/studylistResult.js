@@ -183,14 +183,18 @@ function search() {
         }
 
         const storage = null;
-
-
-
+        
         // Loop through all identified studies
         studies.forEach(study => {
+            // Search the rest of the parameters that aren't done via the server call
+            if (isIndexOf(study.modalities, modality) &&
+                (new Date(studyDateFrom).setHours(0, 0, 0, 0) <= convertStringToStudyDate(study.studyDate) || !studyDateFrom || studyDateFrom === '') &&
+                (convertStringToStudyDate(study.studyDate) <= new Date(studyDateTo).setHours(0, 0, 0, 0) || !studyDateTo || studyDateTo === '')) {
 
-            if (isIndexOf(study.modalities, modality) ) {
+                // Convert numberOfStudyRelatedInstance string into integer
                 study.numberOfStudyRelatedInstances = !isNaN(study.numberOfStudyRelatedInstances) ? parseInt(study.numberOfStudyRelatedInstances) : undefined;
+
+                // Insert any matching studies into the Studies Collection
                 OHIF.studylist.collections.Studies.insert(study);
             }
         });
@@ -200,6 +204,7 @@ function search() {
         }
     });
 }
+
 const getRowsPerPage = () => sessionStorage.getItem('rowsPerPage');
 
 // Wraps ReactiveVar equalsFunc function. Whenever ReactiveVar is
@@ -253,13 +258,14 @@ Template.studylistResult.onRendered(() => {
     const instance = Template.instance();
 
     // Initialize daterangepicker
+	const all = moment().subtract(10, 'years');
     const today = moment();
     const lastWeek = moment().subtract(6, 'days');
     const lastMonth = moment().subtract(29, 'days');
-    const all = moment().subtract(11150, 'days');
+
     const $studyDate = instance.$('#studyDate');
     const dateFilterNumDays = OHIF.uiSettings.studyListDateFilterNumDays;
-    let startDate, endDate;
+    let startDate = all, endDate = today;
 
     if (dateFilterNumDays) {
         startDate = moment().subtract(dateFilterNumDays - 1, 'days');
@@ -267,24 +273,29 @@ Template.studylistResult.onRendered(() => {
     }
 
     instance.datePicker = $studyDate.daterangepicker({
+        showDropdowns: true,
+        opens: 'left',
         maxDate: today,
         autoUpdateInput: true,
         startDate: startDate,
         endDate: endDate,
         ranges: {
-            Today: [today, today],
+			'All': [all, today],
+            'Today': [today, today],
             'Last 7 Days': [lastWeek, today],
-            'Last 30 Days': [lastMonth, today],
-            'All': [all, today]
+            'Last 30 Days': [lastMonth, today]
         }
+    }, function (start, end, label) {
+        // $studyDate.val(start.format('MM/D/YYYY') + ' - ' + end.format('MM/D/YYYY'));
+        // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
     }).data('daterangepicker');
 
-    if (startDate && endDate) {
-        instance.datePicker.updateInputText();
-    }/* else {
-        // Retrieve all studies
-        search();
-    }*/
+    // if (startDate && endDate) {
+    //     instance.datePicker.updateInputText();
+    // } else {
+    //     // Retrieve all studies
+    //     search();
+    // }
 });
 
 Template.studylistResult.onDestroyed(() => {

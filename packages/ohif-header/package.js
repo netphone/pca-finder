@@ -11,7 +11,7 @@ Package.onUse(function(api) {
     api.use('ecmascript');
     api.use('templating');
     api.use('underscore');
-    api.use('stylus@=2.513.14');
+    api.use('stylus');
 
     // OHIF dependencies
     api.use('ohif:core', 'client');

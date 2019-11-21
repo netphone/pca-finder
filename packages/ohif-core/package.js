@@ -14,7 +14,7 @@ Package.onUse(function(api) {
     api.use('ecmascript');
     api.use('standard-app-packages');
     api.use('jquery');
-    api.use('stylus@=2.513.14');
+    api.use('stylus');
     api.use('underscore');
     api.use('templating');
     api.use('reactive-var');
