@@ -11,7 +11,7 @@ Package.onUse(function(api) {
         'standard-app-packages',
         'http',
         'jquery',
-        'stylus',
+        'stylus@=2.513.14',
         'momentjs:moment',
         'validatejs',
         'u2622:persistent-session'

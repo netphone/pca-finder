@@ -14,7 +14,7 @@ Package.onUse(function(api) {
     api.use('ecmascript');
     api.use('standard-app-packages');
     api.use('jquery');
-    api.use('stylus');
+    api.use('stylus@=2.513.14');
     api.use('http');
     api.use('random');
     api.use('silentcicero:jszip');

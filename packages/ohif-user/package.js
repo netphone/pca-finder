@@ -17,7 +17,7 @@ Package.onUse(function(api) {
     // Meteor client-only packages
     api.use([
         'templating',
-        'stylus',
+        'stylus@=2.513.14',
         'iron:router'
     ], 'client');
 

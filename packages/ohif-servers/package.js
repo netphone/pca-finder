@@ -10,7 +10,7 @@ Package.onUse(function(api) {
     api.use('ecmascript');
     api.use('templating');
     api.use('jquery');
-    api.use('stylus');
+    api.use('stylus@=2.513.14');
     api.use('aldeed:simple-schema');
     api.use('aldeed:collection2');
 

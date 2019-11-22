@@ -10,7 +10,7 @@ Package.onUse(function(api) {
     api.use([
         'ecmascript',
         'templating',
-        'stylus',
+        'stylus@=2.513.14',
         'http'
     ]);
 

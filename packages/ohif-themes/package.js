@@ -7,7 +7,7 @@ Package.describe({
 Package.onUse(function(api) {
     api.versionsFrom('1.4.2.3');
 
-   api.use('stylus');
+   api.use('stylus@=2.513.14');
 
     api.use('ohif:themes-common', 'client');
 
