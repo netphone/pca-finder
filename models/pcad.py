@@ -27,7 +27,7 @@ def safe_mkdir(path):
 
 
 def cach_dicoms(info):
-    url = "https://pca-finder.rcc.uchicago.edu:8042/"
+    url = "https://pca-finder.staging.rcc.uchicago.edu:8042/"
     if info["case"] not in os.listdir(S.dicom_folder):
         patient_folder = os.path.join(S.dicom_folder, info["case"])
         safe_mkdir(patient_folder)
