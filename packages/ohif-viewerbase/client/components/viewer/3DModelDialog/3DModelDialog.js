@@ -26,10 +26,10 @@ function init() {
     var SCREEN_WIDTH = window.innerWidth/ 2.851,
         SCREEN_HEIGHT = window.innerHeight / 2.25;
 
-    var VIEW_ANGLE = 90,
+    var VIEW_ANGLE = 45,
         ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT,
         NEAR = 1,
-        FAR = 100;
+        FAR = 1000;
 
     camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
 
@@ -43,7 +43,7 @@ function init() {
 
     // Camera Position
     // camera.position.set(600, 600, 400);
-    camera.position.z = 30;
+    camera.position.z = 100;
 
     // This way you can use as many .then as you want
     var myObjPromise = loadObj("/obj/", "WholeProstate");
