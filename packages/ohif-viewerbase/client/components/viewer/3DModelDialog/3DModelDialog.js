@@ -21,13 +21,15 @@ function init() {
     scene = new THREE.Scene();
 
     // prepare camera
-    var SCREEN_WIDTH = window.innerWidth * 0.451,
-        SCREEN_HEIGHT = window.innerHeight / 1.25;
 
-    var VIEW_ANGLE = 45,
+
+    var SCREEN_WIDTH = window.innerWidth/ 2.851,
+        SCREEN_HEIGHT = window.innerHeight / 2.25;
+
+    var VIEW_ANGLE = 90,
         ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT,
         NEAR = 1,
-        FAR = 10000;
+        FAR = 100;
 
     camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
 
@@ -41,15 +43,15 @@ function init() {
 
     // Camera Position
     // camera.position.set(600, 600, 400);
-    camera.position.z = 300;
+    camera.position.z = 30;
 
     // This way you can use as many .then as you want
     var myObjPromise = loadObj("/obj/", "WholeProstate");
 
     myObjPromise.then(myObj => {
-        myObj.scale.set(70, 70, 70);
-        myObj.rotation.set(0, -1.5, 0);
-        myObj.position.set(60, -85, -70);
+    /*    myObj.scale.set(10, 10, 10);
+        myObj.rotation.set(0,0, 0);
+        myObj.position.set(20, -25, -20);*/
         scene.add(myObj);
         //myObj.position.y = 20;
     });
@@ -137,7 +139,7 @@ Template.view3DModelDialog.onRendered(() => {
     const instance = Template.instance();
     // Set the element to be controlled
     var $element = instance.$('#3d-viewer');
-    
+
     instance.autorun(() => {
         init();
         animate();
