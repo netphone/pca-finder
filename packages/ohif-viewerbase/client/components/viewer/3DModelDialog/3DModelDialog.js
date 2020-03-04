@@ -29,7 +29,7 @@ function init() {
     var VIEW_ANGLE = 45,
         ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT,
         NEAR = 1,
-        FAR = 1000;
+        FAR = 100;
 
     camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
 
