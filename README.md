@@ -29,8 +29,16 @@ Installation
 ----------------------------
 **If you want to use your own DICOM server setup then In the app directory:**
 
-	* for orthanc run: `METEOR_PACKAGE_DIRS="packages" meteor`
+For Linux/ MAC OS:
+------------------
+	* for orthanc run: `METEOR_PACKAGE_DIRS="packages" meteor --settings config/orthancDICOMWeb.json`
 	* for dcm4chee run: `METEOR_PACKAGE_DIRS="packages" meteor --settings config/dcm4cheeDICOMWeb.json`
+
+For Windows:
+------------
+	* for orthanc run: `SET METEOR_PACKAGE_DIRS="packages" meteor --settings config/orthancDICOMWeb.json`
+	* for dcm4chee run: `SET METEOR_PACKAGE_DIRS="packages" meteor --settings config/dcm4cheeDICOMWeb.json`
+
     
 For Developers
 ---------
@@ -133,6 +141,22 @@ How to run the Flask server on Midway2:
 6. Type: `export LC_ALL=en_US.utf-8`
 7. Type: `export LANG=en_US.utf-8`
 8. Type: `flask run --host=0.0.0.0`
+
+
+## SOME USEFUL NPM COMMANDS:
+-----------------------
+
+    npm cache clean
+
+    meteor update --release 1.9.2
+
+    meteor reset
+
+    meteor --allow-incompatible-update
+
+    meteor npm install --save simpl-schema
+
+    meteor npm install --save-exact @babel/runtime@7.0.0-beta.55
 
 
 

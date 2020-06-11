@@ -3,20 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "METEOR_PACKAGE_DIRS=packages",
-    "test": "meteor test --once --driver-package meteortesting:mocha",
-    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
-    "visualize": "meteor --production --extra-packages bundle-visualizer"
-  },
   "dependencies": {
-    "@babel/runtime": "^7.3.4",
-    "bcrypt": "^3.0.6",
-    "fast-csv": "^3.4.0",
-    "loglevel": "^1.6.6",
+    "@babel/runtime": "^7.8.3",
+    "bcrypt": "^5.0.0",
+    "cornerstone-tools": "^3.12.1",
+    "fast-csv": "^2.4.1",
+    "loglevel": "^1.4.1",
     "meteor-node-stubs": "^0.4.1",
-    "simpl-schema": "^1.5.6",
-    "three": "^0.110.0"
+    "simpl-schema": "^1.7.3",
+    "three": "^0.117.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "METEOR_PACKAGE_DIRS=packages"
   },
   "author": "",
   "license": "MIT"
