@@ -1,0 +1,13 @@
+{
+  "model name": "MultiStream_Ensemble",
+  "organ": "Prostate",
+  "modality": "mpMRI",
+  "task": "significant prostate cancer detection",
+  "data description": "The model is trained on MRI scans from than 300 MR images with labels",
+  "model description": "Model architecture is adapted gets input from T2, ADC, BVAL and/ or Ktrans",
+  "additional info required": "anatomical zone for each finding is unnecessary",
+  "model performance": "5-fold cross validation",
+  "website": "",
+  "citation": "",
+  "version": "0.1"
+}
