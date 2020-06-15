@@ -70,8 +70,8 @@ model4._make_predict_function()
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    global model1, model2, model3, model4
-    global deployer1, deployer2, deployer3, deployer4
+    global model1, model2
+    global deployer1, deployer2
     info = request.get_json()
     result = "NA"
     if info["model_name"] == model_uid_1:
