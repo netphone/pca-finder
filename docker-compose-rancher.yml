@@ -16,7 +16,7 @@ services:
   meteor:
     image: docker-images.rcc.uchicago.edu/app-dev-group/pca-finder:front
     environment:
-      ROOT_URL: https://pca-finder.staging.rcc.uchicago.edu
+      ROOT_URL: https://pca-finder.rcc.uchicago.edu
       MONGO_URL: mongodb://meteor:mongoadmin@mongodb/meteor
       MONGO_OPLOG_URL: mongodb://oplogger:mongoadmin@mongodb/local?authSource=admin
       METEOR_SETTINGS: |-
@@ -25,9 +25,9 @@ services:
                     "dicomWeb": [
                       {
                         "name": "Orthanc",
-                        "wadoUriRoot": "https://pca-finder.staging.rcc.uchicago.edu:8042/wado",
-                        "qidoRoot": "https://pca-finder.staging.rcc.uchicago.edu:8042/dicom-web",
-                        "wadoRoot": "https://pca-finder.staging.rcc.uchicago.edu:8042/dicom-web",
+                        "wadoUriRoot": "https://pca-finder.rcc.uchicago.edu:8042/wado",
+                        "qidoRoot": "https://pca-finder.rcc.uchicago.edu:8042/dicom-web",
+                        "wadoRoot": "https://pca-finder.rcc.uchicago.edu:8042/dicom-web",
                         "qidoSupportsIncludeField": false,
                         "imageRendering": "wadouri",
                         "thumbnailRendering": "wadors",
