@@ -6,7 +6,7 @@ from keras import backend as K
 from flask import Flask, request
 import sys
 import requests
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import tensorflow as tf
 
 sys.path.append("./")
@@ -15,8 +15,8 @@ sys.path.append("../")
 import models.settings as S
 
 app = Flask(__name__)
-# app.debug = True
-CORS(app)
+app.debug = True
+CORS(app, support_credentials=True)
 
 
 def safe_mkdir(path):
@@ -69,6 +69,7 @@ model3._make_predict_function()
 
 
 @app.route('/predict', methods=['GET', 'POST'])
+@cross_origin(supports_credentials=True)
 def predict():
     global model1, model2
     global deployer1, deployer2
