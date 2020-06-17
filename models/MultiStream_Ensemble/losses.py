@@ -4,8 +4,6 @@ Define our custom loss function.
 from keras import backend as K
 import tensorflow as tf
 
-import dill
-
 
 def binary_focal_loss(gamma=2., alpha=.25):
     """
@@ -90,13 +88,3 @@ def categorical_focal_loss(gamma=2., alpha=.25):
         return K.sum(loss, axis=1)
 
     return categorical_focal_loss_fixed
-
-
-if __name__ == '__main__':
-
-    # Test serialization of nested functions
-    bin_inner = dill.loads(dill.dumps(binary_focal_loss(gamma=2., alpha=.25)))
-    print(bin_inner)
-
-    cat_inner = dill.loads(dill.dumps(categorical_focal_loss(gamma=2., alpha=.25)))
-    print(cat_inner)
