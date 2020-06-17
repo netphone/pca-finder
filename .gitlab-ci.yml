@@ -26,4 +26,4 @@ deploy:
     - master
   script:
     # - upgrade --environment staging --stack pca-finder --service meteor
-    - upgrade --environment staging --stack pca-finder --service pcad
+    # - upgrade --environment staging --stack pca-finder --service pcad

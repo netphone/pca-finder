@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append("../")
-
+sys.path.append("../..")
 from glob import glob
 import numpy as np
 import json
@@ -9,46 +9,8 @@ import pickle
 import SimpleITK as sitk
 import models.settings as S
 import shutil
-import tensorflow as tf
-from keras import backend as K
 import keras.models
 from zipfile import ZipFile
-#from losses import binary_focal_loss
-from keras.utils.generic_utils import get_custom_objects
-
-
-def binary_focal_loss(gamma=2., alpha=.25):
-    """
-    Binary form of focal loss.
-
-      FL(p_t) = -alpha * (1 - p_t)**gamma * log(p_t)
-
-      where p = sigmoid(x), p_t = p or 1 - p depending on if the label is 1 or 0, respectively.
-
-    References:
-        https://arxiv.org/pdf/1708.02002.pdf
-    Usage:
-     model.compile(loss=[binary_focal_loss(alpha=.25, gamma=2)], metrics=["accuracy"], optimizer=adam)
-
-    """
-    def binary_focal_loss_fixed(y_true, y_pred):
-        """
-        :param y_true: A tensor of the same shape as `y_pred`
-        :param y_pred:  A tensor resulting from a sigmoid
-        :return: Output tensor.
-        """
-        pt_1 = tf.where(tf.equal(y_true, 1), y_pred, tf.ones_like(y_pred))
-        pt_0 = tf.where(tf.equal(y_true, 0), y_pred, tf.zeros_like(y_pred))
-
-        epsilon = K.epsilon()
-        # clip to prevent NaN's and Inf's
-        pt_1 = K.clip(pt_1, epsilon, 1. - epsilon)
-        pt_0 = K.clip(pt_0, epsilon, 1. - epsilon)
-
-        return -K.sum(alpha * K.pow(1. - pt_1, gamma) * K.log(pt_1)) \
-               -K.sum((1 - alpha) * K.pow(pt_0, gamma) * K.log(1. - pt_0))
-
-    return binary_focal_loss_fixed
 
 
 def pickle_load(path):
@@ -56,45 +18,18 @@ def pickle_load(path):
         dic = pickle.load(pk_load)
     return dic
 
-def auc_roc(y_true, y_pred):
-    # any tensorflow metric
-    value, update_op = tf.contrib.metrics.streaming_auc(y_pred, y_true)
-
-    # find all variables created for this matric
-    metric_vars = [i for i in tf.local_variables() if 'auc_roc' in i.name.split('/')[1]]
-    # Add metric variables to GLOBAL_VARIABLES collecion.
-    # They will be initialized for new session.
-    for v in metric_vars:
-        tf.add_to_collection(tf.GraphKeys.GLOBAL_VARIABLES, v)
-    # force to update metric values
-    with tf.control_dependencies([update_op]):
-        value = tf.identity(value)
-        return value
-
-
-def get_session():
-    """ Construct a modified tf session.
-    """
-    config = tf.ConfigProto()
-    config.gpu_options.allow_growth = True
-    return tf.Session(config=config)
 
 
 class Deploy:
     def __init__(self):
         self.current_dir = os.path.dirname(__file__)
-        self.resize_dict = pickle_load(self.current_dir+"/utils/resize_dictionary.pkl")
-        self.mean_std = pickle_load(self.current_dir+"/model/mean_stds/resize_mean_std.pkl")
-        self.mean_std_ktrans = pickle_load(self.current_dir+"/model/mean_stds/resize_mean_std_Ktrans.pkl")
+        self.resize_dict = pickle_load('utils/resize_dictionary.pkl')
+        self.mean_std = pickle_load('model/mean_stds/resize_mean_std.pkl')
+        self.mean_std_ktrans = pickle_load('model/mean_stds/resize_mean_std_Ktrans.pkl')
 
 
     def build(self):
-        keras.backend.tensorflow_backend.set_session(get_session())
-        get_custom_objects().update({'auc_roc':auc_roc})
-        try:
-            loaded_model = keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5", custom_objects={'binary_focal_loss_fixed':binary_focal_loss()})
-        except:
-            print('model loading incomplete or not properly loaded')
+        loaded_model = keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5")
         return loaded_model
 
 
@@ -104,25 +39,16 @@ class Deploy:
         #self.case = model
         #####################################
         Image_Types = ['t2_tse_tra', 'ADC', 'BVAL', 'KTrans']
-        try:
-            images = self.read_image(image_types = Image_Types)
-        except:
-            print('images are not loaded properly!')
-        try:
-            std_images = self.mean_std_standarzation(images, self.mean_std, self.mean_std_ktrans)
-        except:
-            print('there is an issue of standardizing images')
-        try:
-            patches_list = self.extract_patches(std_images)
-        except:
-            print('there is an issue of extracting image patches')
+        images = self.read_image(image_types = Image_Types)
+        std_images = self.mean_std_standarzation(images, self.mean_std, self.mean_std_ktrans)
+        patches_list = self.extract_patches(std_images)
         ####### prepare X from patches_list
         
         X = [patches_list[0],patches_list[0],patches_list[0],patches_list[0],patches_list[0],
              patches_list[1],patches_list[1],patches_list[1],patches_list[1],patches_list[1],
              patches_list[2],patches_list[2],patches_list[2],patches_list[2],patches_list[2],
              patches_list[3],patches_list[3],patches_list[3],patches_list[3],patches_list[3]]
-        print(len(X))
+        
         scores = model.predict(X, verbose=1)
 
         #print("successss" * 10)
