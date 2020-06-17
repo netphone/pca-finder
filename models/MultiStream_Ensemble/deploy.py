@@ -23,9 +23,9 @@ def pickle_load(path):
 class Deploy:
     def __init__(self):
         self.current_dir = os.path.dirname(__file__)
-        self.resize_dict = pickle_load(self.current_dir + 'utils/resize_dictionary.pkl')
-        self.mean_std = pickle_load(self.current_dir + 'model/mean_stds/resize_mean_std.pkl')
-        self.mean_std_ktrans = pickle_load(self.current_dir + 'model/mean_stds/resize_mean_std_Ktrans.pkl')
+        self.resize_dict = pickle_load(self.current_dir + '/utils/resize_dictionary.pkl')
+        self.mean_std = pickle_load(self.current_dir + /'model/mean_stds/resize_mean_std.pkl')
+        self.mean_std_ktrans = pickle_load(self.current_dir + '/model/mean_stds/resize_mean_std_Ktrans.pkl')
 
 
     def build(self):
