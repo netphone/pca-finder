@@ -9,7 +9,9 @@ import pickle
 import SimpleITK as sitk
 import models.settings as S
 import shutil
-import keras.models
+# import keras.models
+import tensorflow as tf
+from tensorflow import keras
 from zipfile import ZipFile
 
 
@@ -29,7 +31,7 @@ class Deploy:
 
 
     def build(self):
-        loaded_model = keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5")
+        loaded_model = tf.keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5", compile=False)
         return loaded_model
 
 
