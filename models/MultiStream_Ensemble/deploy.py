@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append("../")
-sys.path.append("../..")
+sys.path.append("./")
 from glob import glob
 import numpy as np
 import json
@@ -91,7 +91,10 @@ class Deploy:
     def build(self):
         keras.backend.tensorflow_backend.set_session(get_session())
         get_custom_objects().update({'auc_roc':auc_roc})
-        loaded_model = keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5", custom_objects={'binary_focal_loss_fixed':binary_focal_loss()})
+        try:
+            loaded_model = keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5", custom_objects={'binary_focal_loss_fixed':binary_focal_loss()})
+        except:
+            print('model loading incomplete or not properly loaded')
         return loaded_model
 
 
@@ -101,16 +104,25 @@ class Deploy:
         #self.case = model
         #####################################
         Image_Types = ['t2_tse_tra', 'ADC', 'BVAL', 'KTrans']
-        images = self.read_image(image_types = Image_Types)
-        std_images = self.mean_std_standarzation(images, self.mean_std, self.mean_std_ktrans)
-        patches_list = self.extract_patches(std_images)
+        try:
+            images = self.read_image(image_types = Image_Types)
+        except:
+            print('images are not loaded properly!')
+        try:
+            std_images = self.mean_std_standarzation(images, self.mean_std, self.mean_std_ktrans)
+        except:
+            print('there is an issue of standardizing images')
+        try:
+            patches_list = self.extract_patches(std_images)
+        except:
+            print('there is an issue of extracting image patches')
         ####### prepare X from patches_list
         
         X = [patches_list[0],patches_list[0],patches_list[0],patches_list[0],patches_list[0],
              patches_list[1],patches_list[1],patches_list[1],patches_list[1],patches_list[1],
              patches_list[2],patches_list[2],patches_list[2],patches_list[2],patches_list[2],
              patches_list[3],patches_list[3],patches_list[3],patches_list[3],patches_list[3]]
-        
+        print(len(X))
         scores = model.predict(X, verbose=1)
 
         #print("successss" * 10)
