@@ -2,11 +2,11 @@ import importlib
 import json
 import os
 import shutil
-# from keras import backend as K
+from keras import backend as K
 from flask import Flask, request
 import sys
 import requests
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 import tensorflow as tf
 
 sys.path.append("./")
@@ -16,7 +16,7 @@ import models.settings as S
 
 app = Flask(__name__)
 app.debug = True
-CORS(app, support_credentials=True)
+CORS(app)
 
 
 def safe_mkdir(path):
@@ -50,17 +50,18 @@ model_uid_2 = "Densenet_T2_ABK_auc_079_nozone"
 model_uid_3 = "CNN3D"
 model_uid_4 = "MultiStream_Ensemble"
 
-# deployer1 = importlib.import_module(model_uid_1 + ".deploy").Deploy()
-# model1 = deployer1.build()
-# model1._make_predict_function()
-# # graph=tf.get_default_graph()
-# deployer2 = importlib.import_module(model_uid_2 + ".deploy").Deploy()
-# model2 = deployer2.build()
-# model2._make_predict_function()
+deployer1 = importlib.import_module(model_uid_1 + ".deploy").Deploy()
+model1 = deployer1.build()
+model1._make_predict_function()
+# graph=tf.get_default_graph()
+deployer2 = importlib.import_module(model_uid_2 + ".deploy").Deploy()
+model2 = deployer2.build()
+model2._make_predict_function()
 
-# deployer3 = importlib.import_module(model_uid_3 + ".deploy").Deploy()
-# model3 = deployer3.build()
-# model3._make_predict_function()
+deployer3 = importlib.import_module(model_uid_3 + ".deploy").Deploy()
+model3 = deployer3.build()
+model3._make_predict_function()
+
 
 deployer4 = importlib.import_module(model_uid_4 + ".deploy").Deploy()
 model4 = deployer4.build()
@@ -68,34 +69,24 @@ model4._make_predict_function()
 
 
 @app.route('/predict', methods=['GET', 'POST'])
-@cross_origin(supports_credentials=True)
 def predict():
-    # global model1, model2, model3
-    # global deployer1, deployer2, deployer3
+    global model1, model2, model3, model4
+    global deployer1, deployer2, deployer3, deployer4
     try:
-    
-        global model4
-        global deployer4
-
-        print('Model..................')
-        print(model4)
-        print('Deployer..................')
-        print(deployer4)
-
         info = request.get_json()
         result = "NA"
-        # if info["model_name"] == model_uid_1:
-        #     result = deployer1.run(model1, info)
-        # elif info["model_name"] == model_uid_2:
-        #     result = deployer2.run(model2, info)
-        # elif info["model_name"] == model_uid_3:
-        #     result = deployer3.run(model3, info)
-        if info["model_name"] == model_uid_4:
+        if info["model_name"] == model_uid_1:
+            result = deployer1.run(model1, info)
+        elif info["model_name"] == model_uid_2:
+            result = deployer2.run(model2, info)
+        elif info["model_name"] == model_uid_3:
+            result = deployer3.run(model3, info)
+        elif info["model_name"] == model_uid_4:
             result = deployer4.run(model4, info)
         return result
     except Exception as e: #code to run if error occurs
-    #code to run if error is raised
         print(e)
+        return e
 
 
 if __name__ == '__main__':

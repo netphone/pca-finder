@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append("../")
-sys.path.append("./")
+
 from glob import glob
 import numpy as np
 import json
