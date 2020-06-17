@@ -37,6 +37,14 @@ def auc_roc(y_true, y_pred):
         return value
 
 
+def get_session():
+    """ Construct a modified tf session.
+    """
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    return tf.Session(config=config)
+
+
 class Deploy:
     def __init__(self):
         self.current_dir = os.path.dirname(__file__)
@@ -46,6 +54,7 @@ class Deploy:
 
 
     def build(self):
+        keras.backend.tensorflow_backend.set_session(get_session())
         get_custom_objects().update({'auc_roc':auc_roc})
         loaded_model = keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5", custom_objects={'binary_focal_loss_fixed':binary_focal_loss()})
         return loaded_model
