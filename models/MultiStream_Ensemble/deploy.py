@@ -11,7 +11,7 @@ import models.settings as S
 import shutil
 import keras.models
 from zipfile import ZipFile
-
+from losses import binary_focal_loss
 
 def pickle_load(path):
     with open(path, 'rb') as pk_load:
@@ -29,7 +29,7 @@ class Deploy:
 
 
     def build(self):
-        loaded_model = keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5")
+        loaded_model = keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5", custom_objects={'binary_focal_loss_fixed':binary_focal_loss()})
         return loaded_model
 
 
