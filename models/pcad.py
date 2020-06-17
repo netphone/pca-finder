@@ -72,21 +72,30 @@ model4._make_predict_function()
 def predict():
     # global model1, model2, model3
     # global deployer1, deployer2, deployer3
+    try:
     
-    global model4
-    global deployer4
+        global model4
+        global deployer4
 
-    info = request.get_json()
-    result = "NA"
-    # if info["model_name"] == model_uid_1:
-    #     result = deployer1.run(model1, info)
-    # elif info["model_name"] == model_uid_2:
-    #     result = deployer2.run(model2, info)
-    # elif info["model_name"] == model_uid_3:
-    #     result = deployer3.run(model3, info)
-    if info["model_name"] == model_uid_4:
-        result = deployer4.run(model4, info)
-    return result
+        print('Model..................')
+        print(model4)
+        print('Deployer..................')
+        print(deployer4)
+
+        info = request.get_json()
+        result = "NA"
+        # if info["model_name"] == model_uid_1:
+        #     result = deployer1.run(model1, info)
+        # elif info["model_name"] == model_uid_2:
+        #     result = deployer2.run(model2, info)
+        # elif info["model_name"] == model_uid_3:
+        #     result = deployer3.run(model3, info)
+        if info["model_name"] == model_uid_4:
+            result = deployer4.run(model4, info)
+        return result
+    except Exception as e: #code to run if error occurs
+    #code to run if error is raised
+        print(e)
 
 
 if __name__ == '__main__':
