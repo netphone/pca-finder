@@ -9,15 +9,31 @@ import pickle
 import SimpleITK as sitk
 import models.settings as S
 import shutil
+import tensorflow as tf
 import keras.models
 from zipfile import ZipFile
 from losses import binary_focal_loss
+
 
 def pickle_load(path):
     with open(path, 'rb') as pk_load:
         dic = pickle.load(pk_load)
     return dic
 
+def auc_roc(y_true, y_pred):
+    # any tensorflow metric
+    value, update_op = tf.contrib.metrics.streaming_auc(y_pred, y_true)
+
+    # find all variables created for this matric
+    metric_vars = [i for i in tf.local_variables() if 'auc_roc' in i.name.split('/')[1]]
+    # Add metric variables to GLOBAL_VARIABLES collecion.
+    # They will be initialized for new session.
+    for v in metric_vars:
+        tf.add_to_collection(tf.GraphKeys.GLOBAL_VARIABLES, v)
+    # force to update metric values
+    with tf.control_dependencies([update_op]):
+        value = tf.identity(value)
+        return value
 
 
 class Deploy:
