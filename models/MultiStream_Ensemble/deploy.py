@@ -13,6 +13,7 @@ import tensorflow as tf
 import keras.models
 from zipfile import ZipFile
 from losses import binary_focal_loss
+from keras.utils.generic_utils import get_custom_objects
 
 
 def pickle_load(path):
@@ -45,6 +46,7 @@ class Deploy:
 
 
     def build(self):
+        get_custom_objects().update({'auc_roc':auc_roc})
         loaded_model = keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5", custom_objects={'binary_focal_loss_fixed':binary_focal_loss()})
         return loaded_model
 
