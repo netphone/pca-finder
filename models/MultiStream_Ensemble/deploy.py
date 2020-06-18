@@ -1,18 +1,16 @@
 import os
 import sys
-sys.path.append("../")
 sys.path.append("../..")
+sys.path.append("../")
 from glob import glob
 import numpy as np
 import json
 import pickle
 import SimpleITK as sitk
 import models.settings as S
-import shutil
-# import keras.models
 import tensorflow as tf
-from tensorflow import keras
-from zipfile import ZipFile
+import keras
+from models.MultiStream_Ensemble.utils.helpers import *
 
 
 def pickle_load(path):
@@ -21,84 +19,73 @@ def pickle_load(path):
     return dic
 
 
+def get_session():
+    """ Construct a modified tf session.
+    """
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    return tf.Session(config=config)
+
 
 class Deploy:
     def __init__(self):
         self.current_dir = os.path.dirname(__file__)
-        self.resize_dict = pickle_load(self.current_dir + '/utils/resize_dictionary.pkl')
-        self.mean_std = pickle_load(self.current_dir + '/model/mean_stds/resize_mean_std.pkl')
-        self.mean_std_ktrans = pickle_load(self.current_dir + '/model/mean_stds/resize_mean_std_Ktrans.pkl')
+        self.resize_dict = pickle_load(self.current_dir+"/utils/resize_dictionary.pkl")
+        self.mean_std = pickle_load(self.current_dir+"/model/mean_stds/resize_mean_std.pkl")
+        self.mean_std_ktrans = pickle_load(self.current_dir+"/model/mean_stds/resize_mean_std_Ktrans.pkl")
 
 
     def build(self):
-        loaded_model = tf.keras.models.load_model(self.current_dir + "/model/model_checkpoint.h5", compile=False)
+        keras.backend.tensorflow_backend.set_session(get_session())
+        loaded_model = tf.keras.models.load_model(self.current_dir+"/model/model_checkpoint_72.h5", compile=False)
+
         return loaded_model
 
 
     def run(self, model, info):
         self.info = info
         self.case = info["case"]
-        #self.case = model
         #####################################
         Image_Types = ['t2_tse_tra', 'ADC', 'BVAL', 'KTrans']
         images = self.read_image(image_types = Image_Types)
         std_images = self.mean_std_standarzation(images, self.mean_std, self.mean_std_ktrans)
         patches_list = self.extract_patches(std_images)
         ####### prepare X from patches_list
-        
-        X = [patches_list[0],patches_list[0],patches_list[0],patches_list[0],patches_list[0],
-             patches_list[1],patches_list[1],patches_list[1],patches_list[1],patches_list[1],
-             patches_list[2],patches_list[2],patches_list[2],patches_list[2],patches_list[2],
-             patches_list[3],patches_list[3],patches_list[3],patches_list[3],patches_list[3]]
-        
-        scores = model.predict(X, verbose=1)
+        P0 = patches_list[0][:,:,:,:,:-1]
+        P1 = patches_list[1][:,:,:,:,:-1]
+        P2 = patches_list[2][:,:,:,:,:-1]
+        P3 = patches_list[3][:,:,:,:,:-1]
 
-        #print("successss" * 10)
-        #scores = np.concatenate(predicted_prob).ravel()
-        print("predictions: {} ".format(scores))
-        description = "{:03.1f}% probability of Significant Prostate Cancer".format(scores[0] * 100)
+        X = [P0,P0,P0,P0,P0,P1,P1,P1,P1,P1,P2,P2,P2,P2,P2,P3,P3,P3,P3,P3]
+
+        scores = model.predict(X, verbose=0)
+        print("predictions: {} ".format(scores[0]))
+        description = "{:03.1f}% probability of Significant Prostate Cancer".format(scores[0][0] * 100)
         response_dict = {"case": self.info["case"],
                          "description": description,
-                         "score": str(scores[0])}
+                         "score": str(scores[0][0])}
         return json.dumps(response_dict)
-        #return X
-    
-    
+
+
     def read_image(self, image_types):
         array_dict = dict()
-        image_paths = glob(os.path.join(S.dicom_folder, self.case + '*.zip'))
-        #image_paths = glob(os.path.join('../data/dicom', self.case + '*.zip'))
-        print(image_paths)
-        assert len(image_paths) == 1, print(self.case, "more than one image or zero")
-
-        with ZipFile(image_paths[0], 'r') as Zip:
-            Zip.extractall('tmp')
-        img_Paths = glob(os.path.join('tmp', self.case+'*', '*','*'))
-        if len(img_Paths) > 1:
-            for image_type in image_types:
-                #lps = self.info["lps"]
-
-                for img_path in img_Paths:
-                    if image_type == 'KTrans' and 'KTrans' in img_path:
-                        #image = sitk.ReadImage(glob(os.path.join(img_path, '*.dcm'))[0])
-                        ## RuntimeError: sitk::ERROR: Unable to determine ImageIO reader
-                        pass
-
-                    elif image_type in img_path:
-                        reader = sitk.ImageSeriesReader()
-                        dicom_names = reader.GetGDCMSeriesFileNames(img_path)
-                        reader.SetFileNames(dicom_names)
-                        image = reader.Execute()
-                        shape= image.GetSize()
-                        spacing =image.GetSpacing()
-                        ijk = image.TransformPhysicalPointToIndex(lps)
-                        #ijk = image.TransformPhysicalPointToIndex([-27.0102, 41.5467, -26.0469])
-                        #ijk = (154,217,12)
-                        arr = np.swapaxes(sitk.GetArrayFromImage(image), 1, 2)
-                        resampled_arr, rescale_ijk = resample_array(arr, shape, spacing, self.resize_dict, ijk)
-                        resized_arr, rescale_ijk = slice_array(resampled_arr, rescale_ijk)
-                        array_dict[image_type] = [resized_arr, rescale_ijk]
-        shutil.rmtree('tmp')
+        for image_type in image_types:
+            if image_type == 'KTrans':
+                pass
+            else:
+                img_path = glob(os.path.join(S.dicom_folder, self.case, '*'+image_type))
+                reader = sitk.ImageSeriesReader()
+                dicom_names = reader.GetGDCMSeriesFileNames(img_path[0])
+                reader.SetFileNames(dicom_names)
+                image = reader.Execute()
+                shape= image.GetSize()
+                spacing =image.GetSpacing()
+                ijk = image.TransformPhysicalPointToIndex(self.info["lps"])
+                arr = np.swapaxes(sitk.GetArrayFromImage(image), 1, 2)
+                resampled_arr, rescale_ijk = resample_array(arr, shape, spacing, self.resize_dict, ijk)
+                resized_arr, rescale_ijk = slice_array(resampled_arr, rescale_ijk)
+                array_dict[image_type] = [resized_arr, rescale_ijk]
+ 
         return array_dict
 
 
@@ -132,8 +119,8 @@ class Deploy:
             img_patch = dict()
             for key, value in arr_dict.items():
                 img_patch[key] = patch(value[0], patch_dim, value[1])
-            patch_list.append(np.concatenate((np.expand_dims(np.moveaxis(img_patch['t2_tse_tra'], 0, -1), axis= -1),
+            patch_list.append(np.expand_dims(np.concatenate((np.expand_dims(np.moveaxis(img_patch['t2_tse_tra'], 0, -1), axis= -1),
                             np.expand_dims(np.moveaxis(img_patch['ADC'], 0, -1), axis= -1),
-                            np.expand_dims(np.moveaxis(img_patch['BVAL'], 0, -1), axis= -1)), axis = -1))
+                            np.expand_dims(np.moveaxis(img_patch['BVAL'], 0, -1), axis= -1)), axis = -1), axis = 0))
 
         return patch_list
