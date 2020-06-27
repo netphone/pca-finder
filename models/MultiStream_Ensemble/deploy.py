@@ -36,7 +36,18 @@ class Deploy:
 
 
     def build(self):
-        keras.backend.tensorflow_backend.set_session(get_session())
+        
+        """ Construct a modified tf session.
+        """
+        config = tf.ConfigProto()
+        config.gpu_options.allow_growth = True
+        
+        init_op =  tf.global_variables_initializer()
+
+        with tf.Session(config=config) as sess:
+            sess.run(init_op)
+
+        # keras.backend.tensorflow_backend.set_session(get_session())
         loaded_model = tf.keras.models.load_model(self.current_dir+"/model/model_checkpoint_72.h5", compile=False)
 
         return loaded_model
