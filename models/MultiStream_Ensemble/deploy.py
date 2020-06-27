@@ -1,8 +1,9 @@
 import os
 import sys
-sys.path.append("../..")
+
 sys.path.append("../")
 from glob import glob
+from models.MultiStream_Ensemble.utils.helpers import *
 import numpy as np
 import json
 import pickle
@@ -10,7 +11,6 @@ import SimpleITK as sitk
 import models.settings as S
 import tensorflow as tf
 import keras
-from models.MultiStream_Ensemble.utils.helpers import *
 
 
 def pickle_load(path):
@@ -45,6 +45,7 @@ class Deploy:
     def run(self, model, info):
         self.info = info
         self.case = info["case"]
+        print(self.case)
         #####################################
         Image_Types = ['t2_tse_tra', 'ADC', 'BVAL', 'KTrans']
         images = self.read_image(image_types = Image_Types)
@@ -58,7 +59,8 @@ class Deploy:
 
         X = [P0,P0,P0,P0,P0,P1,P1,P1,P1,P1,P2,P2,P2,P2,P2,P3,P3,P3,P3,P3]
 
-        scores = model.predict(X, verbose=0)
+        scores = model.predict(X, verbose=1)
+        print("successss" * 10)
         print("predictions: {} ".format(scores[0]))
         description = "{:03.1f}% probability of Significant Prostate Cancer".format(scores[0][0] * 100)
         response_dict = {"case": self.info["case"],
@@ -74,6 +76,10 @@ class Deploy:
                 pass
             else:
                 img_path = glob(os.path.join(S.dicom_folder, self.case, '*'+image_type))
+                
+                print(img_path)
+                assert len(img_path) == 1, print(self.case, "more than one image or zero")
+                
                 reader = sitk.ImageSeriesReader()
                 dicom_names = reader.GetGDCMSeriesFileNames(img_path[0])
                 reader.SetFileNames(dicom_names)
@@ -87,6 +93,19 @@ class Deploy:
                 array_dict[image_type] = [resized_arr, rescale_ijk]
  
         return array_dict
+
+		
+    def extract_patches(self, arr_dict):
+        patch_list = list()
+        for patch_dim in [(42,42,1), (48,48,3), (64,64,3), (96,96,3)]:
+            img_patch = dict()
+            for key, value in arr_dict.items():
+                img_patch[key] = patch(value[0], patch_dim, value[1])
+            patch_list.append(np.expand_dims(np.concatenate((np.expand_dims(np.moveaxis(img_patch['t2_tse_tra'], 0, -1), axis= -1),
+                            np.expand_dims(np.moveaxis(img_patch['ADC'], 0, -1), axis= -1),
+                            np.expand_dims(np.moveaxis(img_patch['BVAL'], 0, -1), axis= -1)), axis = -1), axis = 0))
+
+        return patch_list
 
 
     def mean_std_standarzation(self, arr_list, mean_std, mean_std_ktrans):
@@ -111,16 +130,3 @@ class Deploy:
             arr_list[k] = [tmp, v[1]]
 
         return arr_list
-
-
-    def extract_patches(self, arr_dict):
-        patch_list = list()
-        for patch_dim in [(42,42,1), (48,48,3), (64,64,3), (96,96,3)]:
-            img_patch = dict()
-            for key, value in arr_dict.items():
-                img_patch[key] = patch(value[0], patch_dim, value[1])
-            patch_list.append(np.expand_dims(np.concatenate((np.expand_dims(np.moveaxis(img_patch['t2_tse_tra'], 0, -1), axis= -1),
-                            np.expand_dims(np.moveaxis(img_patch['ADC'], 0, -1), axis= -1),
-                            np.expand_dims(np.moveaxis(img_patch['BVAL'], 0, -1), axis= -1)), axis = -1), axis = 0))
-
-        return patch_list

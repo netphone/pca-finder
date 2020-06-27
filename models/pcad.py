@@ -7,6 +7,8 @@ from flask import Flask, request
 import sys
 import requests
 from flask_cors import CORS
+from flask_cors import cross_origin
+
 import tensorflow as tf
 
 sys.path.append("./")
@@ -15,7 +17,7 @@ sys.path.append("../")
 import models.settings as S
 
 app = Flask(__name__)
-app.debug = True
+# app.debug = True
 CORS(app)
 
 
@@ -48,6 +50,8 @@ def cach_dicoms(info):
 model_uid_1 = "Densenet_T2_ABK_auc_08"
 model_uid_2 = "Densenet_T2_ABK_auc_079_nozone"
 model_uid_3 = "CNN3D"
+model_uid_4 = "MultiStream_Ensemble"
+
 deployer1 = importlib.import_module(model_uid_1 + ".deploy").Deploy()
 model1 = deployer1.build()
 model1._make_predict_function()
@@ -60,21 +64,32 @@ deployer3 = importlib.import_module(model_uid_3 + ".deploy").Deploy()
 model3 = deployer3.build()
 model3._make_predict_function()
 
+deployer4 = importlib.import_module(model_uid_4 + ".deploy").Deploy()
+model4 = deployer4.build()
+model4._make_predict_function()
+
 
 @app.route('/predict', methods=['GET', 'POST'])
+@cross_origin()
 def predict():
-    global model1, model2
-    global deployer1, deployer2
-    info = request.get_json()
-    result = "NA"
-    if info["model_name"] == model_uid_1:
-        result = deployer1.run(model1, info)
-    elif info["model_name"] == model_uid_2:
-        result = deployer2.run(model2, info)
-    elif info["model_name"] == model_uid_3:
-        result = deployer3.run(model3, info)
-    return result
+    global model1, model2, model3, model4
+    global deployer1, deployer2, deployer3, deployer4
+    try:
+        info = request.get_json()
+        result = "NA"
+        if info["model_name"] == model_uid_1:
+            result = deployer1.run(model1, info)
+        elif info["model_name"] == model_uid_2:
+            result = deployer2.run(model2, info)
+        elif info["model_name"] == model_uid_3:
+            result = deployer3.run(model3, info)
+        elif info["model_name"] == model_uid_4:
+            result = deployer4.run(model4, info)
+        return result
+    except Exception as e: #code to run if error occurs
+        print(e)
+        return e
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
