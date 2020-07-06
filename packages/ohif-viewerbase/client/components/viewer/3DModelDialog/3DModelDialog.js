@@ -1,6 +1,8 @@
 import { Template } from 'meteor/templating';
 import { $ } from 'meteor/jquery';
 import * as THREE from 'three/build/three.module.js';
+import { OHIF } from 'meteor/ohif:core';
+import { Viewerbase } from 'meteor/ohif:viewerbase';
 
 import  { OrbitControls }  from 'three/examples/jsm/controls/OrbitControls.js';
 import  { OBJLoader }  from 'three/examples/jsm/loaders/OBJLoader.js';
@@ -16,20 +18,20 @@ var scene,
     container,
     renderer;
 
+
+
 function init() {
     // create main scene
     scene = new THREE.Scene();
 
     // prepare camera
-
-
-    var SCREEN_WIDTH = window.innerWidth/ 2.851,
-        SCREEN_HEIGHT = window.innerHeight / 2.25;
+    var SCREEN_WIDTH = window.innerWidth * 0.451,
+        SCREEN_HEIGHT = window.innerHeight / 1.25;
 
     var VIEW_ANGLE = 45,
         ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT,
         NEAR = 1,
-        FAR = 100;
+        FAR = 10000;
 
     camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
 
@@ -43,15 +45,19 @@ function init() {
 
     // Camera Position
     // camera.position.set(600, 600, 400);
-    camera.position.z = 100;
+    camera.position.z = 300;
 
+    const objName = OHIF.viewer.Studies.all()[0]['patientName'];
+    console.log("============================")
+    console.log("objName:"+objName);
+    console.log("============================");
     // This way you can use as many .then as you want
-    var myObjPromise = loadObj("/obj/", "WholeProstate");
+    var myObjPromise = loadObj("/obj/", objName.toString());
 
     myObjPromise.then(myObj => {
-    /*    myObj.scale.set(10, 10, 10);
-        myObj.rotation.set(0,0, 0);
-        myObj.position.set(20, -25, -20);*/
+        myObj.scale.set(70, 70, 70);
+        myObj.rotation.set(0, -1.5, 0);
+        myObj.position.set(60, -85, -70);
         scene.add(myObj);
         //myObj.position.y = 20;
     });
@@ -153,3 +159,4 @@ Template.view3DModelDialog.helpers({
     onWindowResize: onWindowResize,
     animate: animate
 });
+
