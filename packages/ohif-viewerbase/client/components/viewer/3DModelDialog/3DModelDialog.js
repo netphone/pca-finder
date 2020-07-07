@@ -25,8 +25,8 @@ function init() {
     scene = new THREE.Scene();
 
     // prepare camera
-    var SCREEN_WIDTH = window.innerWidth * 0.451,
-        SCREEN_HEIGHT = window.innerHeight / 1.25;
+    var SCREEN_WIDTH = window.innerWidth * 2.0,
+        SCREEN_HEIGHT = window.innerHeight / 1.5;
 
     var VIEW_ANGLE = 45,
         ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT,
@@ -35,11 +35,12 @@ function init() {
 
     camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
 
-    var ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
+    var ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(ambientLight);
 
     var pointLight = new THREE.PointLight(0xffffff, 0.15);
-    camera.add(pointLight);
+    pointLight.position.set( 50, 50, 50 );
+    scene.add(pointLight);
 
     scene.add(camera);
 
@@ -55,9 +56,9 @@ function init() {
     var myObjPromise = loadObj("/obj/", objName.toString());
 
     myObjPromise.then(myObj => {
-        myObj.scale.set(70, 70, 70);
-        myObj.rotation.set(0, -1.5, 0);
-        myObj.position.set(60, -85, -70);
+        myObj.scale.set(90, 90, 90);
+        myObj.rotation.set(-4, -3, -2);
+        myObj.position.set(0, 0, 0);
         scene.add(myObj);
         //myObj.position.y = 20;
     });
