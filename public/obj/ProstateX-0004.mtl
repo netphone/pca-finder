@@ -1,0 +1,34 @@
+# File exported by Pixologic 3D Print Exporter for ZBrush
+# http://www.pixologic.com
+
+newmtl mat0
+Kd 1.0 1.0 1.0
+Ks 1.0 1.0 1.0
+Ns 100
+d 1.0
+illum 2
+map_Kd ProstateX-0004Tex1.bmp
+
+newmtl mat1
+Kd 1.0 1.0 1.0
+Ks 1.0 1.0 1.0
+Ns 100
+d 1.0
+illum 2
+map_Kd ProstateX-0004Tex2.bmp
+
+newmtl mat2
+Kd 1.0 1.0 1.0
+Ks 1.0 1.0 1.0
+Ns 100
+d 1.0
+illum 2
+map_Kd ProstateX-0004Tex3.bmp
+
+newmtl mat3
+Kd 1.0 1.0 1.0
+Ks 1.0 1.0 1.0
+Ns 100
+d 1.0
+illum 2
+map_Kd ProstateX-0004Tex4.bmp
