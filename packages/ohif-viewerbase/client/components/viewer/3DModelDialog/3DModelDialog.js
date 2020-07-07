@@ -25,7 +25,7 @@ function init() {
     scene = new THREE.Scene();
 
     // prepare camera
-    var SCREEN_WIDTH = window.innerWidth * 2.0,
+    var SCREEN_WIDTH = window.innerWidth * 2,
         SCREEN_HEIGHT = window.innerHeight / 1.5;
 
     var VIEW_ANGLE = 45,
@@ -71,9 +71,9 @@ function init() {
 
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    // renderer.setClearColor(0xffffff);
-    // renderer.shadowMapEnabled = true;
-    // renderer.shadowMapSoft = true;
+    //renderer.setClearColor(0xffffff);
+    renderer.shadowMapEnabled = true;
+    renderer.shadowMapSoft = true;
 
     // prepare container
     container = document.getElementById('3d-viewer');
@@ -160,4 +160,3 @@ Template.view3DModelDialog.helpers({
     onWindowResize: onWindowResize,
     animate: animate
 });
-
