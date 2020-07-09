@@ -56,11 +56,18 @@ class Deploy:
     def run(self, model, info):
         self.info = info
         self.case = info["case"]
-        print(self.case)
+        #print(self.case)
         #####################################
-        Image_Types = ['t2_tse_tra', 'ADC', 'BVAL', 'KTrans']
-        images = self.read_image(image_types = Image_Types)
-        std_images = self.mean_std_standarzation(images, self.mean_std, self.mean_std_ktrans)
+        try:
+            case_num = int(self.case.split('_')[1])
+            print('case number: ', case_num)
+            
+            Image_Types = ['t2_tse_tra', 'ADC', 'BVAL', 'KTrans']
+            images = self.read_image(image_types = Image_Types)
+            std_images = self.mean_std_standarzation(images, self.mean_std, self.mean_std_ktrans)
+        except:
+            print('data are not from ProstateX, need to do the different preprocessing steps.')
+            
         patches_list = self.extract_patches(std_images)
         ####### prepare X from patches_list
         P0 = patches_list[0][:,:,:,:,:-1]
