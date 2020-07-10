@@ -54,6 +54,7 @@ function askAi(data) {
             if (AiPredictions.find({'studyInstanceUid': data.studyInstanceUid, 'fid': data.fid}).count() < 15) {
                 AiPredictions.insert(json);
             }
+            // return false;
         },
         error: () => {
           setTimeout(() => {
@@ -88,6 +89,8 @@ Template.dialogAi.onCreated(() => {
         instance.$('.modal').one('hidden.bs.modal', event => {
             // Resolve or reject the promise with the given parameter
             promiseFunction(param);
+            event.stopPropagation();
+            event.preventDefault();
         }).modal('hide');
     };
 
@@ -157,7 +160,7 @@ Template.dialogAi.events({
 
         askAi(buildDataForPrediction(zone));
         event.stopPropagation();
-        return false;
+        event.preventDefault();
     },
 
     keydown(event) {
@@ -176,6 +179,7 @@ Template.dialogAi.events({
 
         if (handled) {
             event.stopPropagation();
+            event.preventDefault();
         }
     }
 });
