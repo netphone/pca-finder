@@ -156,6 +156,8 @@ Template.dialogAi.events({
         const zone = event.currentTarget.textContent;
 
         askAi(buildDataForPrediction(zone));
+        event.stopPropagation();
+        return false;
     },
 
     keydown(event) {
