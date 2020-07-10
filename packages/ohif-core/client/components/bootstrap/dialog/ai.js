@@ -88,9 +88,9 @@ Template.dialogAi.onCreated(() => {
         // Hide the modal, removing the backdrop
         instance.$('.modal').one('hidden.bs.modal', event => {
             // Resolve or reject the promise with the given parameter
-            event.stopPropagation();
             promiseFunction(param);
         }).modal('hide');
+        return false;
     };
 
     instance.api = {
@@ -158,8 +158,6 @@ Template.dialogAi.events({
         const zone = event.currentTarget.textContent;
 
         askAi(buildDataForPrediction(zone));
-        event.stopPropagation();
-        event.preventDefault();
     },
 
     keydown(event) {
@@ -168,19 +166,16 @@ Template.dialogAi.events({
 
         let handled = false;
 
-        if (handled !== true) { //this makes event to fire only once
-            if (keyCode === 27) {
-                instance.$('.btn.btn-cancel').click();
-                handled = true;
-            } else if (keyCode === 13) {
-                instance.$('.btn.btn-confirm').click();
-                handled = true;
-            }
+        if (keyCode === 27) {
+            instance.$('.btn.btn-cancel').click();
+            handled = true;
+        } else if (keyCode === 13) {
+            instance.$('.btn.btn-confirm').click();
+            handled = true;
         }
 
         if (handled) {
             event.stopPropagation();
-            // event.preventDefault();
         }
     }
 });
@@ -195,6 +190,7 @@ Template.dialogAi.helpers({
         const flag = Session.get('modelWithZone');
         if (!flag) {
             askAi(buildDataForPrediction(''));
+            return false;
         }
         return flag;
     }
