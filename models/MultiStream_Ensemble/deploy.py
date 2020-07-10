@@ -102,6 +102,7 @@ class Deploy:
                 shape= image.GetSize()
                 spacing =image.GetSpacing()
                 ijk = image.TransformPhysicalPointToIndex(self.info["lps"])
+                print(ijk)
                 arr = np.swapaxes(sitk.GetArrayFromImage(image), 1, 2)
                 resampled_arr, rescale_ijk = resample_array(arr, shape, spacing, self.resize_dict, ijk)
                 resized_arr, rescale_ijk = slice_array(resampled_arr, rescale_ijk)
