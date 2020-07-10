@@ -172,12 +172,12 @@ function bindToMeasurementModified(element) {
   });
 }
 
-$('body').on('setActiveViewport', (event) => {
-  $('.imageViewerViewport').each((index, element) => {
-    bindToMeasurementAdded(element);
-    bindToMeasurementRemoved(element);
-    bindToMeasurementModified(element);
-  });
-});
+// $('body').on('setActiveViewport', (event) => {
+//   $('.imageViewerViewport').each((index, element) => {
+//     bindToMeasurementAdded(element);
+//     bindToMeasurementRemoved(element);
+//     bindToMeasurementModified(element);
+//   });
+// });
 
 export { sync };

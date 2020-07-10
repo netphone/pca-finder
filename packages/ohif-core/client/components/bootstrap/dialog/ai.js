@@ -54,7 +54,6 @@ function askAi(data) {
             if (AiPredictions.find({'studyInstanceUid': data.studyInstanceUid, 'fid': data.fid}).count() < 15) {
                 AiPredictions.insert(json);
             }
-            return false;
         },
         error: () => {
           setTimeout(() => {
