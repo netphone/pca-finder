@@ -61,6 +61,7 @@ function askAi(data) {
           }, 300);
         }
     });
+    return false;
 }
 
 function buildDataForPrediction(zone) {
