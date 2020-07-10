@@ -60,10 +60,11 @@ class Deploy:
         #####################################
         Image_Types = ['t2_tse_tra', 'ADC', 'BVAL', 'KTrans']
         images = self.read_image(image_types = Image_Types)
-        std_images = self.mean_std_standarzation(images, self.mean_std, self.mean_std_ktrans)
-        #except:
-        #print('data are not from ProstateX, need to do the different std steps.')
-            
+        if int(self.case[-2:]) <= 5:
+            std_images = self.mean_std_standardization(images, self.mean_std, self.mean_std_ktrans)
+        else:
+            print('data are not from ProstateX, need to do the different std steps.')
+            std_images = self.self_standardization(images)
         patches_list = self.extract_patches(std_images)
         ####### prepare X from patches_list
         P0 = patches_list[0][:,:,:,:,:-1]
@@ -122,7 +123,7 @@ class Deploy:
         return patch_list
 
 
-    def mean_std_standarzation(self, arr_list, mean_std, mean_std_ktrans):
+    def mean_std_standardization(self, arr_list, mean_std, mean_std_ktrans):
         def Outlier_rm(arr, arr_mean, arr_std):
             arr[arr > arr_mean + 2*arr_std] = arr_mean + 2*arr_std
             arr[arr < arr_mean - 2*arr_std] = arr_mean - 2*arr_std
@@ -143,4 +144,21 @@ class Deploy:
                 tmp = (v[0] - mean_std_ktrans['Ktrans'][0])/mean_std_ktrans['Ktrans'][1]
             arr_list[k] = [tmp, v[1]]
 
+        return arr_list
+    
+    
+    def self_standardization(self, arr_list):
+        def Outlier_rm(arr, arr_mean, arr_std):
+            arr[arr > arr_mean + 2*arr_std] = arr_mean + 2*arr_std
+            arr[arr < arr_mean - 2*arr_std] = arr_mean - 2*arr_std
+
+            return arr
+
+        for k, v in arr_list.items():
+            v_mean = np.mean(v[0])
+            v_std = np.std(v[0])
+            v[0] = Outlier_rm(v[0], v_mean, v_std)
+            tmp = (v[0] - v_mean)/v_std
+            arr_list[k] =[tmp, v[1]]
+            
         return arr_list
