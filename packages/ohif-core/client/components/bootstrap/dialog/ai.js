@@ -56,6 +56,7 @@ function askAi(data) {
             if (AiPredictions.find({'studyInstanceUid': data.studyInstanceUid, 'fid': data.fid}).count() < 15) {
                 AiPredictions.insert(json);
             }
+            return false;
         },
         error: () => {
           setTimeout(() => {
@@ -191,10 +192,7 @@ Template.dialogAi.helpers({
     showZone() {
         const flag = Session.get('modelWithZone');
         if (!flag) {
-            const event = Template.instance().data.event;
-            askAi(buildDataForPrediction(''));
-            event.stopImmediatePropagation();
-            return false;
+            askAi(buildDataForPrediction(''));            
         }
         return flag;
     }
