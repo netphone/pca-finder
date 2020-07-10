@@ -41,6 +41,8 @@ function askAi(data) {
     $.ajax({
         url: 'https://pca-finder.staging.rcc.uchicago.edu:5010/predict',
         type: 'POST',
+        async: false,
+        cache: false,
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: (result) => {
@@ -60,7 +62,7 @@ function askAi(data) {
               $("#ai-prediction").text("Somthing went wrong!");
           }, 300);
         }
-    });
+    });    
     return false;
 }
 
@@ -189,7 +191,9 @@ Template.dialogAi.helpers({
     showZone() {
         const flag = Session.get('modelWithZone');
         if (!flag) {
+            const event = Template.instance().data.event;
             askAi(buildDataForPrediction(''));
+            event.stopImmediatePropagation();
             return false;
         }
         return flag;
