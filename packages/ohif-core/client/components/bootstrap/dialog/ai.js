@@ -41,8 +41,6 @@ function askAi(data) {
     $.ajax({
         url: 'https://pca-finder.staging.rcc.uchicago.edu:5010/predict',
         type: 'POST',
-        async: false,
-        cache: false,
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: (result) => {
@@ -56,14 +54,13 @@ function askAi(data) {
             if (AiPredictions.find({'studyInstanceUid': data.studyInstanceUid, 'fid': data.fid}).count() < 15) {
                 AiPredictions.insert(json);
             }
-            return false;
         },
         error: () => {
           setTimeout(() => {
               $("#ai-prediction").text("Somthing went wrong!");
           }, 300);
         }
-    });    
+    });
     return false;
 }
 
@@ -92,8 +89,8 @@ Template.dialogAi.onCreated(() => {
         instance.$('.modal').one('hidden.bs.modal', event => {
             // Resolve or reject the promise with the given parameter
             promiseFunction(param);
+            event.stopPropagation();
         }).modal('hide');
-        return false;
     };
 
     instance.api = {
@@ -161,6 +158,8 @@ Template.dialogAi.events({
         const zone = event.currentTarget.textContent;
 
         askAi(buildDataForPrediction(zone));
+        event.stopPropagation();
+        return false;
     },
 
     keydown(event) {
@@ -192,7 +191,7 @@ Template.dialogAi.helpers({
     showZone() {
         const flag = Session.get('modelWithZone');
         if (!flag) {
-            askAi(buildDataForPrediction(''));            
+            askAi(buildDataForPrediction(''));
         }
         return flag;
     }
