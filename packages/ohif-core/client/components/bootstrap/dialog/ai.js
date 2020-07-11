@@ -37,37 +37,42 @@ function askAiVizNode(data) {
 }
 
 function askAi(data) {
-    $("#ai-prediction").text("Calculating...");
-    $.ajax({
-        url: 'https://pca-finder.staging.rcc.uchicago.edu:5010/predict',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        success: (result) => {
-            let json = JSON.parse(result);
-            console.log(json.description);
-            $("#ai-prediction").text(json.description)
-            json.fid = data.fid;
-            json.studyInstanceUid = data.studyInstanceUid;
-            json.modelName = data.model_name;
-            json.zone = data.zone;
-            if (AiPredictions.find({'studyInstanceUid': data.studyInstanceUid, 'fid': data.fid}).count() < 15) {
-                AiPredictions.insert(json);
+    if(data != ""){
+        $("#ai-prediction").text("Calculating...");
+        $.ajax({
+            url: 'https://pca-finder.staging.rcc.uchicago.edu:5010/predict',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: (result) => {
+                let json = JSON.parse(result);
+                console.log(json.description);
+                $("#ai-prediction").text(json.description)
+                json.fid = data.fid;
+                json.studyInstanceUid = data.studyInstanceUid;
+                json.modelName = data.model_name;
+                json.zone = data.zone;
+                if (AiPredictions.find({'studyInstanceUid': data.studyInstanceUid, 'fid': data.fid}).count() < 15) {
+                    AiPredictions.insert(json);
+                }
+            },
+            error: () => {
+              setTimeout(() => {
+                  $("#ai-prediction").text("Somthing went wrong!");
+              }, 300);
             }
-        },
-        error: () => {
-          setTimeout(() => {
-              $("#ai-prediction").text("Somthing went wrong!");
-          }, 300);
-        }
-    });
-    return false;
+        });
+    }
+
 }
 
 function buildDataForPrediction(zone) {
     const patientName = OHIF.viewer.StudyMetadataList.all()[0]._data.patientId;
     const modelName = Session.get('selectedModel');
     const lpsCoord = Session.get('currentFidPatientPoint');
+    if (lpsCoord == undefined){
+        return "";
+    }
 
     const data = {
       fid: Session.get('lastFidId'),
@@ -89,8 +94,6 @@ Template.dialogAi.onCreated(() => {
         instance.$('.modal').one('hidden.bs.modal', event => {
             // Resolve or reject the promise with the given parameter
             promiseFunction(param);
-            event.stopPropagation();
-            return false;
         }).modal('hide');
     };
 
@@ -105,18 +108,18 @@ Template.dialogAi.onCreated(() => {
         cancel() {
             const dismiss = param => dismissModal(instance.data.promiseReject, param);
 
-            // const nearbyToolData = Session.get('nearbyToolData');
-            // const element = $('.imageViewerViewport').get(Session.get('activeViewport'));
-            // let probeX = nearbyToolData.tool.handles.end.x;
-            // let probeY = nearbyToolData.tool.handles.end.y;
-            // cornerstoneTools.getToolState(element, nearbyToolData.toolType).data.forEach(data => {
-            //     let dataX = data.handles.end.x;
-            //     let dataY = data.handles.end.y;
-            //     if (precise(dataX) === precise(probeX) && precise(dataY) === precise(probeY)) {
-            //       cornerstoneTools.removeToolState(element, nearbyToolData.toolType, data);
-            //       cornerstone.updateImage(element);
-            //     }
-            // });
+            const nearbyToolData = Session.get('nearbyToolData');
+            const element = $('.imageViewerViewport').get(Session.get('activeViewport'));
+            let probeX = nearbyToolData.tool.handles.end.x;
+            let probeY = nearbyToolData.tool.handles.end.y;
+            cornerstoneTools.getToolState(element, nearbyToolData.toolType).data.forEach(data => {
+                let dataX = data.handles.end.x;
+                let dataY = data.handles.end.y;
+                if (precise(dataX) === precise(probeX) && precise(dataY) === precise(probeY)) {
+                  cornerstoneTools.removeToolState(element, nearbyToolData.toolType, data);
+                  cornerstone.updateImage(element);
+                }
+            });
 
             dismiss();
         }
@@ -159,8 +162,6 @@ Template.dialogAi.events({
         const zone = event.currentTarget.textContent;
 
         askAi(buildDataForPrediction(zone));
-        event.stopPropagation();
-        return false;
     },
 
     keydown(event) {
