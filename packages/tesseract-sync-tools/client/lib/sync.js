@@ -97,16 +97,19 @@ function addFiducial(element, measurementData, toolType) {
 function removeFiducial(element, measurementData, toolType) {
   if (measurementData.hasOwnProperty('id')) {
     $('.imageViewerViewport').each((index, ele) => {
-      const toolData = cornerstoneTools.getElementToolStateManager(ele).get(ele, toolType);
+      if (!$(ele).hasClass('empty')) {
+        const toolData = cornerstoneTools.getElementToolStateManager(ele).get(ele, toolType);
 
-      for (let i = 0; i < toolData.data.length; i++) {
-        if (toolData.data[i].id === measurementData.id) {
-          toolData.data.splice(i, 1);
+        for (let i = 0; i < toolData.data.length; i++) {
+          if (toolData.data[i].id === measurementData.id) {
+            toolData.data.splice(i, 1);
+          }
         }
-      }
 
-      cornerstone.updateImage(ele);
+        cornerstone.updateImage(ele);
+      }
     });
+    
     fiducialsCollection.remove({
       'id': measurementData.id
     });

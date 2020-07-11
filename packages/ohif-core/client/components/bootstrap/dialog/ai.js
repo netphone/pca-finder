@@ -62,6 +62,7 @@ function askAi(data) {
               }, 300);
             }
         });
+        return false;
     }
 
 }
@@ -94,6 +95,7 @@ Template.dialogAi.onCreated(() => {
         instance.$('.modal').one('hidden.bs.modal', event => {
             // Resolve or reject the promise with the given parameter
             promiseFunction(param);
+            event.stopPropagation();
         }).modal('hide');
     };
 
@@ -162,6 +164,8 @@ Template.dialogAi.events({
         const zone = event.currentTarget.textContent;
 
         askAi(buildDataForPrediction(zone));
+        event.stopPropagation();
+        return false;
     },
 
     keydown(event) {
@@ -170,12 +174,15 @@ Template.dialogAi.events({
 
         let handled = false;
 
-        if (keyCode === 27) {
-            instance.$('.btn.btn-cancel').click();
-            handled = true;
-        } else if (keyCode === 13) {
-            instance.$('.btn.btn-confirm').click();
-            handled = true;
+        
+        if (handled !== true) { //this makes event to fire only once
+            if (keyCode === 27) {
+                instance.$('.btn.btn-cancel').click();
+                handled = true;
+            } else if (keyCode === 13) {
+                instance.$('.btn.btn-confirm').click();
+                handled = true;
+            }
         }
 
         if (handled) {
