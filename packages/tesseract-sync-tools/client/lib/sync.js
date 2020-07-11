@@ -47,7 +47,7 @@ function openSidebarOnFindings() {
 function addFiducial(element, measurementData, toolType) {
   const fid = fiducialsCollection.find({'id': measurementData.id}).fetch();
 
-  if (fid.length>0) {
+  if (!(fid.length)) {
     const studyInstanceUid = OHIF.viewerbase.layoutManager.viewportData[Session.get('activeViewport')]['studyInstanceUid'];
     const studyInstanceUidString = studyInstanceUid.toString();
     const patientPoint = getPatientPoint(measurementData.handles.end, element);
