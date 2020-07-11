@@ -117,7 +117,7 @@ function modifyFiducial(element, measurementData, toolType) {
   const patientPoint = getPatientPoint(measurementData.handles.end, element);
 
   $('.imageViewerViewport').each((index, ele) => {
-    if (ele !== element) {
+    if (ele !== element && !$(ele).hasClass('empty')) {
       const toolData = cornerstoneTools.getElementToolStateManager(ele).get(ele, toolType);
 
       for (let i = 0; i < toolData.data.length; i++) {
