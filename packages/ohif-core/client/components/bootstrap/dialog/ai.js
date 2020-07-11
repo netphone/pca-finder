@@ -90,6 +90,7 @@ Template.dialogAi.onCreated(() => {
             // Resolve or reject the promise with the given parameter
             promiseFunction(param);
             event.stopPropagation();
+            return false;
         }).modal('hide');
     };
 
@@ -104,18 +105,18 @@ Template.dialogAi.onCreated(() => {
         cancel() {
             const dismiss = param => dismissModal(instance.data.promiseReject, param);
 
-            const nearbyToolData = Session.get('nearbyToolData');
-            const element = $('.imageViewerViewport').get(Session.get('activeViewport'));
-            let probeX = nearbyToolData.tool.handles.end.x;
-            let probeY = nearbyToolData.tool.handles.end.y;
-            cornerstoneTools.getToolState(element, nearbyToolData.toolType).data.forEach(data => {
-                let dataX = data.handles.end.x;
-                let dataY = data.handles.end.y;
-                if (precise(dataX) === precise(probeX) && precise(dataY) === precise(probeY)) {
-                  cornerstoneTools.removeToolState(element, nearbyToolData.toolType, data);
-                  cornerstone.updateImage(element);
-                }
-            });
+            // const nearbyToolData = Session.get('nearbyToolData');
+            // const element = $('.imageViewerViewport').get(Session.get('activeViewport'));
+            // let probeX = nearbyToolData.tool.handles.end.x;
+            // let probeY = nearbyToolData.tool.handles.end.y;
+            // cornerstoneTools.getToolState(element, nearbyToolData.toolType).data.forEach(data => {
+            //     let dataX = data.handles.end.x;
+            //     let dataY = data.handles.end.y;
+            //     if (precise(dataX) === precise(probeX) && precise(dataY) === precise(probeY)) {
+            //       cornerstoneTools.removeToolState(element, nearbyToolData.toolType, data);
+            //       cornerstone.updateImage(element);
+            //     }
+            // });
 
             dismiss();
         }
