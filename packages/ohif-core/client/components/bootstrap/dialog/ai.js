@@ -201,6 +201,7 @@ Template.dialogAi.helpers({
         const flag = Session.get('modelWithZone');
         if (!flag) {
             askAi(buildDataForPrediction(''));
+            return false;
         }
         return flag;
     }
