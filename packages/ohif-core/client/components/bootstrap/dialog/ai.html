@@ -4,7 +4,7 @@
             {{#form class=(concat 'modal-content ' this.formClass) hideValidationBox=true
                 api=(extend instance.api instance.data.api) schema=this.schema
             }}
-                <!-- <div class="modal-body {{#if not showZone}}hidden{{/if}}">
+                <div class="modal-body {{#if not showZone}}hidden{{/if}}">
                   <div class="row">
                     <div class="col-xs-5">
                       <p style="margin-top:8px;" class="text-bold">Select Zone:</p>
@@ -17,12 +17,11 @@
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
                 <hr style="margin-top:0; margin-bottom:0;">
                 <div class="modal-body text-center">
                   <p class="text-bold">AI Prediction</p>
-                  <!-- <p id="ai-prediction" style="margin-bottom:0">Waiting for zone to be selected...</p> -->
-                  <p id="ai-prediction" style="margin-bottom:0">Calculating...</p>
+                  <p id="ai-prediction" style="margin-bottom:0">Waiting for zone to be selected...</p>
                 </div>
                 <hr style="margin:0;">
                 <div class="modal-body">
