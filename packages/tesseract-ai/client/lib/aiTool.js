@@ -11,17 +11,17 @@ const openedAiSettings = false;
 // TODO: try not to use waitUntilExists
 $('body').on('syncViewports', (event) => {
   $('#aiFiducial').click((eve) => {
-      // if (!($('.report-btn a:first').hasClass('active')) && !(openedAiSettings)) {
-      //     $('.report-btn a:first').trigger('click');
-      //     $('.roundedButtonWrapper[data-value="findings"].active').waitUntilExists(() => {
-      //         $('.roundedButtonWrapper[data-value="aiModel"]').trigger('click');
-      //     });
-      //     openedAiSettings = true;
-      // } else {
+      if (!($('.report-btn a:first').hasClass('active')) && !(openedAiSettings)) {
+          $('.report-btn a:first').trigger('click');
           $('.roundedButtonWrapper[data-value="findings"].active').waitUntilExists(() => {
               $('.roundedButtonWrapper[data-value="aiModel"]').trigger('click');
           });
-      // }
+          openedAiSettings = true;
+      } else {
+          $('.roundedButtonWrapper[data-value="findings"].active').waitUntilExists(() => {
+              $('.roundedButtonWrapper[data-value="aiModel"]').trigger('click');
+          });
+      }
   });
 });
 

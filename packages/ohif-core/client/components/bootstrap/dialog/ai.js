@@ -37,43 +37,36 @@ function askAiVizNode(data) {
 }
 
 function askAi(data) {
-    if(data != ""){
-        $("#ai-prediction").text("Calculating...");
-        $.ajax({
-            url: 'https://pca-finder.staging.rcc.uchicago.edu:5010/predict',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            success: (result) => {
-                let json = JSON.parse(result);
-                console.log(json.description);
-                $("#ai-prediction").text(json.description)
-                json.fid = data.fid;
-                json.studyInstanceUid = data.studyInstanceUid;
-                json.modelName = data.model_name;
-                json.zone = data.zone;
-                if (AiPredictions.find({'studyInstanceUid': data.studyInstanceUid, 'fid': data.fid}).count() < 15) {
-                    AiPredictions.insert(json);
-                }
-            },
-            error: () => {
-              setTimeout(() => {
-                  $("#ai-prediction").text("Somthing went wrong!");
-              }, 300);
+    $("#ai-prediction").text("Calculating...");
+    $.ajax({
+        url: 'https://pca-finder.staging.rcc.uchicago.edu:5010/predict',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: (result) => {
+            let json = JSON.parse(result);
+            console.log(json.description);
+            $("#ai-prediction").text(json.description)
+            json.fid = data.fid;
+            json.studyInstanceUid = data.studyInstanceUid;
+            json.modelName = data.model_name;
+            json.zone = data.zone;
+            if (AiPredictions.find({'studyInstanceUid': data.studyInstanceUid, 'fid': data.fid}).count() < 15) {
+                AiPredictions.insert(json);
             }
-        });
-        return false;
-    }
-
+        },
+        error: () => {
+          setTimeout(() => {
+              $("#ai-prediction").text("Somthing went wrong!");
+          }, 300);
+        }
+    });
 }
 
 function buildDataForPrediction(zone) {
     const patientName = OHIF.viewer.StudyMetadataList.all()[0]._data.patientId;
     const modelName = Session.get('selectedModel');
     const lpsCoord = Session.get('currentFidPatientPoint');
-    if (lpsCoord == undefined){
-        return "";
-    }
 
     const data = {
       fid: Session.get('lastFidId'),
@@ -95,7 +88,6 @@ Template.dialogAi.onCreated(() => {
         instance.$('.modal').one('hidden.bs.modal', event => {
             // Resolve or reject the promise with the given parameter
             promiseFunction(param);
-            event.stopPropagation();
         }).modal('hide');
     };
 
@@ -172,15 +164,12 @@ Template.dialogAi.events({
 
         let handled = false;
 
-        
-        if (handled !== true) { //this makes event to fire only once
-            if (keyCode === 27) {
-                instance.$('.btn.btn-cancel').click();
-                handled = true;
-            } else if (keyCode === 13) {
-                instance.$('.btn.btn-confirm').click();
-                handled = true;
-            }
+        if (keyCode === 27) {
+            instance.$('.btn.btn-cancel').click();
+            handled = true;
+        } else if (keyCode === 13) {
+            instance.$('.btn.btn-confirm').click();
+            handled = true;
         }
 
         if (handled) {
