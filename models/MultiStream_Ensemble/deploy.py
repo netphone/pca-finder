@@ -66,7 +66,7 @@ class Deploy:
             print('data are not from ProstateX, need to do the different std steps.')
             std_images = self.self_standardization(images)
         patches_list = self.extract_patches(std_images)
-        scores = list()
+        #scores = list()
         for idx in range(5):
             ####### prepare X from patches_list (ctr point + 4 neighbors)
             P0 = patches_list[idx][0][:,:,:,:,:-1]
@@ -76,15 +76,15 @@ class Deploy:
 
             X = [P0,P0,P0,P0,P0,P1,P1,P1,P1,P1,P2,P2,P2,P2,P2,P3,P3,P3,P3,P3]
             score=model.predict(X, verbose=1)
-            scores.append(score[0][0])
+            #scores.append(score[0][0])
             
-        Scr = np.mean(scores)    
+        #Scr = np.mean(scores)    
         print("successss" * 10)
-        print("predictions: {} ".format(Scr))
-        description = "{:03.1f}% probability of Significant Prostate Cancer".format(Scr * 100)
+        print("predictions: {} ".format(score[0]))
+        description = "{:03.1f}% probability of Significant Prostate Cancer".format(score[0][0] * 100)
         response_dict = {"case": self.info["case"],
                          "description": description,
-                         "score": str(Scr)}
+                         "score": str(score[0][0])}
         return json.dumps(response_dict)
 
 
