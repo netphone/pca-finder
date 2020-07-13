@@ -92,6 +92,7 @@ Template.dialogAi.onCreated(() => {
             event.stopPropagation();
             event.preventDefault();
         }).modal('hide');
+        return false;
     };
 
     instance.api = {
