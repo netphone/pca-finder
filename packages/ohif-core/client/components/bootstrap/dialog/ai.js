@@ -164,8 +164,6 @@ Template.dialogAi.events({
         const zone = event.currentTarget.textContent;
 
         askAi(buildDataForPrediction(zone));
-        event.stopPropagation();
-        return false;
     },
 
     keydown(event) {
@@ -201,7 +199,6 @@ Template.dialogAi.helpers({
         const flag = Session.get('modelWithZone');
         if (!flag) {
             askAi(buildDataForPrediction(''));
-            return false;
         }
         return flag;
     }

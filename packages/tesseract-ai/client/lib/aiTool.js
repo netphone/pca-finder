@@ -5,23 +5,23 @@ import { $ } from 'meteor/jquery';
 import { waitUntilExists } from 'jquery.waituntilexists';
 
 const toolType = 'aiFiducial';
-var openedAiSettings = false;
+const openedAiSettings = false;
 
 // Open AI setting when users chooses the Predict PCa for the first time
 // TODO: try not to use waitUntilExists
 $('body').on('syncViewports', (event) => {
   $('#aiFiducial').click((eve) => {
-      if (!($('.report-btn a:first').hasClass('active')) && !(openedAiSettings)) {
-          $('.report-btn a:first').trigger('click');
+      // if (!($('.report-btn a:first').hasClass('active')) && !(openedAiSettings)) {
+      //     $('.report-btn a:first').trigger('click');
+      //     $('.roundedButtonWrapper[data-value="findings"].active').waitUntilExists(() => {
+      //         $('.roundedButtonWrapper[data-value="aiModel"]').trigger('click');
+      //     });
+      //     openedAiSettings = true;
+      // } else {
           $('.roundedButtonWrapper[data-value="findings"].active').waitUntilExists(() => {
               $('.roundedButtonWrapper[data-value="aiModel"]').trigger('click');
           });
-          openedAiSettings = true;
-      } else {
-          $('.roundedButtonWrapper[data-value="findings"].active').waitUntilExists(() => {
-              $('.roundedButtonWrapper[data-value="aiModel"]').trigger('click');
-          });
-      }
+      // }
   });
 });
 
