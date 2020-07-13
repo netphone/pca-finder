@@ -56,8 +56,10 @@ def patch_setup(img_size, dim, ijk):
     return [start_D, end_D, start_H, end_H, start_W, end_W] 
     
     
-def patch(image, patch_dim, ijk):
+def patch(image, patch_dim, ijk, reverse=True):
     p_coord0 = patch_setup(image.shape, patch_dim, ijk)
     img_patch = image[p_coord0[0]:p_coord0[1],p_coord0[2]:p_coord0[3],p_coord0[4]:p_coord0[5]]
-    
-    return img_patch[::-1,:,:]
+    if reverse:
+        return img_patch[::-1,:,:]
+    else:
+        return img_patch 
