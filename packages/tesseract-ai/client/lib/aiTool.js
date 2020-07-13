@@ -5,7 +5,7 @@ import { $ } from 'meteor/jquery';
 import { waitUntilExists } from 'jquery.waituntilexists';
 
 const toolType = 'aiFiducial';
-const openedAiSettings = false;
+var openedAiSettings = false;
 
 // Open AI setting when users chooses the Predict PCa for the first time
 // TODO: try not to use waitUntilExists

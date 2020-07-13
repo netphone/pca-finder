@@ -88,6 +88,9 @@ Template.dialogAi.onCreated(() => {
         instance.$('.modal').one('hidden.bs.modal', event => {
             // Resolve or reject the promise with the given parameter
             promiseFunction(param);
+            event.stopImmediatePropagation();
+            event.stopPropagation();
+            event.preventDefault();
         }).modal('hide');
     };
 
