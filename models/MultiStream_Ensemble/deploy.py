@@ -66,21 +66,25 @@ class Deploy:
             print('data are not from ProstateX, need to do the different std steps.')
             std_images = self.self_standardization(images)
         patches_list = self.extract_patches(std_images)
-        ####### prepare X from patches_list
-        P0 = patches_list[0][:,:,:,:,:-1]
-        P1 = patches_list[1][:,:,:,:,:-1]
-        P2 = patches_list[2][:,:,:,:,:-1]
-        P3 = patches_list[3][:,:,:,:,:-1]
+        scores = list()
+        for idx in range(5):
+            ####### prepare X from patches_list (ctr point + 4 neighbors)
+            P0 = patches_list[idx][0][:,:,:,:,:-1]
+            P1 = patches_list[idx][1][:,:,:,:,:-1]
+            P2 = patches_list[idx][2][:,:,:,:,:-1]
+            P3 = patches_list[idx][3][:,:,:,:,:-1]
 
-        X = [P0,P0,P0,P0,P0,P1,P1,P1,P1,P1,P2,P2,P2,P2,P2,P3,P3,P3,P3,P3]
-
-        scores = model.predict(X, verbose=1)
+            X = [P0,P0,P0,P0,P0,P1,P1,P1,P1,P1,P2,P2,P2,P2,P2,P3,P3,P3,P3,P3]
+            score=model.predict(X, verbose=1)
+            scores.append(score[0][0])
+            
+        Scr = np.mean(scores)    
         print("successss" * 10)
-        print("predictions: {} ".format(scores[0]))
-        description = "{:03.1f}% probability of Significant Prostate Cancer".format(scores[0][0] * 100)
+        print("predictions: {} ".format(Scr))
+        description = "{:03.1f}% probability of Significant Prostate Cancer".format(Scr * 100)
         response_dict = {"case": self.info["case"],
                          "description": description,
-                         "score": str(scores[0][0])}
+                         "score": str(Scr)}
         return json.dumps(response_dict)
 
 
@@ -112,16 +116,23 @@ class Deploy:
 
 		
     def extract_patches(self, arr_dict):
+        patch_neighbors = list()
         patch_list = list()
-        for patch_dim in [(42,42,1), (48,48,3), (64,64,3), (96,96,3)]:
-            img_patch = dict()
-            for key, value in arr_dict.items():
-                img_patch[key] = patch(value[0], patch_dim, value[1])
-            patch_list.append(np.expand_dims(np.concatenate((np.expand_dims(np.moveaxis(img_patch['t2_tse_tra'], 0, -1), axis= -1),
+        if int(self.case[-2:]) <= 5:
+            reverse = True
+        else:
+            reverse = False
+        # predict itself and another 4 neighboring points
+        for idx in range(5):
+            for patch_dim in [(42,42,1), (48,48,3), (64,64,3), (96,96,3)]:
+                img_patch = dict()
+                for key, value in arr_dict.items():
+                    img_patch[key] = patch(value[0], patch_dim, value[1], reverse, idx) 
+                patch_list.append(np.expand_dims(np.concatenate((np.expand_dims(np.moveaxis(img_patch['t2_tse_tra'], 0, -1), axis= -1),
                             np.expand_dims(np.moveaxis(img_patch['ADC'], 0, -1), axis= -1),
                             np.expand_dims(np.moveaxis(img_patch['BVAL'], 0, -1), axis= -1)), axis = -1), axis = 0))
-
-        return patch_list
+            patch_neighbors.append(patch_list)
+        return patch_neighbors
 
 
     def mean_std_standardization(self, arr_list, mean_std, mean_std_ktrans):
