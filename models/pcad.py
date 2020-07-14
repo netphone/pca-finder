@@ -7,8 +7,6 @@ from flask import Flask, request
 import sys
 import requests
 from flask_cors import CORS
-from flask_cors import cross_origin
-
 import tensorflow as tf
 
 sys.path.append("./")
@@ -17,7 +15,7 @@ sys.path.append("../")
 import models.settings as S
 
 app = Flask(__name__)
-# app.debug = True
+app.debug = True
 CORS(app)
 
 
@@ -70,10 +68,9 @@ model4._make_predict_function()
 
 
 @app.route('/predict', methods=['GET', 'POST'])
-@cross_origin()
 def predict():
-    global model1, model2, model3 #, model4
-    global deployer1, deployer2, deployer3 #, deployer4
+    global model1, model2, model3, model4
+    global deployer1, deployer2, deployer3, deployer4
     try:
         info = request.get_json()
         result = "NA"
@@ -92,4 +89,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
