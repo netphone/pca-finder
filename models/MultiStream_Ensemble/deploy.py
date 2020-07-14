@@ -127,7 +127,7 @@ class Deploy:
         for patch_dim in [(42,42,1), (48,48,3), (64,64,3), (96,96,3)]:
             img_patch = dict()
             for key, value in arr_dict.items():
-                img_patch[key] = patch(value[0], patch_dim, value[1], reverse, idx) 
+                img_patch[key] = patch(value[0], patch_dim, value[1], reverse, idx=0) 
             patch_list.append(np.expand_dims(np.concatenate((np.expand_dims(np.moveaxis(img_patch['t2_tse_tra'], 0, -1), axis= -1),
                             np.expand_dims(np.moveaxis(img_patch['ADC'], 0, -1), axis= -1),
                             np.expand_dims(np.moveaxis(img_patch['BVAL'], 0, -1), axis= -1)), axis = -1), axis = 0))
