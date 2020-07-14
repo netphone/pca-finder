@@ -80,7 +80,7 @@ class Deploy:
             
         Scr = np.mean(Scores)    
         print("successss" * 10)
-        print("predictions: {} ".format(Scr)
+        print("predictions: {} ".format(Scr))
         description = "{:03.1f}% probability of Significant Prostate Cancer".format(Scr * 100)
         response_dict = {"case": self.info["case"],
                          "description": description,
