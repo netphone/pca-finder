@@ -61,7 +61,7 @@ def patch(image, patch_dim, ijk, reverse=True, idx = 0):
     if idx == 0:
         img_patch = image[p_coord0[0]:p_coord0[1],p_coord0[2]:p_coord0[3],p_coord0[4]:p_coord0[5]]
     else:
-        img_patch = image[p_coord0[0]:p_coord0[1],p_coord0[2]+int(np.sin(idx*np.pi/2)):p_coord0[3]+int(np.sin(idx*np.pi/2)),p_coord0[4]+int(np.cos(idx*np.pi/2)):p_coord0[5]int(np.cos(idx*np.pi/2))]
+        img_patch = image[p_coord0[0]:p_coord0[1],p_coord0[2]+int(np.sin(idx*np.pi/2)):p_coord0[3]+int(np.sin(idx*np.pi/2)),p_coord0[4]+int(np.cos(idx*np.pi/2)):p_coord0[5]+int(np.cos(idx*np.pi/2))]
     if reverse:
         return img_patch[::-1,:,:]
     
