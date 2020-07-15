@@ -156,11 +156,11 @@ Template.dialogAi.onRendered(() => {
 });
 
 Template.dialogAi.events({
-    'click .js-predict'(event, instance) {
-        const zone = event.currentTarget.textContent;
+    // 'click .js-predict'(event, instance) {
+    //     const zone = event.currentTarget.textContent;
 
-        askAi(buildDataForPrediction(zone));
-    },
+    //     askAi(buildDataForPrediction(zone));
+    // },
 
     keydown(event) {
         const instance = Template.instance(),
@@ -192,6 +192,9 @@ Template.dialogAi.helpers({
         const flag = Session.get('modelWithZone');
         if (!flag) {
             askAi(buildDataForPrediction(''));
+        }else{
+            const zone = event.currentTarget.textContent;
+            askAi(buildDataForPrediction(zone));
         }
         return flag;
     }
