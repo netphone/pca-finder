@@ -248,16 +248,16 @@ Template.toolbarSection.onRendered(function () {
 });
 
 Template.toolbarSection.events({
-    // 'click .js-aiModels'(event, instance) {
-    //     let selectedModel = event.currentTarget.value;
-    //     instance.selectedModel.set(selectedModel);
+    'click .js-aiModels'(event, instance) {
+        let selectedModel = event.currentTarget.value;
+        instance.selectedModel.set(selectedModel);
 
-    //     if (instance.showsnackbar.get()) {
-    //         $('#aiModels').change();
-    //     }
+        if (instance.showsnackbar.get()) {
+            $('#aiModels').change();
+        }
 
-    //     hasZoneOnModel();
-    // },
+        hasZoneOnModel();
+    },
 
     'change .js-aiOption'(event, instance) {
         instance.showsnackbar.set(false);
