@@ -206,9 +206,24 @@ Template.toolbarSection.helpers({
 
 Template.toolbarSection.onRendered(function () {
     const instance = Template.instance();
-    instance.selectedModel.set("CNN3D");
-    Session.set('selectedModel', "CNN3D");
 
+    const objName = OHIF.viewer.Studies.all()[0]['patientName'];
+    substringToCheck = "ProstateX";
+    var isContains=objName.indexOf(substringToCheck) !== -1;
+    if (isContains){
+        $("#aiModels").prop("selectedIndex", 0);
+        $("#aiModels option:disabled").removeAttr('disabled');
+        instance.selectedModel.set("CNN3D");
+        Session.set('selectedModel', "CNN3D");
+    }else{        
+        $("#aiModels option").not(':last-child').each(function (index) {            
+            $(this).prop('disabled', true);
+        });
+        // mark the last model option as selected
+        $("#aiModels option:last").prop("selected", "selected");
+        instance.selectedModel.set("MultiStream_Ensemble");
+        Session.set('selectedModel', "MultiStream_Ensemble");
+    }
     instance.$('#layout').dropdown();
 
     if (OHIF.uiSettings.displayEchoUltrasoundWorkflow) {
@@ -233,16 +248,16 @@ Template.toolbarSection.onRendered(function () {
 });
 
 Template.toolbarSection.events({
-    'click .js-aiModels'(event, instance) {
-        let selectedModel = event.currentTarget.value;
-        instance.selectedModel.set(selectedModel);
+    // 'click .js-aiModels'(event, instance) {
+    //     let selectedModel = event.currentTarget.value;
+    //     instance.selectedModel.set(selectedModel);
 
-        if (instance.showsnackbar.get()) {
-            $('#aiModels').change();
-        }
+    //     if (instance.showsnackbar.get()) {
+    //         $('#aiModels').change();
+    //     }
 
-        hasZoneOnModel();
-    },
+    //     hasZoneOnModel();
+    // },
 
     'change .js-aiOption'(event, instance) {
         instance.showsnackbar.set(false);
