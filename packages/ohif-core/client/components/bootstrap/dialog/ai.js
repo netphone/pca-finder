@@ -95,6 +95,14 @@ Template.dialogAi.onCreated(() => {
         return false;
     };
 
+    const flag = Session.get('modelWithZone');
+    if (!flag) {
+        askAi(buildDataForPrediction(''));
+    }else{
+        const zone = event.currentTarget.textContent;
+        askAi(buildDataForPrediction(zone));
+    }
+
     instance.api = {
 
         confirm() {
@@ -125,7 +133,7 @@ Template.dialogAi.onCreated(() => {
     };
 });
 
-Template.dialogAi.onRendered(() => {
+Template.dialogAi.onRendered(() => {  
     const instance = Template.instance();
 
     // Allow options ovewrite
