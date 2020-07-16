@@ -194,14 +194,12 @@ const loadDisplaySetIntoViewport = (data, templateData) => {
             cornerstone.resize(element, false);
         } else if (data.viewport) {
             // If there is a saved object containing Cornerstone viewport data
-            if(data !== undefined){
-                // (e.g. scale, invert, window settings) in the input data, apply it now.
-                cornerstone.displayImage(element, image, data.viewport);
+            // (e.g. scale, invert, window settings) in the input data, apply it now.
+            cornerstone.displayImage(element, image, data.viewport);
 
-                // Resize the canvas to fit the current viewport element size. Fit the displayed
-                // image to the canvas dimensions.
-                cornerstone.resize(element, true);
-            }            
+            // Resize the canvas to fit the current viewport element size. Fit the displayed
+            // image to the canvas dimensions.
+            cornerstone.resize(element, true);
         } else {
             // If no saved viewport settings or modality-specific settings exists,
             // display the loaded image in the viewport element with no loaded viewport
