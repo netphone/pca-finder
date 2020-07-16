@@ -83,8 +83,8 @@ Template.toolbarSectionButton.helpers({
         if (activeToolId === 'aiFiducial') {
             $('#ddl_models').show();
         } else {
-            $("#aiModels option:first").prop('selected', true);
-            $("#aiModels option:first").click();            
+            // $("#aiModels option:first").prop('selected', true);
+            // $("#aiModels option:first").click();            
             $('#ddl_models').hide();
         }
         const isActive = instance.isActive(activeToolId);
