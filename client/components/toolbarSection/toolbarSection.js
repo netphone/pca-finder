@@ -220,7 +220,8 @@ Template.toolbarSection.onRendered(function () {
             $(this).prop('disabled', true);
         });
         // mark the last model option as selected
-        $("#aiModels option:last").prop("selected", true);
+        // $("#aiModels option:last").prop("selected", true);
+        $("#aiModels").prop("selectedIndex", 2);
         instance.selectedModel.set("MultiStream_Ensemble");
         Session.set('selectedModel', "MultiStream_Ensemble");
     }
