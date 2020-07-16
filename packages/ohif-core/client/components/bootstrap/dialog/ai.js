@@ -93,15 +93,7 @@ Template.dialogAi.onCreated(() => {
             event.preventDefault();
         }).modal('hide');
         return false;
-    };
-
-    const flag = Session.get('modelWithZone');
-    if (!flag) {
-        askAi(buildDataForPrediction(''));
-    }else{
-        const zone = event.currentTarget.textContent;
-        askAi(buildDataForPrediction(zone));
-    }
+    };   
 
     instance.api = {
 
@@ -133,7 +125,16 @@ Template.dialogAi.onCreated(() => {
     };
 });
 
-Template.dialogAi.onRendered(() => {  
+Template.dialogAi.onRendered(() => { 
+    
+    const flag = Session.get('modelWithZone');
+    if (!flag) {
+        askAi(buildDataForPrediction(''));
+    }else{
+        const zone = event.currentTarget.textContent;
+        askAi(buildDataForPrediction(zone));
+    }
+    
     const instance = Template.instance();
 
     // Allow options ovewrite

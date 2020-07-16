@@ -215,12 +215,12 @@ Template.toolbarSection.onRendered(function () {
         $("#aiModels option:disabled").removeAttr('disabled');
         instance.selectedModel.set("CNN3D");
         Session.set('selectedModel', "CNN3D");
-    }else{        
+    }else{       
         $("#aiModels option").not(':last-child').each(function (index) {            
             $(this).prop('disabled', true);
         });
         // mark the last model option as selected
-        $("#aiModels option:last").prop("selected", "selected");
+        $("#aiModels option:last").prop("selected", true);
         instance.selectedModel.set("MultiStream_Ensemble");
         Session.set('selectedModel', "MultiStream_Ensemble");
     }
