@@ -48,7 +48,7 @@ class Deploy:
             sess.run(init_op)
 
         # keras.backend.tensorflow_backend.set_session(get_session())
-        loaded_model = tf.keras.models.load_model(self.current_dir+"/model/model_checkpoint_72.h5", compile=False)
+        loaded_model = tf.keras.models.load_model(self.current_dir+"/model/model_checkpoint_En81.h5", compile=False)
 
         return loaded_model
 
