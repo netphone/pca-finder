@@ -212,12 +212,14 @@ Template.toolbarSection.onRendered(function () {
     var isContains=objName.indexOf(substringToCheck) !== -1;
     if (isContains){
         $("#aiModels").prop("selectedIndex", 0);
-        $("#aiModels option:disabled").removeAttr('disabled');
+        // $("#aiModels option:disabled").removeAttr('disabled');
+        $("#aiModels").find("option").show();
         instance.selectedModel.set("CNN3D");
         Session.set('selectedModel', "CNN3D");
     }else{       
         $("#aiModels option").not(':last-child').each(function (index) {            
-            $(this).prop('disabled', true);
+            // $(this).prop('disabled', true);
+            $(this).hide();
         });
         // mark the last model option as selected
         // $("#aiModels option:last").prop("selected", true);
