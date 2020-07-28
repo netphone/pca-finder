@@ -48,7 +48,7 @@ class Deploy:
             sess.run(init_op)
 
         # keras.backend.tensorflow_backend.set_session(get_session())
-        loaded_model = tf.keras.models.load_model(self.current_dir+"/model/model_checkpoint_72.h5", compile=False)
+        loaded_model = tf.keras.models.load_model(self.current_dir+"/model/model_checkpoint_En81.h5", compile=False)
 
         return loaded_model
 
@@ -69,10 +69,10 @@ class Deploy:
         Scores = list()
         for idx in range(5):
             ####### prepare X from patches_list (ctr point + 4 neighbors)
-            P0 = patches_list[idx][0][:,:,:,:,:-1]
-            P1 = patches_list[idx][1][:,:,:,:,:-1]
-            P2 = patches_list[idx][2][:,:,:,:,:-1]
-            P3 = patches_list[idx][3][:,:,:,:,:-1]
+            P0 = patches_list[idx][0]#[:,:,:,:,:-1]
+            P1 = patches_list[idx][1]#[:,:,:,:,:-1]
+            P2 = patches_list[idx][2]#[:,:,:,:,:-1]
+            P3 = patches_list[idx][3]#[:,:,:,:,:-1]
 
             X = [P0,P0,P0,P0,P0,P1,P1,P1,P1,P1,P2,P2,P2,P2,P2,P3,P3,P3,P3,P3]
             score=model.predict(X, verbose=1)
@@ -151,7 +151,7 @@ class Deploy:
             if 'ADC' in k:
                 tmp = (v[0] - mean_std['ADC'][0])/mean_std['ADC'][1]
             if 'BVAL' in k:
-                tmp = (v[0] - mean_std['ADC'][0])/mean_std['ADC'][1]
+                tmp = (v[0] - mean_std['BVAL'][0])/mean_std['BVAL'][1]
             if 'KTrans' in k:
                 tmp = (v[0] - mean_std_ktrans['Ktrans'][0])/mean_std_ktrans['Ktrans'][1]
             arr_list[k] = [tmp, v[1]]
