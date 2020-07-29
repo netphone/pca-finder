@@ -138,7 +138,7 @@ function search() {
 
     // Create the filters to be used for the StudyList Search
     filter = {
-        patientName: getFilter($('input#patientName').val()),
+        patientName: getFilter($('#patientName').val()),
         patientId: getFilter($('input#patientId').val()),
         accessionNumber: getFilter($('input#accessionNumber').val()),
         studyDescription: getFilter($('input#studyDescription').val()),
@@ -321,6 +321,10 @@ Template.studylistResult.events({
     },
 
     'onsearch input'() {
+        search();
+    },
+    
+    'change #patientName'(event) {
         search();
     },
 

@@ -142,6 +142,29 @@ $bodyCellHeight = 40px
             &:active, &:hover
               background-color: $inputBackgroundColor
 
+          select.studylist-search
+            height: 40px
+            margin: 0 5px 20px 5px
+            padding: 0 20px
+            cursor: pointer
+            _border: none
+            background-color: $inputBackgroundColor
+            color: $inputPlaceholderColor
+            font-size: 10pt
+            font-weight: normal
+            width: calc(100% - 10px)
+            border-radius: 4px
+            box-sizing: border-box
+
+            transition(all 0.15s ease)
+            placeholder-color($inputPlaceholderColor)
+
+            &.invisible
+              visibility: hidden
+
+            &:active, &:hover
+              background-color: $inputBackgroundColor
+
       ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
       ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
       ::-webkit-datetime-edit-day-field:not([aria-valuenow])

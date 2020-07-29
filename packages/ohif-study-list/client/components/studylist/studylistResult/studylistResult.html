@@ -17,7 +17,12 @@
                                     <span>Patient Name</span>
                                     <i class="{{sortingColumnsIcons.patientName}}">&nbsp;</i>
                                 </div>
-                                <input type="text" class="form-control studylist-search" id="patientName">
+                                <select class="form-control studylist-search" id="patientName" name="patientName">
+                                    <option value="">All</option>
+                                    <option value="ProstateX">ProstateX</option>
+                                    <option value="MRIRC">MRIRC</option>
+                                </select>
+                                <!-- <input type="text" class="form-control studylist-search" id="patientName"> -->
                             </th>
                             <th class="patientId">
                                 <div id="_patientId" class="sortingCell">
