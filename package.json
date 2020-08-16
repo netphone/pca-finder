@@ -11,7 +11,7 @@
     "loglevel": "^1.4.1",
     "meteor-node-stubs": "^0.4.1",
     "simpl-schema": "^1.7.3",
-    "three": "^0.117.1"
+    "three": "^0.110.0"
   },
   "devDependencies": {},
   "scripts": {
