@@ -4,7 +4,8 @@ import scipy.ndimage.interpolation
 
 def resample_array(img_arr, shape, spacing, resize_dict, ijk):
     plane_area = tuple(int(x) for x in np.array(shape[:-1])*np.array(spacing[:-1]))
-    resize_shape = resize_dict['resize_dict'][plane_area][shape[:-1]]
+    #resize_shape = resize_dict['resize_dict'][plane_area][shape[:-1]]
+    resize_shape = tuple(np.array(plane_area)*2)
     scale = resize_shape[0]/shape[0], resize_shape[1]/shape[1]
     rescale_i, rescale_j = int(ijk[0]*scale[0]), int(ijk[1]*scale[1])
     rescale_k = ijk[2]  #shape[2] - ijk[2] - 1           
