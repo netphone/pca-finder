@@ -60,11 +60,12 @@ class Deploy:
         #####################################
         Image_Types = ['t2_tse_tra', 'ADC', 'BVAL', 'KTrans']
         images = self.read_image(image_types = Image_Types)
-        if int(self.case[-2:]) <= 5:
-            std_images = self.mean_std_standardization(images, self.mean_std, self.mean_std_ktrans)
-        else:
+        if self.case[:5] in 'MRIRC':
             print('data are not from ProstateX, need to do the different std steps.')
             std_images = self.self_standardization(images)
+        else:
+            std_images = self.mean_std_standardization(images, self.mean_std, self.mean_std_ktrans)
+            
         patches_list = self.extract_patches(std_images)
         Scores = list()
         for idx in range(5):
