@@ -170,9 +170,9 @@ class Deploy:
         for k, v in arr_list.items():
             v_mean = np.mean(v[0])
             v_std = np.std(v[0])
-            v[0] = Outlier_rm(v[0], v_mean, v_std)
-            v_mean = np.mean(v[0])
-            v_std = np.std(v[0])
+            #v[0] = Outlier_rm(v[0], v_mean, v_std)
+            #v_mean = np.mean(v[0])
+            #v_std = np.std(v[0])
             tmp = (v[0] - v_mean)/(1.05 * v_std) - 0.15
             arr_list[k] =[tmp, v[1]]
             
