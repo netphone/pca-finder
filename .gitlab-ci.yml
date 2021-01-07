@@ -2,7 +2,7 @@ services:
   - docker:dind
 
 variables:
-  IMAGE_METEOR_TAG: $CI_REGISTRY_IMAGE:front
+  IMAGE_METEOR_TAG: $CI_REGISTRY_IMAGE:front-live
   IMAGE_MODEL_TAG: $CI_REGISTRY_IMAGE:models
 
 build-meteor:
@@ -19,11 +19,11 @@ build-models:
     - docker build -f Dockerfile-model -t $IMAGE_MODEL_TAG .
     - docker push $IMAGE_MODEL_TAG
 
-deploy:
-  stage: deploy
-  image: cdrx/rancher-gitlab-deploy
-  only:
-    - master
-  script:
-    - upgrade --environment staging --stack pca-finder --service meteor
-    - upgrade --environment staging --stack pca-finder --service pcad
+# deploy:
+#   stage: deploy
+#   image: cdrx/rancher-gitlab-deploy
+#   only:
+#     - master
+#   script:
+#     - upgrade --environment staging --stack pca-finder --service meteor
+#     - upgrade --environment staging --stack pca-finder --service pcad
