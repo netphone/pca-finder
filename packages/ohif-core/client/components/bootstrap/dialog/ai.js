@@ -39,7 +39,7 @@ function askAiVizNode(data) {
 function askAi(data) {
     $("#ai-prediction").text("Calculating...");
     $.ajax({
-        url: 'https://pca-finder.staging.rcc.uchicago.edu:5010/predict',
+        url: 'https://pca-finder.rcc.uchicago.edu:5010/predict',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(data),
