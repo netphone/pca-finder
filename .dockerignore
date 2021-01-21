@@ -1,3 +1,6 @@
 .meteor/local
 packages/*/.build*
 node_modules
+npm-debug.log
+Dockerfile*
+.dockerignore

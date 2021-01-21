@@ -2,7 +2,7 @@ services:
   - docker:dind
 
 variables:
-  IMAGE_METEOR_TAG: $CI_REGISTRY_IMAGE:front-live
+  IMAGE_METEOR_TAG: $CI_REGISTRY_IMAGE:front
   IMAGE_MODEL_TAG: $CI_REGISTRY_IMAGE:models
 
 build-meteor:

@@ -159,4 +159,25 @@ How to run the Flask server on Midway2:
     meteor npm install --save-exact @babel/runtime@7.0.0-beta.55
 
 
+## To Inspect and view the available Database collections on MongoDB:
+-----------------------
+In Rancher **`PCa-Finder`** container open the `mongodb` image by Executing the Shell and then run following commands on the shell:
+
+1. `mongo --port 27017 -u "meteor" -p "mongoadmin" --authenticationDatabase "meteor"`
+
+	### OR,
+
+   `mongo mongodb://meteor:mongoadmin@mongodb/meteor`
+
+2. meteor:PRIMARY> `use meteor`
+3. meteor:PRIMARY> `show collections`
+	
+        currentServer
+        fiducials
+        meteor_accounts_loginServiceConfiguration
+        revision
+        servers
+        users
+
+
 
