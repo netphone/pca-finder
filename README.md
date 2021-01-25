@@ -42,8 +42,10 @@ For Windows:
     
 For Developers
 ---------
-Technologies:
+Technologies Used:
 
+For Front End Server:
+---------
 * Docker
 * Meteor
 * MongoDB
@@ -52,6 +54,14 @@ Technologies:
 * JavaScript
 * HTML
 * CSS/Stylus
+
+For AI Model Server:
+---------
+* Docker
+* Flask
+* Gunicorn
+* Tensorflow
+* Keras
 
 Main app components:
 
@@ -134,12 +144,18 @@ How to run the Flask server on Midway2:
 
 1. Connect to Midway GPU
 `vglconnect -s midway2-0622`
-3. Go to the directory: `cd /project2/rcc/tszasz/MRIRC/SC19/flask_server/models`
-4. Type: `source env/bin/activate`
-5. Type: `export FLASK_APP=pcad.py` 
-6. Type: `export LC_ALL=en_US.utf-8`
-7. Type: `export LANG=en_US.utf-8`
-8. Type: `flask run --host=0.0.0.0`
+2. Go to the directory: `cd /project2/rcc/tszasz/MRIRC/SC19/flask_server/models`
+3. Type: `source env/bin/activate`
+4. Uncomment the following lines #91 and #92
+        
+        if __name__ == '__main__':
+            app.run(host='0.0.0.0', port=5000)
+
+and then Type: `export FLASK_APP=pcad.py` 
+
+5. Type: `export LC_ALL=en_US.utf-8`
+6. Type: `export LANG=en_US.utf-8`
+7. Type: `flask run --host=0.0.0.0`
 
 
 ## SOME USEFUL NPM COMMANDS:

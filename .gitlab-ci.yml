@@ -2,15 +2,15 @@ services:
   - docker:dind
 
 variables:
-  # IMAGE_METEOR_TAG: $CI_REGISTRY_IMAGE:front
+  IMAGE_METEOR_TAG: $CI_REGISTRY_IMAGE:front
   IMAGE_MODEL_TAG: $CI_REGISTRY_IMAGE:models
 
-# build-meteor:
-#   stage: build
-#   script:
-#     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-#     - docker build -f Dockerfile-front -t $IMAGE_METEOR_TAG .
-#     - docker push $IMAGE_METEOR_TAG
+build-meteor:
+  stage: build
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -f Dockerfile-front -t $IMAGE_METEOR_TAG .
+    - docker push $IMAGE_METEOR_TAG
 
 build-models:
   stage: build
