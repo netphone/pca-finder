@@ -1,9 +1,27 @@
-FROM python:3.6
+FROM python:3.6-slim-buster
 
-COPY models models
+# set work directory
+WORKDIR /webapps/models
 
-RUN pip install -r models/requirements.txt
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+COPY models .
+
+RUN pip install --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt \
+    && pip install gunicorn \
+    && rm -rf ~/.cache/pip3
+
+# chown all the files to the app user
+RUN chown -R www-data:www-data .
+
+# Change current user to www-data
+USER www-data
 
 EXPOSE 5000
 
-CMD ["python3", "models/pcad.py"]
+# CMD ["python", "pcad.py"]
+
+# CMD [ "gunicorn", "-w", "3", "--bind", "0.0.0.0:5000", "wsgi"]
