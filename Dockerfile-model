@@ -1,4 +1,4 @@
-FROM python:3.7-slim-buster
+FROM python:3.6-slim-buster
 
 ENV GROUP_ID=1000 \
     USER_ID=1000
