@@ -3,7 +3,7 @@ import sys
 
 sys.path.append("../")
 from glob import glob
-from models.MultiStream_Ensemble.utils.helpers import *
+from .utils.helpers import *
 import numpy as np
 import json
 import pickle
