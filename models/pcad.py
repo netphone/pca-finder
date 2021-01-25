@@ -16,7 +16,7 @@ import models.settings as S
 
 app = Flask(__name__)
 # app.debug = True
-# CORS(app)
+CORS(app)
 
 
 def safe_mkdir(path):
