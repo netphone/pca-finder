@@ -146,12 +146,7 @@ How to run the Flask server on Midway2:
 `vglconnect -s midway2-0622`
 2. Go to the directory: `cd /project2/rcc/tszasz/MRIRC/SC19/flask_server/models`
 3. Type: `source env/bin/activate`
-4. Uncomment the following lines #91 and #92
-        
-        if __name__ == '__main__':
-            app.run(host='0.0.0.0', port=5000)
-
-and then Type: `export FLASK_APP=pcad.py` 
+4. Type: `export FLASK_APP=pcad.py` 
 
 5. Type: `export LC_ALL=en_US.utf-8`
 6. Type: `export LANG=en_US.utf-8`
