@@ -9,9 +9,10 @@ ENV PYTHONUNBUFFERED 1
 
 COPY models models
 
-RUN pip install -r models/requirements.txt
-
-RUN pip install gunicorn
+RUN pip install --upgrade pip \
+    && pip install --no-cache-dir -r models/requirements.txt \
+    && pip install gunicorn
+    && rm -rf ~/.cache/pip3
 
 # chown all the files to the app user
 RUN chown -R www-data:www-data .
@@ -23,4 +24,4 @@ EXPOSE 5000
 
 # CMD ["python", "models/pcad.py"]
 
-CMD [ "gunicorn", "-w", "3", "--bind", "0.0.0.0:5000", "wsgi"]
+# CMD [ "gunicorn", "-w", "3", "--bind", "0.0.0.0:5000", "wsgi"]
