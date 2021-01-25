@@ -11,7 +11,7 @@ COPY models models
 
 RUN pip install --upgrade pip \
     && pip install --no-cache-dir -r models/requirements.txt \
-    && pip install gunicorn
+    && pip install gunicorn \
     && rm -rf ~/.cache/pip3
 
 # chown all the files to the app user
