@@ -2,7 +2,7 @@ import os
 import sys
 sys.path.append("../")
 from glob import glob
-from .utils.helpers import *
+from models.Densenet_T2_ABK_auc_08.utils.helpers import *
 import json
 import SimpleITK as sitk
 import models.settings as S
