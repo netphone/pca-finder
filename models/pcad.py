@@ -15,7 +15,7 @@ sys.path.append("../")
 import models.settings as S
 
 app = Flask(__name__)
-# app.debug = True
+app.debug = True
 CORS(app)
 
 
