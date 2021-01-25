@@ -9,18 +9,6 @@ Template.ohifViewer.onCreated(() => {
     instance.headerClasses = new ReactiveVar('');
 
     OHIF.header.dropdown.setItems([
-    //     {
-    //     action: () => OHIF.ui.showDialog('userPreferencesDialog'),
-    //     text: 'Preferences',
-    //     icon: 'fa fa-user',
-    //     separatorAfter: true
-    // }, 
-    // {
-    //     action: () => OHIF.ui.showDialog('aboutModal'),
-    //     text: 'About',
-    //     icon: 'fa fa-info',
-    //     separatorAfter: true
-    // }, 
     {
         action: OHIF.user.logout,
         text: 'Logout',
