@@ -9,9 +9,8 @@ RUN pip install -r models/requirements.txt
 
 RUN pip install gunicorn
 
-# Add user for flask application
-RUN addgroup -g $GROUP_ID www-data
-RUN adduser -D -u $USER_ID -G www-data www-data -s /bin/sh
+# chown all the files to the app user
+RUN chown -R www-data:www-data .
 
 # Change current user to www-data
 USER www-data
