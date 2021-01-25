@@ -1,13 +1,23 @@
-FROM python:3.6
+FROM python:3.6.8-alpine3.9
+
+ENV GROUP_ID=1000 \
+    USER_ID=1000
 
 COPY models models
 
 RUN pip install -r models/requirements.txt
 
-# CMD ["python3", "models/pcad.py"]
+RUN pip install gunicorn
 
-# set work directory
-WORKDIR models
+# Add user for flask application
+RUN addgroup -g $GROUP_ID www-data
+RUN adduser -D -u $USER_ID -G www-data www-data -s /bin/sh
+
+# Change current user to www-data
+USER www-data
 
 EXPOSE 5000
 
+# CMD ["python", "models/pcad.py"]
+
+CMD [ "gunicorn", "-w", "3", "--bind", "0.0.0.0:5000", "wsgi"]
