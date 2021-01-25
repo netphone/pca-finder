@@ -15,8 +15,8 @@ sys.path.append("../")
 import models.settings as S
 
 app = Flask(__name__)
-app.debug = True
-CORS(app)
+# app.debug = True
+# CORS(app)
 
 
 def safe_mkdir(path):
@@ -88,5 +88,5 @@ def predict():
         return e
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=5000)

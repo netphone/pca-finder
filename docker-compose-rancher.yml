@@ -65,7 +65,7 @@ services:
     labels:
       io.rancher.container.pull_image: always
   mongodb:
-    image: tozd/meteor-mongodb:3.4
+    image: tozd/meteor:ubuntu-xenial-1.11.1
     environment:
       MONGODB_ADMIN_PWD: mongoadmin
       MONGODB_CREATE_PWD: mongoadmin
