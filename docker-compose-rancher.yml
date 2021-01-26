@@ -73,6 +73,10 @@ services:
     - mongodb:mongodb
     labels:
       io.rancher.container.pull_image: always
+  nginx-redirect-to-https:
+    image: nginx:stable
+    labels:
+      io.rancher.container.pull_image: always
   mongodb:
     image: tozd/meteor-mongodb:3.4
     environment:
