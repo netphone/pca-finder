@@ -171,7 +171,7 @@ How to run the Flask server on Midway2:
 
 ## To Inspect and view the available Database collections on MongoDB:
 -----------------------
-In Rancher **`PCa Finder`** container open the `mongodb` image by Executing the Shell and then run following commands on the shell:
+In Rancher **`pca-finder`** container open the `mongodb` image by Executing the Shell and then run following commands on the shell:
 
 1. `mongo --port 27017 -u "meteor" -p "mongoadmin" --authenticationDatabase "meteor"`
 
