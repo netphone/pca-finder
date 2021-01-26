@@ -24,4 +24,4 @@ EXPOSE 5000
 
 # CMD ["python", "pcad.py"]
 
-CMD [ "gunicorn", "-w", "3", "--bind", "0.0.0.0:5000", "wsgi"]
+# CMD [ "gunicorn", "-w", "3", "--bind", "0.0.0.0:5000", "wsgi"]
