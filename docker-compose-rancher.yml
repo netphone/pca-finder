@@ -9,15 +9,17 @@ services:
       io.rancher.container.pull_image: always
   pcad:
     image: docker-images.rcc.uchicago.edu/app-dev-group/pca-finder:models
-    stdin_open: true
-    tty: true
+    volumes:
+    - /dali/rcc/appdev/pca-finder/data:/data
     command:
     - gunicorn
-    - pcad:app
+    - wsgi:app
     - --name
     - pca-finder-models
     - --workers
     - '3'
+    - --timeout
+    - '600'
     - --bind
     - 0.0.0.0:5000
     - --log-level=debug
@@ -69,10 +71,6 @@ services:
       ROOT_URL: https://pca-finder.rcc.uchicago.edu
     links:
     - mongodb:mongodb
-    labels:
-      io.rancher.container.pull_image: always
-  nginx-redirect-to-https:
-    image: nginx:stable
     labels:
       io.rancher.container.pull_image: always
   mongodb:
