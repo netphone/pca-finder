@@ -1,4 +1,4 @@
-from models.pcad import app
+from pcad import app
 
 if __name__ == "__main__":
 	app.run()
