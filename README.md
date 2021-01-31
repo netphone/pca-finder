@@ -158,6 +158,8 @@ How to run the Flask server on Midway2:
 
     npm cache clean
 
+    npm audit fix --force
+
     meteor update --release 1.9.2
 
     meteor reset

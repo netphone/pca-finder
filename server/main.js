@@ -15,7 +15,7 @@ Meteor.startup(function () {
   if (Fiducials.find().count() === 0) {
     const stream = fs.createReadStream("assets/app/findings.csv");
 
-    csv.fromStream(stream, {
+    csv.parseStream(stream, {
       headers: true
     }).on("data", Meteor.bindEnvironment((data) => {
       if ('pos' in data) {
