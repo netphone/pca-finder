@@ -66,7 +66,7 @@ Meteor.startup(function () {
       }
 
     })).on("end", function() {
-      console.log("Done adding all the resualts!");
+      console.log("Done adding all the results!");
     });
   }
 
