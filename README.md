@@ -24,9 +24,9 @@ Installation
 3. In the app directory:
     * to install npm packages run: `meteor npm install`
 
-4. npm audit fix   
+4. Then run: `npm audit fix`  
 **OR,**    
-    npm audit fix --force
+    `npm audit fix --force`
 	
 5. Finally, run this command using an **General command prompt**: `meteor`
 
