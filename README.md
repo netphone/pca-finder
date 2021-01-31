@@ -23,8 +23,12 @@ Installation
 	````	
 3. In the app directory:
     * to install npm packages run: `meteor npm install`
+
+4. npm audit fix   
+**OR,**    
+    npm audit fix --force
 	
-4. Finally, run this command using an **General command prompt**: `meteor`
+5. Finally, run this command using an **General command prompt**: `meteor`
 
 ----------------------------
 **If you want to use your own DICOM server setup then In the app directory:**
@@ -38,14 +42,6 @@ For Windows:
 ------------
 	* for orthanc run: `SET METEOR_PACKAGE_DIRS="packages" meteor --settings config/orthancDICOMWeb.json`
 	* for dcm4chee run: `SET METEOR_PACKAGE_DIRS="packages" meteor --settings config/dcm4cheeDICOMWeb.json`
-
-To run on local machine not using Docker:
------------
-
-    - meteor npm install
-    - npm audit fix or npm audit fix --force
-    - meteor
-
     
 For Developers
 ---------
