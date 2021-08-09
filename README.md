@@ -43,9 +43,6 @@ For Windows:
 	* for orthanc run: `SET METEOR_PACKAGE_DIRS="packages" meteor --settings config/orthancDICOMWeb.json`
 	* for dcm4chee run: `SET METEOR_PACKAGE_DIRS="packages" meteor --settings config/dcm4cheeDICOMWeb.json`
     
-For Developers
----------
-Technologies Used:
 
 For Front End Server:
 ---------
