@@ -2,6 +2,9 @@
 
 Prostate Cancer Findings is a web application for identification of clinically significant prostate cancer in MRI, developed on Tesseract-MI platform. 
 
+
+![API architecture](https://github.com/netphone/pca-finder/blob/master/api%20architecture%20diagram.jpg)
+
 Installation
 ---------
 
